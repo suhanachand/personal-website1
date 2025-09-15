@@ -3,51 +3,132 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>projects | Suhana Chand</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <title>my projects</title>
   <style>
-    body { font-family: "Arial", sans-serif; background: #fafafa; color: #222; }
-    main { max-width: 900px; margin: auto; padding: 40px 20px; }
-    h2 { color: #000; border-left: 5px solid #000; padding-left: 10px; margin-bottom: 20px; }
-    nav ul { display: flex; justify-content: center; list-style: none; margin: 0; padding: 10px 0; }
-    nav ul li { margin: 0 20px; }
-    nav ul li a { text-decoration: none; font-weight: 600; color: #000; }
-    nav ul li a:hover { color: #000; }
-    footer { text-align: center; padding: 20px; background: #000; color: white; margin-top: 40px; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #000;
+      line-height: 1.6;
+    }
+    header {
+      background: #000000;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      background: #000000;
+    }
+    nav ul li {
+      margin: 0 15px;
+    }
+    nav ul li a {
+      color: rgb(255, 255, 255);
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+    .card {
+      background: #ffffff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    }
+    .card h3 {
+      margin-top: 0;
+      color: #000;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      background: #000;
+      color: white;
+    }
   </style>
 </head>
 <body>
+  <header>
+    <h1>My Projects & Activities</h1>
+  </header>
   <nav>
     <ul>
-      <li><a href="index.html#home">home</a></li>
-      <li><a href="index.html#about">about</a></li>
+      <li><a href="index.html">home</a></li>
       <li><a href="projects.html">projects</a></li>
-      <li><a href="featured.html">featured in</a></li>
-      <li><a href="index.html#contact">contact</a></li>
+      <li><a href="featured.html">featured</a></li>
+      <li><a href="contact.html">contact</a></li>
     </ul>
   </nav>
   <main>
-    <h2>projects</h2>
-    <div class="timeline">
-      <div class="entry">
-        <h3>Science Fair 5th Grade </h3>
-        <p><strong>What I did:</strong> Built the <em>Pool Doctor</em> concept.</p>
-        <p><strong>Why:</strong> To make pool maintenance easier and safer for families.</p>
-      </div>
-      <div class="entry">
-        <h3>Volunteering </h3>
+
+    <!-- 9th Grade -->
+    <div class="card">
+      <h3>Robotic Arm for Rehabilitation (9th Grade Science Fair)</h3>
+      <p>A functional robotic arm designed to assist with rehabilitation by recognizing and picking up objects using a camera. This project explored robotics, AI, and assistive technology for healthcare.</p>
+    </div>
+
+    <!-- 8th and 7th -->
+    <div class="card">
+      <h3>ArtiVision (7th & 8th Grade Science Fair)</h3>
+      <p>An assistive device created to support visually impaired individuals with text-to-speech, facial recognition, and emotional recognition. Recognized at science fairs and the Congressional App Challenge.</p>
+    </div>
+
+    <!-- 6th Grade -->
+    <div class="card">
+      <h3>Mobile Bicycle Chargers (6th Grade Science Fair)</h3>
+      <p>A renewable energy project where I designed chargers powered by bicycles to promote sustainable energy and accessibility.</p>
+    </div>
+
+    <!-- PURVedic -->
+    <div class="card">
+      <h3>PURVedic Soap Kitchen</h3>
+      <p>A small business I founded, combining creativity with entrepreneurship. I developed body butters and soaps, learning about product design, marketing, and finance.</p>
+    </div>
+
+    <div class="entry">
+        <h3>My Wish for My Community </h3>
         <p>Helped reduce geriatric isolation, fundraised for Phoenix Children’s Hospital, and supported veterans.</p>
         <p><strong>Why:</strong> I believe in giving back and connecting with people across generations.</p>
       </div>
-      <div class="entry">
-        <h3>Entrepreneurship </h3>
-        <p><strong>What I did:</strong> Started PURVedic Soap Kitchen.</p>
-        <p><strong>Why:</strong> To combine creativity with business skills like marketing and finance.</p>
-      </div>
+
+    <!-- Model UN -->
+    <div class="card">
+      <h3>Model United Nations</h3>
+      <p>Active participant in Model UN, where I research, debate, and collaborate on pressing global issues. This has strengthened my diplomacy and leadership skills.</p>
     </div>
+
+    <!-- Debate -->
+    <div class="card">
+      <h3>Big Questions Debate (NSDA)</h3>
+      <p>Engaged in philosophical and ethical debates as part of the National Speech & Debate Association. This sharpened my reasoning, argumentation, and public speaking abilities.</p>
+    </div>
+
+    <!-- Mock Trial -->
+    <div class="card">
+      <h3>Mock Trial</h3>
+      <p>Competed in Mock Trial, gaining insights into legal systems and courtroom procedures while developing persuasive advocacy skills.</p>
+    </div>
+
   </main>
   <footer>
     <p>&copy; 2025 Suhana Chand</p>
   </footer>
 </body>
 </html>
+
+
