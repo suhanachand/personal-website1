@@ -3,39 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>featured articles - Suhana Chand</title>
+  <title>my features</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #ffffff;
-      color: #000;
       margin: 0;
       padding: 0;
+      background-color: #ffffff;
+      color: #000;
+      line-height: 1.6;
     }
     header {
-      background: #000;
+      background: #000000;
       color: white;
-      text-align: center;
       padding: 20px;
-    }
-    nav {
-      background: white;
-      padding: 10px;
       text-align: center;
     }
-    nav a {
-      margin: 0 10px;
-      color: rgb(0, 0, 0);
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      background: #000000;
+    }
+    nav ul li {
+      margin: 0 15px;
+    }
+    nav ul li a {
+      color: rgb(255, 255, 255);
       text-decoration: none;
       font-weight: bold;
     }
-    .container {
+    nav ul li a:hover {
+      text-decoration: underline;
+        }
+
+        .container {
       max-width: 800px;
       margin: 20px auto;
       padding: 15px;
     }
     .article {
-      background: #ffffff;
+      background: #000000;
       padding: 15px;
       margin-bottom: 20px;
       border-radius: 10px;
@@ -43,60 +53,100 @@
     }
     .article h2 {
       margin-top: 0;
-      color: #000;
+      color: #ffffff;
     }
     .source {
       font-size: 0.9rem;
-      color: #000;
+      color: #ffffff;
     }
     a.link {
-      color: #000;
+      color: #ffffff;
       font-weight: bold;
       text-decoration: none;
     }
     a.link:hover {
       text-decoration: underline;
     }
+
+    .article img {
+      width: 200px;
+      height: auto;
+      border-radius: 8px;
+      object-fit: cover;
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>featured articles about me</h1>
-
+    <h1>my stuff</h1>
+  </header>
 <nav>
   <ul>
     <li><a href="index.html#home">home</a></li>
     <li><a href="index.html#about">about</a></li>
-    <li><a href="projects.html">projects</a></li>
+    <li><a href="projects.html">stuff</a></li>
     <li><a href="featured.html">featured in</a></li>
     <li><a href="index.html#contact">contact</a></li>
   </ul>
 </nav>
 
   <div class="container">
+
     <div class="article">
-      <h2>ArtiVision wins Rep. Debbie Lesko's 2024 Congressional App Challenge in Arizona's Eighth District</h2>
-      <p class="source">Published in <em>CAC.us</em> – January 2025</p>
-      <p><a href="https://www.congressionalappchallenge.us/24-az08/" target="_blank" class="link">Read Full Article →</a></p>
+      <img src="https://api.broadcomfoundation.org/wp-content/uploads/2025/07/CongressionalAppChallenge_April_8_2025_Social_Media-127-2560x1864.jpg" alt="Broadcom Foundation">
+      <div class="article-content">
+        <h2>Broadcom Coding with Commitment Meets Congressional App Challenge Youth Shine at #HouseOfCode on Capitol Hill</h2>
+        <p class="source">Published in <em>Broadcom Foundation Highlights</em> – July 2025</p>
+        <p><a href="https://broadcomfoundation.org/highlights/p/broadcom-coding-with-commitment-meets-congressional-app-challenge/" target="_blank" class="link">Read Full Article →</a></p>
+      </div>
     </div>
 
     <div class="article">
-      <h2>Broadcom Coding with Commitment Meets Congressional App Challenge Youth Shine at #HouseOfCode on Capitol Hill</h2>
-      <p class="source">Published in <em>Broadcom Foundation Highlights</em> – July 2025</p>
-      <p><a href="https://broadcomfoundation.org/highlights/p/broadcom-coding-with-commitment-meets-congressional-app-challenge/" target="_blank" class="link">Read Full Article →</a></p>
-
-    <div class="article">
-      <h2>Middle School Student Codes to Improve Life with Visual Impairment</h2>
-      <p class="source">Science Buddies Blog</p>
-      <p><a href="https://www.sciencebuddies.org/blog/student-coding-project-artivision" target="_blank" class="link">Read Full Article →</a></p>
-    </div>
-
-    <div class="article">
-      <h2>Recognition for Winning the Broadcom Coding with Commitment Award at AZSEF 2023 </h>
-      <p class="source">Broadcom Foundation</p>
-      <p><a href="https://www.facebook.com/BroadcomFoundation/posts/congratulations-suhana-chand-winner-of-broadcomcodingwithcommitment-at-arizona-s/650116887215051/" target="_blank" class="link">View Post →</a></p>
+      <img src="https://www.sciencebuddies.org/VCgylN1Ohm48v9jISq45PI0f_dI=/1400x736/-/https/www.sciencebuddies.org/cdn/Files/19819/4/2022-successstory-suhana-codingproject.png" alt="Science Buddies">
+      <div class="article-content">
+        <h2>Middle School Student Codes to Improve Life with Visual Impairment</h2>
+        <p class="source">Published in <em>Science Buddies Blog</em></p>
+        <p><a href="https://www.sciencebuddies.org/blog/student-coding-project-artivision" target="_blank" class="link">Read Full Article →</a></p>
+      </div>
     </div>
     
+  
+
+    <div class="article">
+      <img src="https://scontent-phx1-1.xx.fbcdn.net/v/t39.30808-6/477014890_974071281486275_1402836563444641074_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=crYcIin79bIQ7kNvwFUuRmz&_nc_oc=AdlKHJm6ikKzZXfEx3DqouQZnX_7Tx2RKVuhhYw_iR91p0ufiv86-huwJihYuckmpzs&_nc_zt=23&_nc_ht=scontent-phx1-1.xx&_nc_gid=cWfL90TNAwXVTm0b2KEK9w&oh=00_AfYmpnIChLHElDkeCtfiNzUDizKDD1oQOVavuGTpJ_5VBQ&oe=68D00245" alt="Broadcom Award Recognition">
+      <div class="article-content">
+        <h2>Recognition for Winning the Broadcom Coding with Commitment Award at AZSEF 2023</h2>
+        <p class="source">Published in <em>Broadcom Foundation</em></p>
+        <p><a href="https://www.facebook.com/BroadcomFoundation/posts/congratulations-suhana-chand-winner-of-broadcomcodingwithcommitment-at-arizona-s/650116887215051/" target="_blank" class="link">View Post →</a></p>
+      </div>
+    </div>
+
+  <div class="article">
+      <div class="article-content">
+        <h2>ArtiVision wins Rep. Debbie Lesko's 2024 Congressional App Challenge in Arizona's Eighth District</h2>
+        <p class="source">Published in <em>CAC.us</em> – January 2025</p>
+        <p><a href="https://www.congressionalappchallenge.us/24-az08/" target="_blank" class="link">Read Full Article →</a></p>
+      </div>
+    </div>
+
+  <div class="article">
+    <div class="article-content">
+    <h2>Congresswoman Lesko Announces Winners of 2024 Congressional App Challenge</h2>
+    <p class="source">NW Valley Times – December 16, 2024: Suhana Chand from BASIS Peoria won first place with her app *ArtiVision*, a wearable assistive device that helps visually impaired individuals by including facial & emotional recognition plus text-to-speech functionality.</p>
+    <p><a href="https://nwvalleytimes.com/congresswoman-lesko-announces-winners-of-2024-congressional-app-challenge/" target="_blank" class="link">Read Full Article →</a></p>
+    </div>
+  </div>
+
+
+<div class="article">
+  <img src="https://arizonadailyindependent.com/wp-content/uploads/2024/12/winners-ap-678x381.jpg" alt="Arizona Daily Independent article about Congressional App Challenge CD8">
+  <div class="article-content">
+    <h2>Lesko Announces Winners Of CD8 2024 Congressional App Challenge</h2>
+    <p class="source">Arizona Daily Independent – December 16, 2024: A BASIS Peoria student, Suhana Chand, is the top winner with *ArtiVision*, a wearable assistive device with facial & emotional recognition + text-to-speech, designed to help visually impaired individuals. </p>
+    <p><a href="https://arizonadailyindependent.com/2024/12/16/lesko-announces-winners-of-cd8-2024-congressional-app-challenge/" target="_blank" class="link">Read Full Article →</a></p>
+  </div>
+</div>
+
   </div>
 </body>
 </html>
