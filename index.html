@@ -2,158 +2,104 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Suhana Chand | Portfolio</title>
-  
-  <style>
-    body {
-      font-family: "Arial", sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #fafafa;
-      color: #222;
-      scroll-behavior: smooth;
-    }
-
-    /* Header / Hero */
-    header {
-      height: 20vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #fff, #fff);
-      color: rgb(0, 0, 0);
-      text-align: center;
-      padding: 20px;
-    }
-    header img {
-      width: 180px;
-      height: 90px;
-      border-radius: 50%;
-      margin: 20px 0;
-      border: 4px solid white;
-    }
-    header h1 {
-      font-size: 2.5rem;
-      margin: 10px 0;
-    }
-    header p {
-      font-size: 1.2rem;
-      opacity: 0.85;
-    }
-
-    /* Nav */
-    nav {
-      position: sticky;
-      top: 0;
-      background: #fff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 1000;
-    }
-    nav ul {
-      display: flex;
-      justify-content: center;
-      list-style: none;
-      margin: 0;
-      padding: 10px 0;
-    }
-    nav ul li {
-      margin: 0 20px;
-    }
-    nav ul li a {
-      text-decoration: none;
-      font-weight: 600;
-      color: #000;
-      transition: color 0.3s;
-    }
-    nav ul li a:hover {
-      color: #000;
-    }
-
-    /* Sections */
-    main {
-      max-width: 900px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-    section {
-      margin-bottom: 60px;
-    }
-    h2 {
-      color: #000000;
-      border-left: 5px solid #000000;
-      padding-left: 10px;
-      margin-bottom: 20px;
-    }
-
-    /* Timeline / Entries */
-    .timeline .entry {
-      background: white;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      transition: transform 0.2s;
-    }
-    .timeline .entry:hover {
-      transform: translateY(-5px);
-    }
-    .timeline h3 {
-      margin-top: 0;
-      color: #000000;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #000000;
-      color: white;
-      margin-top: 40px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=0.8">
+  <title>SunaSite</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/layout.js" defer></script>
+  <!-- Fonts -->
+  <link href="https://fonts.cdnfonts.com/css/press-start-2p" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
-
-  <!-- Hero Section -->
+   <div id="custom-cursor"></div>
   <header>
-    <h1>Hi, I’m Suhana </h1>
-    <p>a 14 year old from Phoenix, AZ. currently: building, researching, and giving back to my community.</p>
+    <h1>🌙 SunaSite 🌙</h1>
   </header>
 
-<nav>
-  <ul>
-    <li><a href="index.html#home">home</a></li>
-    <li><a href="index.html#about">about</a></li>
-    <li><a href="projects.html">stuff</a></li>
-    <li><a href="featured.html">featured in</a></li>
-    <li><a href="index.html#contact">contact</a></li>
-  </ul>
-</nav>
+  <div class="container">
+    <!-- LEFT SIDEBAR (MENU) -->
+<aside class="sidebar left">
+  <nav class="menu">
+    <ul>
+      <li><a href="index.html">🏠 Home</a></li>
 
+      <!-- About -->
+      <li class="dropdown">
+        <a href="#">💖 About ▾</a>
+        <ul class="submenu">
+          <li><a href="about/about-me.html">About Me</a></li>
+          <li><a href="about/childhood.html">Online Childhood</a></li>
+          <li><a href="about/about-site.html">About the Site</a></li>
+          <li><a href="about/guestbook.html">Guestbook</a></li>
+        </ul>
+      </li>
 
-  <main>
-    <section id="about">
-      <h3>about</h3>
-      <p>I am a <bold>sophmore</bold> interested in engineering, law, cs, writing, geopolitics, history, and science.</p>
-      <p>I've competed in various science fairs and challenges, where I've been recognized for my innovative projects. Alongside school, I run a small busines called PURVedic Soap Kitchen, where I've learned about marketing and finance while incorporating my love for creativity</p>
-    </section>
+      <!-- Unique Me -->
+      <li class="dropdown">
+        <a href="#">🌟 Unique Me ▾</a>
+        <ul class="submenu">
+          <li><a href="unique-me/working-on.html">What I’m Working On</a></li>
+          <li><a href="unique-me/favorites.html">Favorites</a></li>
+          <li><a href="unique-me/fun-facts.html">Fun Facts</a></li>
+          <li><a href="unique-me/clubs.html">Clubs I’m In</a></li>
+          <li><a href="unique-me/current-activities.html">Current Activities</a></li>
+        </ul>
+      </li>
 
-   
+      <!-- Creations -->
+      <li class="dropdown">
+        <a href="#">🎨 Creations ▾</a>
+        <ul class="submenu">
+          <li><a href="creations/project.html">Project</a></li>
+          <li><a href="creations/playlist.html">Playlist</a></li>
+          <li><a href="creations/junk-journal.html">Junk Journal</a></li>
+          <li><a href="creations/writing.html">Writing</a></li>
+          <li><a href="creations/misc.html">Misc</a></li>
+        </ul>
+      </li>
 
-    <section id="contact">
-      <h3>contact</h3>
-      <p>email me at: <a href="mailto:suhanachand03@gmail.com">suhanachand03@gmail.com</a></p>
-      <p>follow me at: <a href="https://www.instagram.com/cxsuhana/" target="_blank">@cxsuhana</a></p>
-      <p>this is my linkedin: <a href="https://www.linkedin.com/in/suhana-chand-a88571278/" target="_blank">Suhana Chand</a></p>
-    </section>
-  </main>
+      <!-- Media Recs -->
+      <li class="dropdown">
+        <a href="#">📺 Media Recs ▾</a>
+        <ul class="submenu">
+          <li><a href="media-recs/log.html">Log</a></li>
+          <li><a href="media-recs/youtube.html">YouTube</a></li>
+          <li><a href="media-recs/books.html">Books</a></li>
+          <li><a href="media-recs/movies.html">Movies</a></li>
+          <li><a href="media-recs/tv.html">TV Shows</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>
+
+    <!-- MAIN CONTENT -->
+    <main>
+      <h2>Welcome to SunaSite!</h2>
+      <p>This is my little pixel world ✨  
+      Explore my projects, media logs, and scrapbook-style entries.  
+      Hope you enjoy hanging out here 💖</p>
+    </main>
+
+    <!-- RIGHT SIDEBAR (WIDGETS) -->
+    <aside class="sidebar right">
+      <div class="widget">
+        <h3>✨ Quote of the Day ✨</h3>
+        <p>"Stay soft, the world needs your light."</p>
+      </div>
+      <div class="widget">
+        <h3>🎶 Now Playing</h3>
+        <iframe style="border-radius:0; image-rendering: pixelated;" 
+                src="https://open.spotify.com/embed/track/2X485T9Z5Ly0xyaghN73ed" 
+                width="100%" height="80" frameBorder="0" 
+                allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture">
+        </iframe>
+      </div>
+    </aside>
+  </div>
 
   <footer>
-    <p>&copy; 2025 Suhana Chand</p>
+    <p>Made with love + pixels by Suhana</p>
   </footer>
-
 </body>
 </html>
-
