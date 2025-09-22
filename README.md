@@ -12,3 +12,5 @@ What’s Inside
 Why I Made This  
 I wanted a space that goes beyond a résumé, basically somewhere to share my projects, ideas, and passions. This site is part portfolio, part journal, and part showcase of what I’ve been creating.
 
+P.S. my commits are named after periodic table elements (i have one up in my room)
+
