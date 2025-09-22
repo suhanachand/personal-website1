@@ -94,7 +94,7 @@
       font-weight: bold;
     }
     .social-box a:hover {
-      color: gold;
+      color: #ff69b4;
     }
 
   </style>
@@ -260,21 +260,117 @@
 
     </main>
 
-    
-    <!-- RIGHT SIDEBAR -->
-  <aside class="sidebar right">
-    <div class="widget">
-      <h3>💿 Fave Album RN</h3>
-      <p>Melodrama — Lorde</p>
-    </div>
-    <div class="widget">
-      <h3>🌸 Cute Corner</h3>
-      <img src="../img/blinkies/sparkle.gif" alt="sparkly gif">
-    </div>
-  </aside>
 
+<!-- RIGHT SIDEBAR -->
+<aside class="sidebar right">
+
+  <!-- Quote of the Day -->
+  <div class="widget">
+    <h4>✨ Quote of the Day ✨</h4>
+    <p>"Stay soft, the world needs your light."</p>
   </div>
 
+  <!-- Hits & Visitors -->
+  <div class="widget hits-visitors">
+    <h4>Your Clicks</h4>
+    <div id="pixel-counter" class="pixel-counter">
+      <span class="pixel-box">0</span>
+      <span class="pixel-box">0</span>
+      <span class="pixel-box">0</span>
+      <span class="pixel-box">0</span>
+      <span class="pixel-box">0</span>
+      <span class="pixel-box">0</span>
+    </div>
+ </div>
+
+  <!-- Local Time -->
+  <div class="widget clock">
+    <h4>⏰ Local Time (PST)</h4>
+    <p id="arizona-time">--:--:--</p>
+  </div>
+
+</aside>
+
+<style>
+  /* Uniform widget style */
+  .sidebar.right .widget {
+    border: 2px dashed #8b004b; /* cute dashed dark pink border */
+    border-radius: 6px;
+    padding: 0.5rem;
+    margin-bottom: 0.7rem;
+    font-family: 'Press Start 2P', cursive;
+    background: #fbced4; /* light cream background for retro/cute feel */
+  }
+
+  /* Uniform widget headers */
+  .sidebar.right .widget h4 {
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  /* Pixel counter styling */
+  .pixel-counter {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+
+  .pixel-box {
+    width: 24px;
+    height: 32px;
+    background: #ffb6c1; /* creme yellow */
+    color: #8b004b;       /* dark pink text */
+    font-family: 'Press Start 2P', cursive;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    image-rendering: pixelated;
+    border: 2px solid #8b004b;
+    border-radius: 4px;
+    box-shadow: 1px 1px 0 #4b0000;
+  }
+
+  /* Minimalistic paragraph text */
+  .widget p {
+    font-size: 0.7rem;
+    margin: 0.2rem 0;
+  }
+</style>
+
+<script>
+  // Pixel counter
+  let counter = 0; // site not launched yet
+  const pixelBoxes = document.querySelectorAll("#pixel-counter .pixel-box");
+
+  function updatePixelCounter(value) {
+    let strVal = value.toString().padStart(6, "0");
+    for (let i = 0; i < 6; i++) {
+      pixelBoxes[i].textContent = strVal[i];
+    }
+  }
+  updatePixelCounter(counter);
+
+  // Increment on click anywhere
+  document.body.addEventListener("click", () => {
+    counter++;
+    updatePixelCounter(counter);
+  });
+
+  // Arizona time (PST)
+  function updateArizonaTime() {
+    const options = { timeZone: 'America/Phoenix', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    const now = new Date().toLocaleTimeString('en-US', options);
+    document.getElementById("arizona-time").textContent = now;
+  }
+  setInterval(updateArizonaTime, 1000);
+  updateArizonaTime();
+</script>
+
+</div>
   <footer>
     <p>Made with love + pixels by Suhana</p>
   </footer>
@@ -302,6 +398,8 @@
       display.textContent = fact;
     });
   </script>
+
+
 
   <script>
   document.addEventListener("DOMContentLoaded", function() {
