@@ -1,1 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me - SunaSite</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/layout.js" defer></script>
+  <link href="https://fonts.cdnfonts.com/css/press-start-2p" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <style>
+    /* Custom cursor */
+    #custom-cursor {
+      position: fixed;
+      width: 25px;
+      height: 25px;
+      background: gold;
+      clip-path: polygon(
+        50% 0%, 61% 35%, 98% 35%, 68% 57%,
+        79% 91%, 50% 70%, 21% 91%, 32% 57%,
+        2% 35%, 39% 35%
+      );
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%) rotate(0deg);
+      animation: twinkle 1s infinite alternate;
+    }
+    @keyframes twinkle {
+      0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); opacity: 1; }
+      50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.2); opacity: 0.8; }
+      100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); opacity: 1; }
+    }
 
+    /* Cute button for fact generator */
+    .fact-button {
+      background: #ffb6c1;
+      border: 2px solid #ff69b4;
+      border-radius: 10px;
+      padding: 8px 16px;
+      color: #4b0000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-family: 'Press Start 2P', cursive;
+    }
+    .fact-button:hover {
+      transform: scale(1.1);
+      box-shadow: 2px 2px 0 #4b0000;
+    }
+
+    /* Section layout */
+    .section {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .section img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border: 4px solid #8b0000;
+      box-shadow: 4px 4px 0 #4b0000;
+    }
+
+    /* Hobbies/Likes/Dislikes boxes */
+    .boxes-container {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .box {
+      flex: 1;
+      min-width: 180px;
+      background: #ffe4ea;
+      padding: 1rem;
+      border: 3px solid #8b0000;
+      box-shadow: 2px 2px 0 #4b0000;
+    }
+    .box ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .box li::before {
+      content: "🌸"; /* cute emoji as bullet */
+      margin-right: 0.5rem;
+    }
+
+    /* Social links boxes */
+    .social-box a {
+      display: block;
+      margin: 0.3rem 0;
+      color: #4b0000;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .social-box a:hover {
+      color: gold;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="custom-cursor"></div>
+
+  <header>
+    <h1>🌙 SunaSite 🌙</h1>
+  </header>
+
+  <div class="container">
+    <!-- LEFT SIDEBAR (Menu) -->
+    <aside class="sidebar left">
+      <nav class="menu">
+        <ul>
+          <li><a href="../index.html">🏠 Home</a></li>
+
+          <li class="dropdown">
+            <a href="#">💖 About ▾</a>
+            <ul class="submenu">
+              <li><a href="about-me.html">About Me</a></li>
+              <li><a href="childhood.html">Online Childhood</a></li>
+              <li><a href="about-site.html">About the Site</a></li>
+              <li><a href="guestbook.html">Guestbook</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#">🌟 Unique Me ▾</a>
+            <ul class="submenu">
+              <li><a href="../unique-me/working-on.html">What I’m Working On</a></li>
+              <li><a href="../unique-me/favorites.html">Favorites</a></li>
+              <li><a href="../unique-me/fun-facts.html">Fun Facts</a></li>
+              <li><a href="../unique-me/clubs.html">Clubs I’m In</a></li>
+              <li><a href="../unique-me/current-activities.html">Current Activities</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#">🎨 Creations ▾</a>
+            <ul class="submenu">
+              <li><a href="../creations/project.html">Project</a></li>
+              <li><a href="../creations/playlist.html">Playlist</a></li>
+              <li><a href="../creations/junk-journal.html">Junk Journal</a></li>
+              <li><a href="../creations/writing.html">Writing</a></li>
+              <li><a href="../creations/misc.html">Misc</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#">📺 Media Recs ▾</a>
+            <ul class="submenu">
+              <li><a href="../media-recs/log.html">Log</a></li>
+              <li><a href="../media-recs/youtube.html">YouTube</a></li>
+              <li><a href="../media-recs/books.html">Books</a></li>
+              <li><a href="../media-recs/movies.html">Movies</a></li>
+              <li><a href="../media-recs/tv.html">TV Shows</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main>
+      <!-- Section 1: Photo + Info + Fact generator -->
+      <section class="section">
+        <img src="../img/profilepic.jpg" alt="Profile photo">
+        <div>
+          <h2>🌙 Hey, I’m Suhana!</h2>
+          <p>Teen creator who loves coding, design, and turning ideas into fun little worlds.  
+          This site is my digital scrapbook — half cozy pixel corner, half creativity hub.</p>
+          
+          <h3 style="text-align: center;">Random Fact About Me:</h3>
+            <div class="fact-container">
+              <div class="fact-display-box" id="fact-display">Click "Gimme!" to see a fact!</div>
+              <button class="fact-button" id="fact-button">Gimme!</button>
+              </div>
+
+        </div>
+      </section>
+
+      <!-- Section 2: Hobbies, Likes, Dislikes -->
+      <section>
+        <div class="boxes-container">
+          <div class="box">
+            <h3>Hobbies</h3>
+            <ul>
+              <li>Coding</li>
+              <li>Writing</li>
+              <li>Making Playlists</li>
+              <li>Reading</li>
+              <li>Drawing</li>
+              <li>Video Editing</li>
+              <li>Listening to Music</li>
+              <li>Watching Movies/TV</li>
+              <li>Gaming</li>
+              <li>Journaling / Media tracking</li>
+            </ul>
+          </div>
+          <div class="box">
+            <h3>Likes</h3>
+            <ul>
+              <li>Cats</li>
+              <li>Aesthetics</li>
+              <li>Lists</li>
+              <li>Fandom spaces</li>
+              <li>Comedy music</li>
+              <li>Pixel art</li>
+              <li>Lucid dreams</li>
+            </ul>
+          </div>
+          <div class="box">
+            <h3>Dislikes</h3>
+            <ul>
+              <li>Smokers</li>
+              <li>Cancel culture</li>
+              <li>Cynicism</li>
+              <li>Toxic positivity</li>
+              <li>Messiness</li>
+              <li>Procrastinators</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Social links -->
+<section class="visit-me">
+  <h3>💌 Visit Me Somewhere Else</h3>
+  <div class="visit-boxes">
+    <div class="visit-box">
+      <h4>Social Media</h4>
+      <ul>
+        <li><a href="https://open.spotify.com/" target="_blank">Spotify</a></li>
+        <li><a href="https://www.youtube.com/" target="_blank">YouTube</a></li>
+        <li><a href="https://status.cafe/" target="_blank">Status.cafe</a></li>
+        <li><a href="https://picmix.com/" target="_blank">PicMix</a></li>
+      </ul>
+    </div>
+
+    <div class="visit-box">
+      <h4>Dev/Tech</h4>
+      <ul>
+        <li><a href="https://github.com/" target="_blank">GitHub</a></li>
+        <li><a href="https://greasyfork.org/" target="_blank">GreasyFork</a></li>
+        <li><a href="#" target="_blank">GitHub Website</a></li>
+        <li><a href="#" target="_blank">Tumblr Themes</a></li>
+      </ul>
+    </div>
+
+    <div class="visit-box">
+      <h4>Media Trackers</h4>
+      <ul>
+        <li><a href="#" target="_blank">Letterboxd (Movies)</a></li>
+        <li><a href="#" target="_blank">TV Time (TV Shows)</a></li>
+        <li><a href="#" target="_blank">Goodreads (Books)</a></li>
+        <li><a href="#" target="_blank">Backloggd (Games)</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+    </main>
+
+    
+    <!-- RIGHT SIDEBAR -->
+  <aside class="sidebar right">
+    <div class="widget">
+      <h3>💿 Fave Album RN</h3>
+      <p>Melodrama — Lorde</p>
+    </div>
+    <div class="widget">
+      <h3>🌸 Cute Corner</h3>
+      <img src="../img/blinkies/sparkle.gif" alt="sparkly gif">
+    </div>
+  </aside>
+
+  </div>
+
+  <footer>
+    <p>Made with love + pixels by Suhana</p>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById("custom-cursor");
+    document.addEventListener("mousemove", e => {
+      cursor.style.left = e.clientX + "px";
+      cursor.style.top = e.clientY + "px";
+    });
+
+    // Random fact generator
+    const facts = [
+      "I run a soap + body butter business 🧼",
+      "I love debates, Model UN, and Mock Trial ⚖️",
+      "I enjoy making playlists 🎶",
+      "I’m a big fan of pixel art and web aesthetics",
+      "I love coding and creative projects 💻"
+    ];
+    const button = document.getElementById("fact-button");
+    const display = document.getElementById("fact-display");
+    button.addEventListener("click", () => {
+      const fact = facts[Math.floor(Math.random() * facts.length)];
+      display.textContent = fact;
+    });
+  </script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Only target dropdowns in this page's menu
+    const menu = document.querySelector('.sidebar.left .menu');
+    if (menu) {
+      menu.querySelectorAll('.dropdown > a').forEach(drop => {
+        drop.addEventListener('click', function(e) {
+          e.preventDefault(); // Prevent page jump
+          const parent = this.parentElement;
+
+          // Close other open dropdowns inside this menu
+          menu.querySelectorAll('.dropdown').forEach(d => {
+            if(d !== parent) d.classList.remove('open');
+          });
+
+          // Toggle current dropdown
+          parent.classList.toggle('open');
+        });
+      });
+    }
+  });
+</script>
+</body>
+</html>
