@@ -1,1 +1,264 @@
+/* Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Base fonts */
+body {
+  cursor: none;
+}
+
+/* Custom star follows mouse */
+/* Custom animated star cursor */
+#custom-cursor {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  background: gold;
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 68% 57%,
+    79% 91%, 50% 70%, 21% 91%, 32% 57%,
+    2% 35%, 39% 35%
+  ); /* star shape */
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: twinkle 1s infinite alternate;
+}
+
+/* Animation to rotate/twinkle */
+@keyframes twinkle {
+  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); opacity: 1; }
+  50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.2); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); opacity: 1; }
+}
+
+body {
+  font-family: 'VT323', monospace;  /* smoother retro font */
+  background-color: #6a0c0c; /* Dark red outer */
+  color: #2e0000;
+  font-size: 18px;   /* increased for readability */
+  line-height: 1.6;
+}
+
+/* Headings use pixel font */
+h1, h2, h3, header h1 {
+  font-family: 'Press Start 2P', cursive;
+  letter-spacing: 1px;
+}
+
+/* Header + footer */
+header, footer {
+  background: #4b0000;
+  color: #fff0f5;
+  text-align: center;
+  padding: 1rem;
+  border: 4px solid #fff0f5;
+}
+
+footer { font-size: 12px; }
+
+/* Layout */
+.container {
+  display: grid;
+  grid-template-columns: 220px 1fr 220px;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #ffc9d4; /* Baby pink inside */
+  border-left: 6px solid #4b0000;
+  border-right: 6px solid #4b0000;
+}
+
+/* Sidebars */
+.sidebar {
+  background: #fff0f5;
+  padding: 0.8rem;
+  border: 4px solid #8b0000;
+  box-shadow: 4px 4px 0 #4b0000;
+}
+
+.left { grid-column: 1; }
+.right { grid-column: 3; }
+
+/* Main content */
+main {
+  background: #ffe4ea;
+  padding: 1rem;
+  border: 4px solid #8b0000;
+  box-shadow: 4px 4px 0 #4b0000;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* Menu */
+.menu ul { list-style: none; }
+.menu li { margin: 0.7rem 0; }
+
+.menu a {
+  font-family: 'Press Start 2P', cursive; /* menu keeps pixel vibe */
+  font-size: 12px;
+  color: #4b0000;
+  text-decoration: none;
+  background: #ffc9d4;
+  padding: 0.4rem;
+  display: inline-block;
+  border: 2px solid #8b0000;
+  box-shadow: 2px 2px 0 #4b0000;
+}
+.menu a:hover {
+  background: rgb(211, 130, 146);
+  color: #4b0000;
+}
+
+/* Dropdowns */
+.submenu {
+  display: none;
+  margin-top: 0.3rem;
+  margin-left: 1rem;
+}
+.dropdown.open .submenu { display: block; }
+
+/* Widgets */
+.widget {
+  margin-bottom: 1rem;
+  background: #ffe4ea;
+  padding: 0.5rem;
+  border: 3px solid #8b0000;
+  box-shadow: 2px 2px 0 #4b0000;
+  text-align: center;
+}
+
+.visit-me {
+  margin: 2rem 0;
+}
+
+.visit-me h3 {
+  text-align: center;
+  margin-bottom: 1.5rem; /* gap between title and boxes */
+  font-family: 'Press Start 2P', cursive;
+}
+
+.visit-boxes {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center; /* center horizontally */
+}
+
+.visit-box {
+  flex: 1;
+  min-width: 180px;
+  max-width: 250px;
+  background: #ffe4ea;
+  padding: 1rem;
+  border: 3px solid #8b0000;
+  border-radius: 20px; /* curvy border */
+  box-shadow: 4px 4px 0 #4b0000; /* cute pixel-y shadow */
+  transition: transform 0.2s;
+}
+
+.visit-box:hover {
+  transform: translateY(-3px);
+}
+
+.visit-box h4 {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.visit-box ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.visit-box li::before {
+  content: "💌"; /* emoji bullet */
+  margin-right: 0.5rem;
+}
+
+.visit-box a {
+  color: #4b0000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.visit-box a:hover {
+  color: gold;
+}
+
+
+.fact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers content horizontally */
+  gap: 0.5rem; /* small gap between box and button */
+}
+
+.fact-display-box {
+  border: 2px dotted #ff69b4; /* pink dotted line */
+  border-radius: 12px;          /* curvy edges */
+  padding: 1rem;
+  margin-top: 0.5rem;
+  background: #fff0f5;          /* soft background */
+  min-width: 250px;
+  text-align: center;
+  font-family: 'VT323', monospace;
+  box-shadow: 2px 2px 0 #ff1493;
+}
+
+.fact-button {
+  pointer-events: auto; /* ensure button receives clicks */
+  z-index: 10;           /* make it above other elements */
+}
+.fact-container {
+  pointer-events: auto;
+}
+#custom-cursor {
+  pointer-events: none; /* this is correct */
+}
+
+/* Hide submenus initially */
+.menu .submenu {
+  display: none;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+/* Show submenu when parent has "open" class */
+.menu .dropdown.open > .submenu {
+  display: block;
+}
+
+/* Style submenu links */
+.menu .submenu li a {
+  display: block;
+  padding: 0.3rem 1rem;
+  text-decoration: none;
+  color: #4b0000;
+}
+
+.menu .submenu li a:hover {
+  background-color: #ffe4ea;
+  border-radius: 5px;
+}
+
+.sidebar.right .widget.hits-visitors,
+.sidebar.right .widget.clock {
+  background: #fbced4;
+  padding: 1rem;
+  border: 2px dashed #8b0000;
+  border-radius: 15px;
+  box-shadow: 2px 2px 0 #4b0000;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+  margin-bottom: 1rem;
+}
+
+.sidebar.right .widget p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+
+
 
