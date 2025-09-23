@@ -2,198 +2,399 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=0.8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SunaSite</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/layout.js" defer></script>
   <!-- Fonts -->
   <link href="https://fonts.cdnfonts.com/css/press-start-2p" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <style>
+    /* Custom cursor */
+    #custom-cursor {
+      position: fixed;
+      width: 25px;
+      height: 25px;
+      background: gold;
+      clip-path: polygon(
+        50% 0%, 61% 35%, 98% 35%, 68% 57%,
+        79% 91%, 50% 70%, 21% 91%, 32% 57%,
+        2% 35%, 39% 35%
+      );
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%) rotate(0deg);
+      animation: twinkle 1s infinite alternate;
+    }
+    @keyframes twinkle {
+      0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); opacity: 1; }
+      50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.2); opacity: 0.8; }
+      100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); opacity: 1; }
+    }
+
+    /* Main section styling */
+    main {
+      padding: 1rem 2rem;
+      font-family: 'VT323', monospace;
+      color: #4b0000;
+    }
+
+    /* Welcome */
+    .welcome h2 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1rem;
+      color: #8b004b;
+      margin-bottom: 0.5rem;
+    }
+    .welcome p, .welcome li {
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+
+    /* Buttons */
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .buttons button {
+      background: #ffb6c1;
+      border: 2px solid #ff69b4;
+      border-radius: 10px;
+      padding: 8px 12px;
+      color: #4b0000;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .buttons button:hover {
+      transform: scale(1.1);
+      box-shadow: 2px 2px 0 #4b0000;
+    }
+
+    /* About Me */
+    .about-me h3, .personal-info h3 {
+      font-family: 'Press Start 2P', cursive;
+      color: #8b004b;
+      font-size: 0.8rem;
+      margin-top: 1rem;
+      margin-bottom: 0.3rem;
+    }
+    .about-me p, .about-me li, .personal-info p {
+      font-size: 0.75rem;
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Guestbook container */
+    .guestbook-container {
+      background: #ffe4ea;
+      border: 3px solid #8b0000;
+      box-shadow: 4px 4px 0 #4b0000;
+      border-radius: 12px;
+      padding: 1rem;
+      max-width: 700px;
+      margin: 1rem auto;
+      font-family: 'Press Start 2P', cursive;
+    }
+    .guestbook-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .guestbook-form input,
+    .guestbook-form textarea {
+      font-family: 'VT323', monospace;
+      font-size: 16px;
+      padding: 0.5rem;
+      border: 2px solid #8b0000;
+      border-radius: 8px;
+      outline: none;
+      resize: vertical;
+    }
+    .guestbook-form button {
+      background: #ffb6c1;
+      border: 2px solid #8b0000;
+      border-radius: 6px;
+      padding: 6px;
+      cursor: pointer;
+      font-family: 'Press Start 2P', cursive;
+      transition: all 0.2s ease-in-out;
+    }
+    .guestbook-form button:hover {
+      background: #8b004b;
+      color: #fff;
+    }
+    .guestbook-message {
+      background: #fff0f5;
+      border: 2px solid #8b0000;
+      border-radius: 10px;
+      box-shadow: 2px 2px 0 #4b0000;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .guestbook-message .author {
+      font-weight: bold;
+      color: #8b0000;
+      margin-bottom: 0.2rem;
+    }
+    .guestbook-message .time {
+      font-size: 0.7rem;
+      color: #4b0000;
+      margin-bottom: 0.2rem;
+    }
+    .guestbook-message .text {
+      font-family: 'VT323', monospace;
+      font-size: 16px;
+    }
+
+    /* Right sidebar widgets */
+    .sidebar.right .widget {
+      border: 2px dashed #8b004b;
+      border-radius: 6px;
+      padding: 0.5rem;
+      margin-bottom: 0.7rem;
+      font-family: 'Press Start 2P', cursive;
+      background: #fbced4;
+    }
+    .sidebar.right .widget h4 {
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+      font-weight: bold;
+      text-align: center;
+    }
+    .pixel-counter {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+    .pixel-box {
+      width: 24px;
+      height: 32px;
+      background: #ffb6c1;
+      color: #8b004b;
+      font-family: 'Press Start 2P', cursive;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      image-rendering: pixelated;
+      border: 2px solid #8b004b;
+      border-radius: 4px;
+      box-shadow: 1px 1px 0 #4b0000;
+    }
+    .widget p {
+      font-size: 0.7rem;
+      margin: 0.2rem 0;
+    }
+  </style>
 </head>
 <body>
-   <div id="custom-cursor"></div>
+  <div id="custom-cursor"></div>
+
   <header>
     <h1>🌙 SunaSite 🌙</h1>
   </header>
 
   <div class="container">
-    <!-- LEFT SIDEBAR (MENU) -->
-<aside class="sidebar left">
-  <nav class="menu">
-    <ul>
-      <li><a href="index.html">🏠 Home</a></li>
-
-      <!-- About -->
-      <li class="dropdown">
-        <a href="#">💖 About ▾</a>
-        <ul class="submenu">
-          <li><a href="about/about-me.html">About Me</a></li>
-          <li><a href="about/childhood.html">Online Childhood</a></li>
-          <li><a href="about/about-site.html">About the Site</a></li>
-          <li><a href="about/guestbook.html">Guestbook</a></li>
+    <!-- LEFT SIDEBAR (Menu) -->
+    <aside class="sidebar left">
+      <nav class="menu">
+        <ul>
+          <li><a href="index.html">🏠 Home</a></li>
+          <li class="dropdown">
+            <a href="#">💖 About ▾</a>
+            <ul class="submenu">
+              <li><a href="about/about-me.html">About Me</a></li>
+              <li><a href="about/childhood.html">Online Childhood</a></li>
+              <li><a href="about/about-site.html">About the Site</a></li>
+              <li><a href="about/guestbook.html">Guestbook</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">🌟 Unique Me ▾</a>
+            <ul class="submenu">
+              <li><a href="unique-me/working-on.html">What I’m Working On</a></li>
+              <li><a href="unique-me/favorites.html">Favorites</a></li>
+              <li><a href="unique-me/fun-facts.html">Fun Facts</a></li>
+              <li><a href="unique-me/clubs.html">Clubs I’m In</a></li>
+              <li><a href="unique-me/current-activities.html">Current Activities</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">🎨 Creations ▾</a>
+            <ul class="submenu">
+              <li><a href="creations/project.html">Project</a></li>
+              <li><a href="creations/playlist.html">Playlist</a></li>
+              <li><a href="creations/junk-journal.html">Junk Journal</a></li>
+              <li><a href="creations/writing.html">Writing</a></li>
+              <li><a href="creations/misc.html">Misc</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">📺 Media Recs ▾</a>
+            <ul class="submenu">
+              <li><a href="media-recs/log.html">Log</a></li>
+              <li><a href="media-recs/youtube.html">YouTube</a></li>
+              <li><a href="media-recs/books.html">Books</a></li>
+              <li><a href="media-recs/movies.html">Movies</a></li>
+              <li><a href="media-recs/tv.html">TV Shows</a></li>
+            </ul>
+          </li>
         </ul>
-      </li>
-
-      <!-- Unique Me -->
-      <li class="dropdown">
-        <a href="#">🌟 Unique Me ▾</a>
-        <ul class="submenu">
-          <li><a href="unique-me/working-on.html">What I’m Working On</a></li>
-          <li><a href="unique-me/favorites.html">Favorites</a></li>
-          <li><a href="unique-me/fun-facts.html">Fun Facts</a></li>
-          <li><a href="unique-me/clubs.html">Clubs I’m In</a></li>
-          <li><a href="unique-me/current-activities.html">Current Activities</a></li>
-        </ul>
-      </li>
-
-      <!-- Creations -->
-      <li class="dropdown">
-        <a href="#">🎨 Creations ▾</a>
-        <ul class="submenu">
-          <li><a href="creations/project.html">Project</a></li>
-          <li><a href="creations/playlist.html">Playlist</a></li>
-          <li><a href="creations/junk-journal.html">Junk Journal</a></li>
-          <li><a href="creations/writing.html">Writing</a></li>
-          <li><a href="creations/misc.html">Misc</a></li>
-        </ul>
-      </li>
-
-      <!-- Media Recs -->
-      <li class="dropdown">
-        <a href="#">📺 Media Recs ▾</a>
-        <ul class="submenu">
-          <li><a href="media-recs/log.html">Log</a></li>
-          <li><a href="media-recs/youtube.html">YouTube</a></li>
-          <li><a href="media-recs/books.html">Books</a></li>
-          <li><a href="media-recs/movies.html">Movies</a></li>
-          <li><a href="media-recs/tv.html">TV Shows</a></li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
-</aside>
+      </nav>
+    </aside>
 
     <!-- MAIN CONTENT -->
     <main>
-      <h2>Welcome to SunaSite!</h2>
-      <p>This is my little pixel world ✨  
-      Explore my projects, media logs, and scrapbook-style entries.  
-      Hope you enjoy hanging out here 💖</p>
+      <!-- Welcome Section -->
+      <section class="welcome">
+        <h2>Welcome to SunaSite! 🌙</h2>
+        <ul>
+          <li>This is my digital corner where I share everything, like I love to make—from coding apps and designing websites to creating playlists, experimenting with my room, and even whipping up my own body butters!</li>
+        </ul>
+      </section>
+
+
+
+      <!-- About Me -->
+      <section class="about-me">
+        <h3>About Me ｡:ﾟ૮ ˶ˆ ﻌ ˆ˶ ა ﾟ:｡</h3>
+        <ul>
+          <li>Hi! I’m Suhana (she/her), a teen creator who loves coding, designing, and making all kinds of fun things! This site is my digital scrapbook where I share projects, creative ideas, and personal hobbies. I enjoy building things from scratch and seeing my ideas come to life.</li>
+          <li>Some things I love: creating apps, designing websites, making playlists, experimenting with videos, and crafting my own body butters. I like sharing my projects and hope you find something fun or inspiring here!</li>
+        </ul>
+      </section>
+
+      <!-- Personal Info -->
+      <section class="personal-info">
+        <h3>This is me!</h3>
+        <p>Teen creator | Right-handed | Energetic | Creative | Explorer of ideas | Student | Maker | Aspiring Engineer & Entrepreneur</p>
+      </section>
+
+      <!-- Guestbook -->
+      <section class="guestbook">
+        <div class="guestbook-container">
+          <h2>💌 Guestbook</h2>
+          <form class="guestbook-form" id="guestbook-form">
+            <input type="text" id="author" placeholder="Your Name" required>
+            <textarea id="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send 💖</button>
+          </form>
+          <div id="guestbook-messages"></div>
+        </div>
+      </section>
     </main>
 
-    <!-- RIGHT SIDEBAR (WIDGETS) -->
+    <!-- RIGHT SIDEBAR -->
     <aside class="sidebar right">
-
-  <!-- Quote of the Day -->
-  <div class="widget">
-    <h4>✨ Quote of the Day ✨</h4>
-    <p>"Stay soft, the world needs your light."</p>
-  </div>
-
-
-  <!-- Hits & Visitors -->
-  <div class="widget hits-visitors">
-    <h4>Your Clicks</h4>
-    <div id="pixel-counter" class="pixel-counter">
-      <span class="pixel-box">0</span>
-      <span class="pixel-box">0</span>
-      <span class="pixel-box">0</span>
-      <span class="pixel-box">0</span>
-      <span class="pixel-box">0</span>
-      <span class="pixel-box">0</span>
-    </div>
-  </div>
-
-  <!-- Local Time -->
-  <div class="widget clock">
-    <h4>⏰ Local Time (PST)</h4>
-    <p id="arizona-time">--:--:--</p>
-  </div>
-
-</aside>
-
-<style>
-  /* Uniform widget style */
-  .sidebar.right .widget {
-    border: 2px dashed #8b004b; /* cute dashed dark pink border */
-    border-radius: 6px;
-    padding: 0.5rem;
-    margin-bottom: 0.7rem;
-    font-family: 'Press Start 2P', cursive;
-    background: #fbced4; /* light cream background for retro/cute feel */
-  }
-
-  /* Uniform widget headers */
-  .sidebar.right .widget h4 {
-    font-size: 0.85rem;
-    margin-bottom: 0.4rem;
-    font-weight: bold;
-    text-align: center;
-  }
-
-  /* Pixel counter styling */
-  .pixel-counter {
-    display: flex;
-    justify-content: center;
-    gap: 4px;
-    margin-bottom: 4px;
-  }
-
-  .pixel-box {
-    width: 24px;
-    height: 32px;
-    background: #ffb6c1; /* creme yellow */
-    color: #8b004b;       /* dark pink text */
-    font-family: 'Press Start 2P', cursive;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    image-rendering: pixelated;
-    border: 2px solid #8b004b;
-    border-radius: 4px;
-    box-shadow: 1px 1px 0 #4b0000;
-  }
-
-  /* Minimalistic paragraph text */
-  .widget p {
-    font-size: 0.7rem;
-    margin: 0.2rem 0;
-  }
-</style>
-
-<script>
-  // Hits & Visitors (starting at 0)
-  let counter = 0; // site not launched yet
-  const pixelBoxes = document.querySelectorAll("#pixel-counter .pixel-box");
-
-  function updatePixelCounter(value) {
-    let strVal = value.toString().padStart(6, "0");
-    for (let i = 0; i < 6; i++) {
-      pixelBoxes[i].textContent = strVal[i];
-    }
-  }
-  updatePixelCounter(counter);
-
-  // Increment on click anywhere
-  document.body.addEventListener("click", () => {
-    counter++;
-    updatePixelCounter(counter);
-  });
-
-  // Arizona time (PST)
-  function updateArizonaTime() {
-    const options = { timeZone: 'America/Phoenix', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
-    const now = new Date().toLocaleTimeString('en-US', options);
-    document.getElementById("arizona-time").textContent = now;
-  }
-  setInterval(updateArizonaTime, 1000);
-  updateArizonaTime();
-</script>
+      <div class="widget">
+        <h4>✨ Quote of the Day ✨</h4>
+        <p>"Stay soft, the world needs your light."</p>
+      </div>
+      <div class="widget hits-visitors">
+        <h4>Your Clicks</h4>
+        <div id="pixel-counter" class="pixel-counter">
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+        </div>
+      </div>
+      <div class="widget clock">
+        <h4>⏰ Local Time (PST)</h4>
+        <p id="arizona-time">--:--:--</p>
+      </div>
+    </aside>
   </div>
 
   <footer>
     <p>Made with love + pixels by Suhana</p>
   </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById("custom-cursor");
+    document.addEventListener("mousemove", e => {
+      cursor.style.left = e.clientX + "px";
+      cursor.style.top = e.clientY + "px";
+    });
+
+    // Guestbook logic
+    const form = document.getElementById("guestbook-form");
+    const messagesContainer = document.getElementById("guestbook-messages");
+    let messages = JSON.parse(localStorage.getItem("guestbookMessages") || "[]");
+
+    function displayMessages() {
+      messagesContainer.innerHTML = "";
+      messages.slice().reverse().forEach(msg => {
+        const div = document.createElement("div");
+        div.className = "guestbook-message";
+        div.innerHTML = `
+          <div class="author">${msg.author}</div>
+          <div class="time">${new Date(msg.time).toLocaleString()}</div>
+          <div class="text">${msg.message}</div>
+        `;
+        messagesContainer.appendChild(div);
+      });
+    }
+
+    displayMessages();
+
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const author = document.getElementById("author").value.trim();
+      const message = document.getElementById("message").value.trim();
+      if (!author || !message) return;
+
+      messages.push({ author, message, time: Date.now() });
+      localStorage.setItem("guestbookMessages", JSON.stringify(messages));
+      form.reset();
+      displayMessages();
+    });
+
+    // Pixel counter
+    let counter = 0;
+    const pixelBoxes = document.querySelectorAll("#pixel-counter .pixel-box");
+    function updatePixelCounter(value) {
+      let strVal = value.toString().padStart(6, "0");
+      for (let i = 0; i < 6; i++) pixelBoxes[i].textContent = strVal[i];
+    }
+    updatePixelCounter(counter);
+    document.body.addEventListener("click", () => {
+      counter++;
+      updatePixelCounter(counter);
+    });
+
+    // Arizona time (PST)
+    function updateArizonaTime() {
+      const options = { timeZone: 'America/Phoenix', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+      document.getElementById("arizona-time").textContent = new Date().toLocaleTimeString('en-US', options);
+    }
+    setInterval(updateArizonaTime, 1000);
+    updateArizonaTime();
+
+    // Dropdown menu toggle
+    document.addEventListener("DOMContentLoaded", function() {
+      const menu = document.querySelector('.sidebar.left .menu');
+      if (menu) {
+        menu.querySelectorAll('.dropdown > a').forEach(drop => {
+          drop.addEventListener('click', function(e) {
+            e.preventDefault();
+            const parent = this.parentElement;
+            menu.querySelectorAll('.dropdown').forEach(d => { if(d !== parent) d.classList.remove('open'); });
+            parent.classList.toggle('open');
+          });
+        });
+      }
+    });
+  </script>
 </body>
 </html>
