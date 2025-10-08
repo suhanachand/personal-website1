@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎵 Playlists</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/layout.js" defer></script>
+  <link href="https://fonts.cdnfonts.com/css/press-start-2p" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: #4b0000;
+      margin: 0;
+      padding: 0;
+    }
+    h1 { color: #ffffff; margin: 0.5rem 0; }
+    h2, h3, h4 { color: #4b0000; margin: 0.5rem 0; }
+    a { text-decoration: none; color: #4b0000; }
+    a:hover { color: #ff69b4; }
+
+    main { padding: 1rem 2rem; }
+
+    .playlist-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .playlist {
+      border: 2px solid #8b0000;
+      border-radius: 12px;
+      padding: 0.5rem;
+      background: #ffe4ea;
+      box-shadow: 4px 4px 0 #4b0000;
+      text-align: center;
+    }
+
+    .playlist iframe {
+      border-radius: 8px;
+      width: 100%;
+      height: 380px;
+    }
+
+    .playlist-title {
+      margin: 0.5rem 0;
+      font-weight: bold;
+    }
+
+    .playlist-desc {
+      font-family: 'VT323', monospace;
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Custom cursor */
+    #custom-cursor {
+      position: fixed;
+      width: 25px;
+      height: 25px;
+      background: gold;
+      clip-path: polygon(
+        50% 0%, 61% 35%, 98% 35%, 68% 57%,
+        79% 91%, 50% 70%, 21% 91%, 32% 57%,
+        2% 35%, 39% 35%
+      );
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%) rotate(0deg);
+      animation: twinkle 1s infinite alternate;
+    }
+    @keyframes twinkle {
+      0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); opacity: 1; }
+      50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.2); opacity: 0.8; }
+      100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="custom-cursor"></div>
+
+  <header>
+    <h1>🎵 SunaSite 🎵</h1>
+  </header>
+
+  <div class="container">
+    <aside class="sidebar left">
+      <nav class="menu">
+        <ul>
+          <li><a href="../index.html">🏠 Home</a></li>
+          <li class="dropdown">
+            <a href="#">💖 About ▾</a>
+            <ul class="submenu">
+              <li><a href="../about/about-me.html">About Me</a></li>
+              <li><a href="../about/about-site.html">About the Site</a></li>
+              <li><a href="../about/guestbook.html">Guestbook</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">🌟 Unique Me ▾</a>
+            <ul class="submenu">
+              <li><a href="../unique-me/working-on.html">What I’m Working On</a></li>
+              <li><a href="../unique-me/favorites.html">Favorites</a></li>
+              <li><a href="../unique-me/fun-facts.html">Fun Facts</a></li>
+              <li><a href="../unique-me/clubs.html">Clubs I’m In</a></li>
+              <li><a href="../unique-me/current-activities.html">Current Activities</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">🎨 Creations ▾</a>
+            <ul class="submenu">
+              <li><a href="../creations/project.html">Project</a></li>
+              <li><a href="../creations/playlist.html">Playlist</a></li>
+              <li><a href="../creations/junk-journal.html">Junk Journal</a></li>
+              <li><a href="../creations/writing.html">Writing</a></li>
+              <li><a href="../creations/misc.html">Misc</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">📺 Media Recs ▾</a>
+            <ul class="submenu">
+              <li><a href="../media-recs/log.html">Log</a></li>
+              <li><a href="../media-recs/youtube.html">YouTube</a></li>
+              <li><a href="../media-recs/books.html">Books</a></li>
+              <li><a href="../media-recs/movies.html">Movies</a></li>
+              <li><a href="../media-recs/tv.html">TV Shows</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main>
+      <section>
+        <h2>My Spotify Playlists</h2>
+        <p>Check out some of my favorite tunes! Click play to listen or open in Spotify.</p>
+
+        
+        <div class="playlist-container">
+          <div class="playlist">
+            <div class="playlist-title">huge dump</div>
+            <iframe src="https://open.spotify.com/embed/playlist/5hAOzaLw9mScG1y9vwePG9?utm_source=generator"
+                    frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </div>
+
+          <div class="playlist">
+            <div class="playlist-title">summer '23</div>
+            <iframe src="https://open.spotify.com/embed/playlist/4NIavzeihrZArnFqGrSMVX?utm_source=generator" 
+                    frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </div>
+          <div class="playlist">
+            <div class="playlist-title">after apple</div>
+            <iframe src="https://open.spotify.com/embed/playlist/037TdMU5IPCq7wrFUogCar?utm_source=generator" 
+                    frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </div>
+        </div>
+        
+        <div class="playlist-container">
+          <div class="playlist">
+            <div class="playlist-title">rap glaze</div>
+            <iframe src="https://open.spotify.com/embed/playlist/2OTYoOkAbaxlLIYe1HsnDj?utm_source=generator"
+                    frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </div>
+
+          <div class="playlist">
+            <div class="playlist-title">tyler glaze</div>
+            <iframe src="https://open.spotify.com/embed/playlist/5X9IzxqZkTcyMfQYHDIUyf?utm_source=generator" 
+                    frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </div>
+
+          <div class="playlist">
+            <div class="playlist-title">start of rnb</div>
+            <iframe src="https://open.spotify.com/embed/playlist/1DHuvfYPakMDvGhOXZ1w3P?utm_source=generator" 
+                    frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </div>
+        </div>
+
+        <div class="playlist-container">
+          <div class="playlist">
+            <div class="playlist-title">calm/slow</div>
+            <iframe src="https://open.spotify.com/embed/playlist/2zU0fwOucj0r65ZtndutEY?utm_source=generator"
+                    frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </div>
+
+          <div class="playlist">
+            <div class="playlist-title">house music</div>
+            <iframe src="https://open.spotify.com/embed/playlist/5vc80LmF85E4KQiaLEBJyD?utm_source=generator" 
+                    frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </div>
+
+          <div class="playlist">
+            <div class="playlist-title">party muse</div>
+            <iframe src="https://open.spotify.com/embed/playlist/0ytGqsWeESqOKqnh2eRlwm?utm_source=generator" 
+                    frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </div>
+        </div>
+
+        <div class="playlist-container">
+          <div class="playlist">
+            <div class="playlist-title">sleeper</div>
+            <iframe src="https://open.spotify.com/embed/playlist/16hX7I10JQXYRtjeeIddBR?utm_source=generator"
+                    frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </div>
+
+          <div class="playlist">
+            <div class="playlist-title">white girl hype</div>
+            <iframe src="https://open.spotify.com/embed/playlist/1juOxY1MXtc8SMcEpFGLGh?utm_source=generator" 
+                    frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </div>
+
+          <div class="playlist">
+            <div class="playlist-title">old mornings</div>
+            <iframe src="https://open.spotify.com/embed/playlist/5880gbWfhuzgsPy1pZRHtn?utm_source=generator" 
+                    frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="sidebar right">
+      <div class="widget">
+        <h4>✨ Quote of the Day ✨</h4>
+        <p>"Music is the shorthand of emotion." – Leo Tolstoy</p>
+      </div>
+      <div class="widget hits-visitors">
+        <h4>Your Clicks</h4>
+        <div id="pixel-counter" class="pixel-counter">
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+        </div>
+      </div>
+      <div class="widget clock">
+        <h4>⏰ Local Time (PST)</h4>
+        <p id="arizona-time">--:--:--</p>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <p>Made with love + pixels by Suhana</p>
+  </footer>
+
+  <script>
+    const cursor = document.getElementById("custom-cursor");
+    document.addEventListener("mousemove", e => {
+
+    })      cursor.style.left = e.clientX + "px";
+      cursor.style.top = e.clientY + "px";
+    });
+
+    let counter = 0;
+    const pixelBoxes = document.querySelectorAll("#pixel-counter .pixel-box");
+    function updatePixelCounter(value) {
+      let strVal = value.toString().padStart(6, "0");
+      for (let i = 0; i < 6; i++) pixelBoxes[i].textContent = strVal[i];
+    }
+    updatePixelCounter(counter);
+    document.body.addEventListener("click", () => { counter++; updatePixelCounter(counter); });
+
+    // Arizona time
+    function updateArizonaTime() {
+      const options = { timeZone: 'America/Phoenix', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+      document.getElementById("arizona-time").textContent = new Date().toLocaleTimeString('en-US', options);
+    }
+    setInterval(updateArizonaTime, 1000);
+    updateArizonaTime();
+  </script>
+</body>
+</html>
