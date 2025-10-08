@@ -98,8 +98,79 @@
     }
 
   </style>
+  <style>
+  /* Global font for the entire page */
+  body {
+    font-family: 'Press Start 2P', cursive; /* retro pixel font */
+    font-size: 0.9rem; /* uniform base size */
+    line-height: 1.4; /* improves readability */
+    color: #4b0000; /* consistent text color */
+  }
+
+  /* Headers */
+  h1 {
+    font-family: 'Press Start 2P', cursive;
+    color: #ffffff;
+    margin: 0.5rem 0;
+  }
+
+  h2, h3, h4, h5, h6 {
+    font-family: 'Press Start 2P', cursive;
+    color: #4b0000;
+    margin: 0.5rem 0;
+  }
+
+  /* Paragraphs */
+  p {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.9rem;
+    margin: 0.3rem 0;
+  }
+
+  /* Links */
+  a {
+    font-family: 'Press Start 2P', cursive;
+    color: #4b0000;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #ff69b4;
+  }
+
+  /* Lists */
+  ul, li {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.9rem;
+    color: #4b0000;
+  }
+
+  /* Fact generator box text */
+  .fact-display-box {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.9rem;
+  }
+
+  /* Sidebar widgets */
+  .sidebar .widget {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.85rem;
+  }
+  .sidebar .widget p {
+    font-size: 0.85rem;
+  }
+
+  /* Visit me section */
+  .visit-me {
+    font-family: 'Press Start 2P', cursive;
+  }
+  .visit-me a {
+    font-size: 0.85rem;
+  }
+</style>
+
 </head>
 <body>
+  <div id="custom-cursor"></div>
 
   <header>
     <h1>🌙 SunaSite 🌙</h1>
@@ -115,10 +186,9 @@
           <li class="dropdown">
             <a href="#">💖 About ▾</a>
             <ul class="submenu">
-              <li><a href="about-me.html">About Me</a></li>
-              <li><a href="childhood.html">Online Childhood</a></li>
-              <li><a href="about-site.html">About the Site</a></li>
-              <li><a href="guestbook.html">Guestbook</a></li>
+              <li><a href="../about/about-me.html">About Me</a></li>
+              <li><a href="../about/about-site.html">About the Site</a></li>
+              <li><a href="../about/guestbook.html">Guestbook</a></li>
             </ul>
           </li>
 
@@ -220,39 +290,121 @@
 
       <!-- Section 3: Social links -->
 <section class="visit-me">
-  <h3>💌 Visit Me Somewhere Else</h3>
   <div class="visit-boxes">
     <div class="visit-box">
-      <h4>Social Media</h4>
-      <ul>
-        <li><a href="https://open.spotify.com/" target="_blank">Spotify</a></li>
-        <li><a href="https://www.youtube.com/" target="_blank">YouTube</a></li>
-        <li><a href="https://status.cafe/" target="_blank">Status.cafe</a></li>
-        <li><a href="https://picmix.com/" target="_blank">PicMix</a></li>
-      </ul>
-    </div>
-
-    <div class="visit-box">
-      <h4>Dev/Tech</h4>
-      <ul>
-        <li><a href="https://github.com/" target="_blank">GitHub</a></li>
-        <li><a href="https://greasyfork.org/" target="_blank">GreasyFork</a></li>
-        <li><a href="#" target="_blank">GitHub Website</a></li>
-        <li><a href="#" target="_blank">Tumblr Themes</a></li>
-      </ul>
-    </div>
-
-    <div class="visit-box">
-      <h4>Media Trackers</h4>
-      <ul>
-        <li><a href="#" target="_blank">Letterboxd (Movies)</a></li>
-        <li><a href="#" target="_blank">TV Time (TV Shows)</a></li>
-        <li><a href="#" target="_blank">Goodreads (Books)</a></li>
-        <li><a href="#" target="_blank">Backloggd (Games)</a></li>
+      <h4>Find Me Here!!</h4>
+      <ul class="pixel-links">
+        <li><a href="https://open.spotify.com/user/312i3lub3pru2yw2xui4d2i47nca" target="_blank">
+          <span class="pixel-icon spotify"></span> Spotify
+        </a></li>
+        <li><a href="https://www.youtube.com/@suhanachand2842" target="_blank">
+          <span class="pixel-icon youtube"></span> YouTube
+        </a></li>
+        <li><a href="https://www.pinterest.com/suhanaxc/_profile/" target="_blank">
+          <span class="pixel-icon pinterest"></span> Pinterest
+        </a></li>
+        <li><a href="https://github.com/suhanachand" target="_blank">
+          <span class="pixel-icon github"></span> GitHub
+        </a></li>
+        <li><a href="https://www.linkedin.com/in/suhana-chand-a88571278/" target="_blank">
+          <span class="pixel-icon linkedin"></span> LinkedIn
+        </a></li>
+        <li><a href="https://www.instagram.com/cxsuhana/" target="_blank">
+          <span class="pixel-icon instagram"></span> Instagram
+        </a></li>
       </ul>
     </div>
   </div>
 </section>
+
+<style>
+.visit-me {
+  position: relative;
+  background: #fff2f6;
+  border: 3px solid #8b004b;
+  box-shadow: 3px 3px 0 #4b0000;
+  padding: 1rem;
+  margin-top: 2rem;
+  border-radius: 8px;
+  font-family: 'Press Start 2P', cursive;
+  overflow: hidden;
+}
+
+.visit-me h3 {
+  text-align: center;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.visit-box {
+  position: relative;
+  z-index: 2;
+}
+
+.pixel-links {
+  list-style: none;
+  padding: 0;
+}
+
+.pixel-links li {
+  margin: 0.5rem 0;
+}
+
+.pixel-links a {
+  text-decoration: none;
+  color: #4b0000;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.2s;
+}
+
+.pixel-links a:hover {
+  transform: scale(1.1) translateX(2px);
+  color: #8b004b;
+}
+
+/* Pixel icons */
+.pixel-icon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  image-rendering: pixelated;
+  border: 1px solid #8b004b;
+  transition: transform 0.2s;
+}
+.pixel-links a:hover .pixel-icon {
+  transform: scale(1.3) rotate(-10deg);
+}
+
+/* Background pixel doodles */
+.pixel-doodles span {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #ffb6c1;
+  border: 1px solid #8b004b;
+  animation: float 5s infinite;
+  opacity: 0.6;
+  border-radius: 2px;
+}
+
+/* Random positions */
+.pixel-doodles span:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+.pixel-doodles span:nth-child(2) { top: 30%; left: 80%; animation-delay: 1s; }
+.pixel-doodles span:nth-child(3) { top: 60%; left: 40%; animation-delay: 2s; }
+.pixel-doodles span:nth-child(4) { top: 80%; left: 20%; animation-delay: 3s; }
+.pixel-doodles span:nth-child(5) { top: 50%; left: 70%; animation-delay: 4s; }
+
+@keyframes float {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(15deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+</style>
+
+
 
     </main>
 
