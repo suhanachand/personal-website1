@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌸 Fun Facts Garden | SunaSite</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/layout.js" defer></script>
+  <link href="https://fonts.cdnfonts.com/css/press-start-2p" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background: linear-gradient(180deg, #fff6f8, #ffe4ea);
+      color: #4b0000;
+      overflow-x: hidden;
+      margin: 0;
+    }
+
+    main {
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    h2 {
+      color: #8b004b;
+      text-shadow: 2px 2px #ffb6c1;
+      margin-bottom: 1rem;
+    }
+
+    .fun-bubble-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .fun-bubble {
+      background: radial-gradient(circle at top left, #ffb6c1, #ffdce4);
+      border: 3px solid #8b004b;
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      box-shadow: 0 4px 0 #4b0000;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: transform 0.3s ease;
+      font-size: 0.7rem;
+      color: #4b0000;
+    }
+
+    .fun-bubble:hover {
+      transform: scale(1.1);
+    }
+
+    .fun-bubble::before {
+      position: absolute;
+      font-size: 1.2rem;
+      top: -10px;
+      right: -10px;
+    }
+
+    .fun-bubble p {
+      display: none;
+      font-family: 'VT323', monospace;
+      font-size: 18px;
+      padding: 0.5rem;
+      border-radius: 10px;
+    }
+
+    .bloom {
+      animation: bloom 0.6s ease-out forwards;
+    }
+
+    @keyframes bloom {
+      0% { transform: scale(0.3) rotate(-20deg); opacity: 0; }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+
+    /* Floating animation */
+    @keyframes floaty {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+    .fun-bubble {
+      animation: floaty 3s ease-in-out infinite;
+    }
+
+    /* Fact Generator */
+    .fact-generator {
+      margin-top: 3rem;
+      background: #ffeef3;
+      border: 3px dashed #8b0000;
+      border-radius: 12px;
+      padding: 1rem;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 3px 3px 0 #4b0000;
+    }
+
+    .fact-generator p {
+      font-family: 'VT323', monospace;
+      font-size: 18px;
+      color: #4b0000;
+    }
+
+    .fact-generator button {
+      background: #ffb6c1;
+      border: 2px solid #8b0000;
+      border-radius: 10px;
+      font-family: 'Press Start 2P', cursive;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      margin-top: 1rem;
+      transition: transform 0.2s;
+    }
+
+    .fact-generator button:hover {
+      transform: scale(1.1);
+      background: #ff69b4;
+    }
+
+    /* Music toggle */
+    .music-toggle {
+      margin-top: 2rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: #8b004b;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="custom-cursor"></div>
+
+  <header>
+    <h1>🌙 SunaSite 🌙</h1>
+  </header>
+
+  <div class="container">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar left">
+      <nav class="menu">
+        <ul>
+          <li><a href="../index.html">🏠 Home</a></li>
+          <li class="dropdown">
+            <a href="#">💖 About ▾</a>
+            <ul class="submenu">
+              <li><a href="../about/about-me.html">About Me</a></li>
+              <li><a href="../about/about-site.html">About the Site</a></li>
+              <li><a href="../about/guestbook.html">Guestbook</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">🌟 Unique Me ▾</a>
+            <ul class="submenu">
+              <li><a href="../unique-me/working-on.html">What I’m Working On</a></li>
+              <li><a href="../unique-me/favorites.html">Favorites</a></li>
+              <li><a href="../unique-me/fun-facts.html">Fun Facts</a></li>
+              <li><a href="../unique-me/clubs.html">Clubs I’m In</a></li>
+              <li><a href="../unique-me/current-activities.html">Current Activities</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">🎨 Creations ▾</a>
+            <ul class="submenu">
+              <li><a href="../creations/project.html">Project</a></li>
+              <li><a href="../creations/playlist.html">Playlist</a></li>
+              <li><a href="../creations/junk-journal.html">Junk Journal</a></li>
+              <li><a href="../creations/writing.html">Writing</a></li>
+              <li><a href="../creations/misc.html">Misc</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">📺 Media Recs ▾</a>
+            <ul class="submenu">
+              <li><a href="../media-recs/log.html">Log</a></li>
+              <li><a href="../media-recs/youtube.html">YouTube</a></li>
+              <li><a href="../media-recs/books.html">Books</a></li>
+              <li><a href="../media-recs/movies.html">Movies</a></li>
+              <li><a href="../media-recs/tv.html">TV Shows</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main>
+      <h2>🌷 My Garden 🌷</h2>
+      <p>Tap or hover the bubbles to make them bloom — each one holds a little secret about me!</p>
+
+      <div class="fun-bubble-container" >
+        <div class="fun-bubble"><p>I love the color red, but my to wear is navy blue. </p></div>
+        <div class="fun-bubble"><p>I have an addiction to school supplies</p></div>
+        <div class="fun-bubble"><p>I tend to get lucky with my music taste </p></div>
+        <div class="fun-bubble"><p>I prefer funny people over cool people</p></div>
+        <div class="fun-bubble"><p>I worship lenovo systems at the moment</p></div>
+      </div>
+
+      <div class="fact-generator">
+        <h3>Facts that caught my attention</h3>
+        <p id="random-fact">Click below for a new one!</p>
+        <button id="generate-fact">✨ Bloom a Fact ✨</button>
+      </div>
+
+      
+    </main>
+
+   <aside class="sidebar right">
+      <div class="widget">
+        <h4>✨ Quote of the Day ✨</h4>
+        <p>"Stay soft, the world needs your light."</p>
+      </div>
+      <div class="widget hits-visitors">
+        <h4>Your Clicks</h4>
+        <div id="pixel-counter" class="pixel-counter">
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+        </div>
+      </div>
+      <div class="widget clock">
+        <h4>⏰ Local Time (PST)</h4>
+        <p id="arizona-time">--:--:--</p>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <p>Made with love + pixels by Suhana</p>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById("custom-cursor");
+    document.addEventListener("mousemove", e => {
+      cursor.style.left = e.clientX + "px";
+      cursor.style.top = e.clientY + "px";
+    });
+
+    // Pixel counter
+    let counter = 0;
+    const pixelBoxes = document.querySelectorAll("#pixel-counter .pixel-box");
+    function updatePixelCounter(value) {
+      let strVal = value.toString().padStart(6, "0");
+      for (let i = 0; i < 6; i++) pixelBoxes[i].textContent = strVal[i];
+    }
+    updatePixelCounter(counter);
+    document.body.addEventListener("click", () => { counter++; updatePixelCounter(counter); });
+
+    // Arizona time
+    function updateArizonaTime() {
+      const options = { timeZone: 'America/Phoenix', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+      document.getElementById("arizona-time").textContent = new Date().toLocaleTimeString('en-US', options);
+    }
+    setInterval(updateArizonaTime, 1000);
+    updateArizonaTime();
+
+    // Dropdown menus
+    document.addEventListener("DOMContentLoaded", function() {
+      const menu = document.querySelector('.sidebar.left .menu');
+      if (menu) {
+        menu.querySelectorAll('.dropdown > a').forEach(drop => {
+          drop.addEventListener('click', function(e) {
+            e.preventDefault();
+            const parent = this.parentElement;
+            menu.querySelectorAll('.dropdown').forEach(d => { if(d !== parent) d.classList.remove('open'); });
+            parent.classList.toggle('open');
+          });
+        });
+      }
+    });
+  </script>
+
+  <script>
+    // Bloom animation for fun bubbles
+    document.querySelectorAll('.fun-bubble').forEach(bubble => {
+      bubble.addEventListener('click', () => {
+        const p = bubble.querySelector('p');
+        p.style.display = 'block';
+        p.classList.add('bloom');
+        setTimeout(() => p.classList.remove('bloom'), 600);
+      });
+    });
+
+    // Random fact generator
+    const facts = [
+      "I’ve coded on both my phone and my laptop — multitasking queen 👑",
+      "My creative energy spikes at midnight 🌙",
+      "I collect stickers and put them on everything!",
+      "I love bubble tea, especially taro flavor 🧋",
+      "If I weren’t coding, I’d be designing clothes 👗"
+    ];
+    document.getElementById('generate-fact').addEventListener('click', () => {
+      const fact = facts[Math.floor(Math.random() * facts.length)];
+      document.getElementById('random-fact').textContent = fact;
+    });
+
+    
+  </script>
+</body>
+</html>
