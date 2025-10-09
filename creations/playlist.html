@@ -58,7 +58,6 @@
       margin-bottom: 0.5rem;
     }
 
-    /* Custom cursor */
     #custom-cursor {
       position: fixed;
       width: 25px;
@@ -86,7 +85,7 @@
   <div id="custom-cursor"></div>
 
   <header>
-    <h1>🎵 SunaSite 🎵</h1>
+    <h1>🌙 SunaSite 🌙</h1>
   </header>
 
   <div class="container">
@@ -140,8 +139,24 @@
       <section>
         <h2>My Spotify Playlists</h2>
         <p>Check out some of my favorite tunes! Click play to listen or open in Spotify.</p>
+        <div class="playlist-container">
+          <div class="playlist">
+            <div class="playlist-title">favorites</div>
+            <iframe src="https://open.spotify.com/embed/playlist/1LTfLeHRd5g3kmSsSpgv6A?utm_source=generator"
+                    frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </div>
 
-        
+          <div class="playlist">
+            <div class="playlist-title">summer '25</div>
+            <iframe src="https://open.spotify.com/embed/playlist/4PeZFysRNCsDgXhjcbB2jj?utm_source=generator" 
+                    frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </div>
+          <div class="playlist">
+            <div class="playlist-title">daylist</div>
+            <iframe src="https://open.spotify.com/embed/playlist/1zrtZXdTrPG2GZBBmTknQC?utm_source=generator" 
+                    frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </div>
+        </div>
         <div class="playlist-container">
           <div class="playlist">
             <div class="playlist-title">huge dump</div>
@@ -250,30 +265,32 @@
     <p>Made with love + pixels by Suhana</p>
   </footer>
 
-  <script>
-    const cursor = document.getElementById("custom-cursor");
-    document.addEventListener("mousemove", e => {
+<script>
+  let counter = 0;
+  const pixelBoxes = document.querySelectorAll("#pixel-counter .pixel-box");
 
-    })      cursor.style.left = e.clientX + "px";
-      cursor.style.top = e.clientY + "px";
-    });
-
-    let counter = 0;
-    const pixelBoxes = document.querySelectorAll("#pixel-counter .pixel-box");
-    function updatePixelCounter(value) {
-      let strVal = value.toString().padStart(6, "0");
-      for (let i = 0; i < 6; i++) pixelBoxes[i].textContent = strVal[i];
+  function updatePixelCounter(value) {
+    let strVal = value.toString().padStart(6, "0");
+    for (let i = 0; i < 6; i++) {
+      pixelBoxes[i].textContent = strVal[i];
     }
+  }
+  updatePixelCounter(counter);
+
+ 
+  document.body.addEventListener("click", () => {
+    counter++;
     updatePixelCounter(counter);
-    document.body.addEventListener("click", () => { counter++; updatePixelCounter(counter); });
+  });
 
-    // Arizona time
-    function updateArizonaTime() {
-      const options = { timeZone: 'America/Phoenix', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
-      document.getElementById("arizona-time").textContent = new Date().toLocaleTimeString('en-US', options);
-    }
-    setInterval(updateArizonaTime, 1000);
-    updateArizonaTime();
-  </script>
+  
+  function updateArizonaTime() {
+    const options = { timeZone: 'America/Phoenix', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    const now = new Date().toLocaleTimeString('en-US', options);
+    document.getElementById("arizona-time").textContent = now;
+  }
+  setInterval(updateArizonaTime, 1000);
+  updateArizonaTime();
+</script>
 </body>
 </html>
