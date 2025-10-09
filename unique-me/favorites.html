@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favorites & Photos - SunaSite</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/layout.js" defer></script>
+  <link href="https://fonts.cdnfonts.com/css/press-start-2p" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background: linear-gradient(135deg, #fff2f7, #ffeaf2);
+      color: #4b0000;
+      overflow-x: hidden;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      color: #8b004b;
+      font-size: 1rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      background: #fff0f5;
+      padding: 0.8rem 1.5rem;
+      border: 3px solid #8b0000;
+      border-radius: 12px;
+      box-shadow: 3px 3px 0 #4b0000;
+    }
+
+    .favorites-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    .fav-card {
+      position: relative;
+      background: #fff0f5;
+      border: 3px solid #8b0000;
+      border-radius: 12px;
+      box-shadow: 4px 4px 0 #4b0000;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .fav-card:hover {
+      transform: translateY(-6px) rotate(-1deg);
+      box-shadow: 6px 6px 0 #4b0000;
+    }
+
+    .fav-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      image-rendering: pixelated;
+      border-bottom: 2px solid #8b0000;
+    }
+
+    .fav-content {
+      padding: 0.7rem;
+      text-align: center;
+    }
+
+    .fav-title {
+      color: #8b004b;
+      font-size: 0.7rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .fav-desc {
+      font-family: 'VT323', monospace;
+      font-size: 0.9rem;
+      color: #4b0000;
+    }
+
+    .fav-card::after {
+      content: "✦";
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .fav-card:hover::after {
+      opacity: 1;
+      animation: sparkle 1s infinite alternate;
+    }
+
+    @keyframes sparkle {
+      0% { transform: scale(1) rotate(0deg); opacity: 1; }
+      50% { transform: scale(1.4) rotate(15deg); opacity: 0.8; }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+
+    .fav-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+    }
+
+    .fav-card.flipped .fav-inner {
+      transform: rotateY(180deg);
+    }
+
+    .fav-front, .fav-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+    }
+
+    .fav-back {
+      background: #ffe4ea;
+      transform: rotateY(180deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      border-radius: 12px;
+      font-family: 'VT323', monospace;
+      font-size: 0.9rem;
+      color: #4b0000;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      font-family: 'Press Start 2P', cursive;
+      color: #ffffff;
+      font-size: 0.7rem;
+      padding: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="custom-cursor"></div>
+
+  <header>
+    <h1>🌙 SunaSite 🌙</h1>
+  </header>
+
+  <div class="container">
+    <aside class="sidebar left">
+      <nav class="menu">
+        <ul>
+          <li><a href="../index.html">🏠 Home</a></li>
+          <li class="dropdown">
+            <a href="#">💖 About ▾</a>
+            <ul class="submenu">
+              <li><a href="../about/about-me.html">About Me</a></li>
+              <li><a href="../about/about-site.html">About the Site</a></li>
+              <li><a href="../about/guestbook.html">Guestbook</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">🌟 Unique Me ▾</a>
+            <ul class="submenu">
+              <li><a href="../unique-me/working-on.html">What I’m Working On</a></li>
+              <li><a href="../unique-me/favorites.html">Favorites</a></li>
+              <li><a href="../unique-me/fun-facts.html">Fun Facts</a></li>
+              <li><a href="../unique-me/clubs.html">Clubs I’m In</a></li>
+              <li><a href="../unique-me/current-activities.html">Current Activities</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">🎨 Creations ▾</a>
+            <ul class="submenu">
+              <li><a href="../creations/project.html">Project</a></li>
+              <li><a href="../creations/playlist.html">Playlist</a></li>
+              <li><a href="../creations/junk-journal.html">Junk Journal</a></li>
+              <li><a href="../creations/writing.html">Writing</a></li>
+              <li><a href="../creations/misc.html">Misc</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">📺 Media Recs ▾</a>
+            <ul class="submenu">
+              <li><a href="../media-recs/log.html">Log</a></li>
+              <li><a href="../media-recs/youtube.html">YouTube</a></li>
+              <li><a ref="../media-recs/books.html">Books</a></li>
+              <li><a href="../media-recs/movies.html">Movies</a></li>
+              <li><a href="../media-recs/tv.html">TV Shows</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main>
+      <h2>My Favorites</h2>
+
+      <div class="favorites-grid">
+        <div class="fav-card">
+          <div class="fav-inner">
+            <div class="fav-front">
+              <img src="../img/fav1.jpg" alt="Favorite 1">
+              <div class="fav-content">
+                <div class="fav-title">Sunset Walks</div>
+                <div class="fav-desc">Evening skies + music = perfect peace.</div>
+              </div>
+            </div>
+            <div class="fav-back">
+              I took this during one of my solo walks. The pink sky made everything feel calm again.
+            </div>
+          </div>
+        </div>
+
+        <div class="fav-card">
+          <div class="fav-inner">
+            <div class="fav-front">
+              <img src="../img/fav2.jpg" alt="Favorite 2">
+              <div class="fav-content">
+                <div class="fav-title">Cozy Mornings</div>
+                <div class="fav-desc">Warm tea, quiet playlists, soft light.</div>
+              </div>
+            </div>
+            <div class="fav-back">
+              I love mornings where I can just exist — no rush, no noise, just warmth.
+            </div>
+          </div>
+        </div>
+
+        <div class="-favcard">
+          <div class="fav-inner">
+            <div class="fav-front">
+              <img src="../img/fav3.jpg" alt="Favorite 3">
+              <div class="fav-content">
+                <div class="fav-title">My Music Mood</div>
+                <div class="fav-desc">Soundtracks that feel like me.</div>
+              </div>
+            </div>
+            <div class="fav-back">
+              A mix of comfort songs and new finds that make me feel like myself again.
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <aside class="sidebar right">
+      <div class="widget">
+        <h4>✨ Quote of the Day ✨</h4>
+        <p>"Stay soft, the world needs your light."</p>
+      </div>
+
+      <div class="widget hits-visitors">
+        <h4>Your Clicks</h4>
+        <div id="pixel-counter" class="pixel-counter">
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+        </div>
+      </div>
+
+      <div class="widget clock">
+        <h4>⏰ Local Time (PST)</h4>
+        <p id="arizona-time">--:--:--</p>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <p>Made with love + pixels by Suhana</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.fav-card').forEach(card => {
+      card.addEventListener('click', () => card.classList.toggle('flipped'));
+    });
+
+    let counter = 0;
+    const pixelBoxes = document.querySelectorAll("#pixel-counter .pixel-box");
+    function updatePixelCounter(value) {
+      let strVal = value.toString().padStart(6, "0");
+      for (let i = 0; i < 6; i++) pixelBoxes[i].on 0);
