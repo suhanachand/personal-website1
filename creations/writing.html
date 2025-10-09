@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SunaSite - Writing</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/layout.js" defer></script>
+  <link href="https://fonts.cdnfonts.com/css/press-start-2p" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+  <style>
+    /* Custom cursor */
+    #custom-cursor {
+      position: fixed;
+      width: 25px;
+      height: 25px;
+      background: gold;
+      clip-path: polygon(
+        50% 0%, 61% 35%, 98% 35%, 68% 57%,
+        79% 91%, 50% 70%, 21% 91%, 32% 57%,
+        2% 35%, 39% 35%
+      );
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%) rotate(0deg);
+      animation: twinkle 1s infinite alternate;
+    }
+    @keyframes twinkle {
+      0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); opacity: 1; }
+      50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.2); opacity: 0.8; }
+      100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); opacity: 1; }
+    }
+
+    /* Global font & body */
+    body {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: #4b0000;
+      margin: 0;
+      padding: 0;
+    }
+    h1 { color: #ffffff; margin: 0.5rem 0; }
+    h2, h3, h4, h5, h6 { color: #4b0000; margin: 0.5rem 0; }
+    p, li, input, textarea, a {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.9rem;
+      color: #4b0000;
+    }
+    a:hover { color: #ff69b4; }
+
+    /* Buttons */
+    button, .buttons button {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.85rem;
+      background: #ffb6c1;
+      color: #4b0000;
+      border: 2px solid #ff69b4;
+      border-radius: 10px;
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    button:hover, .buttons button:hover {
+      transform: scale(1.1);
+      box-shadow: 2px 2px 0 #4b0000;
+      background: #ff69b4;
+    }
+
+    /* Header - edge-to-edge */
+    header {
+      width: 100%;
+      background: #4b0000;
+      color: #ffffff;
+      text-align: center;
+      padding: 1rem 0;
+      box-shadow: 4px 4px 0 #4b0000;
+    }
+
+    /* Container layout */
+    .container {
+      display: flex;
+      gap: 1rem;
+    }
+
+    /* LEFT SIDEBAR */
+    .sidebar.left {
+      width: 220px;
+      background: #ffe4ea;
+      border: 3px solid #4b0000;
+      box-shadow: 4px 4px 0 #4b0000;
+      border-radius: 12px;
+      padding: 1rem;
+      max-height: calc(100vh - 2rem);
+      overflow-y: auto;
+    }
+
+    /* RIGHT SIDEBAR */
+    .sidebar.right {
+      width: 220px;
+      padding: 1rem;
+      max-height: calc(100vh - 2rem);
+      overflow-y: auto;
+    }
+    .sidebar.right .widget {
+      border: 2px dashed #8b004b;
+      border-radius: 6px;
+      padding: 0.5rem;
+      margin-bottom: 0.7rem;
+      background: #fbced4;
+      font-family: 'Press Start 2P', cursive;
+    }
+    .sidebar.right .widget h4 {
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+      font-weight: bold;
+      text-align: center;
+    }
+    .sidebar.right .widget p { font-size: 0.7rem; margin: 0.2rem 0; }
+
+    /* Main content */
+    main {
+      padding: 1rem 2rem;
+      flex: 1;
+    }
+
+    /* Typewriter box */
+    .typewriter {
+      font-family: 'VT323', monospace;
+      background-color: #fffaf3;
+      border: 2px solid #4b0000;
+      border-radius: 6px;
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 1850px;
+      box-shadow: 4px 4px 0 #4b0000;
+      color: #2b1b0e;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .writing-text { 
+      white-space: pre-wrap; 
+      overflow-wrap: break-word; 
+      border-right: 2px solid #2b1b0e; 
+      animation: typing 4s steps(60,end), blink 0.6s step-end infinite alternate; 
+      min-height: 150px;
+    }
+    @keyframes typing { from { width: 0; } to { width: 100%; } }
+    @keyframes blink { 50% { border-color: transparent; } }
+
+    /* Writing sections */
+    .writing-section {
+      background: #ffc9d4;
+      border: 2px solid #4b0000;
+      border-radius: 10px;
+      box-shadow: 2px 2px 0 #4b0000;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      font-family: 'VT323', monospace;
+      font-size: 1rem;
+    }
+
+    /* Pixel counter */
+    .pixel-counter { display: flex; justify-content: center; gap: 4px; margin-bottom: 4px; }
+    .pixel-box {
+      width: 24px;
+      height: 32px;
+      background: #ffb6c1;
+      color: #8b004b;
+      font-family: 'Press Start 2P', cursive;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      border: 2px solid #8b004b;
+      border-radius: 4px;
+      box-shadow: 1px 1px 0 #4b0000;
+      image-rendering: pixelated;
+    }
+
+    footer p { 
+      text-align: center; 
+      color: #ffffff; 
+      font-family: 'Press Start 2P', cursive; 
+      margin: 1rem 0; 
+      background: #8b0000; 
+      padding: 1rem 0; 
+      box-shadow: 4px 4px 0 #4b0000; 
+    }
+  </style>
+</head>
+
+<body>
+  <div id="custom-cursor"></div>
+
+  <header>
+    <h1>🌙 SunaSite 🌙</h1>
+  </header>
+
+  <div class="container">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar left">
+      <nav class="menu">
+        <ul>
+          <li><a href="../index.html">🏠 Home</a></li>
+          <li class="dropdown">
+            <a href="#">💖 About ▾</a>
+            <ul class="submenu">
+              <li><a href="../about/about-me.html">About Me</a></li>
+              <li><a href="../about/about-site.html">About the Site</a></li>
+              <li><a href="../about/guestbook.html">Guestbook</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">🌟 Unique Me ▾</a>
+            <ul class="submenu">
+              <li><a href="../unique-me/working-on.html">What I’m Working On</a></li>
+              <li><a href="../unique-me/favorites.html">Favorites</a></li>
+              <li><a href="../unique-me/fun-facts.html">Fun Facts</a></li>
+              <li><a href="../unique-me/clubs.html">Clubs I’m In</a></li>
+              <li><a href="../unique-me/current-activities.html">Current Activities</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">🎨 Creations ▾</a>
+            <ul class="submenu">
+              <li><a href="../creations/project.html">Project</a></li>
+              <li><a href="../creations/playlist.html">Playlist</a></li>
+              <li><a href="../creations/junk-journal.html">Junk Journal</a></li>
+              <li><a href="../creations/writing.html">Writing</a></li>
+              <li><a href="../creations/misc.html">Misc</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">📺 Media Recs ▾</a>
+            <ul class="submenu">
+              <li><a href="../media-recs/log.html">Log</a></li>
+              <li><a href="../media-recs/youtube.html">YouTube</a></li>
+              <li><a href="../media-recs/books.html">Books</a></li>
+              <li><a href="../media-recs/movies.html">Movies</a></li>
+              <li><a href="../media-recs/tv.html">TV Shows</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main>
+  <h2>My Writing Desk</h2>
+
+  <div id="pieces-container">
+    <!-- Pieces will be generated here -->
+  </div>
+</main>
+
+<script>
+  // Hard-coded writing pieces
+  const writingPieces = [
+    {
+      title: "A World Without Borders",
+      text: `Imagine a world without borders. Envision all people living together in harmony, with no divisions, no prejudices. Each individual would be an Earthling—no longer labeled as American, Italian, Chinese, or any other nationality. You could travel anywhere freely, without the need for a passport. Nationalism would vanish, armies would be unnecessary, and wars would be a relic of the past. This utopian vision paints an idyllic picture of global peace and unity.However, the reality of achieving such a world is far from simple. Despite the allure of a borderless world, I am convinced that it remains an impractical dream. Even if borders between countries were abolished, the world would not transform into a peaceful paradise. Let us delve deeper into what a real world without borders might look like.
+First, consider the implications of having no borders. It would mean the absence of control. Law enforcement agencies would struggle to track down criminals, fugitives, and even refugees. The legal system would lose much of its power, making it nearly impossible for the police to manage the masses. Without borders, strikes and revolutions could escalate uncontrollably, leading to widespread chaos. In such a scenario, the army might become a necessity rather than a relic. The reality is that crime, unfortunately, remains uncontrollable without some form of enforcement, which often includes arms.
+Moreover, envisioning a world without borders also involves grappling with the challenge of unifying diverse systems. Countries have unique political systems, legal frameworks, and cultural norms. Merging these into a single global system while respecting all religions, traditions, and customs is a Herculean task. For instance, how could Muslim-majority countries and Christian-majority countries share the same laws while honoring their distinct religious practices? Respecting these differences inherently leads back to the existence of different nations, which in turn implies the need for borders.
+In light of these complexities, my vision for a better world involves maintaining borders, but with significant improvements. Countries should retain their sovereignty and manage their internal affairs independently. However, we could strive for greater international cooperation and openness. Imagine a world where imported and exported goods are duty-free, facilitating free trade among nations. Visa-free travel could allow people to live and work in any country they choose, fostering global mobility and cultural exchange.
+In conclusion, while our current world is not perfect, it offers a structure that balances order and diversity. The dream of a borderless world remains an alluring yet impractical ideal. Instead, we should focus on enhancing our existing systems to promote cooperation, understanding, and freedom. By enjoying what we have and working towards achievable improvements, we can create a world that, though not utopian, is a better place for all.`,
+      comments: []
+    },
+    {
+      title: "Dreaming in Color",
+      text: "Colors danced across my mind like flames, each thought a new hue that I couldn’t name...",
+      comments: []
+    },
+    {
+      title: "Reflections",
+      text: "Sometimes I sit by the window and think about all the little moments that make life big...",
+      comments: []
+    }
+  ];
+
+  const container = document.getElementById("pieces-container");
+
+  function createPiece(piece, idx) {
+    const pieceDiv = document.createElement("div");
+    pieceDiv.className = "writing-section";
+
+    pieceDiv.innerHTML = `
+      <h3 style="cursor:pointer;" class="piece-title">${piece.title} ▾</h3>
+      <div class="typewriter piece-text" style="display:none; font-family:'VT323', monospace;">${piece.text}</div>
+
+      <div class="comments-section" style="display:none; margin-top:1rem;">
+        <h4>Comments:</h4>
+        <form class="comment-form" data-idx="${idx}" style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:0.5rem;">
+          <input type="text" placeholder="Your name" required style="padding:0.5rem; border:2px solid #4b0000; border-radius:6px;">
+          <input type="text" placeholder="Your comment" required style="padding:0.5rem; border:2px solid #4b0000; border-radius:6px;">
+          <button type="submit">Post Comment</button>
+        </form>
+        <div class="comments-list"></div>
+      </div>
+    `;
+
+    // Dropdown toggle
+    const titleEl = pieceDiv.querySelector(".piece-title");
+    const textEl = pieceDiv.querySelector(".piece-text");
+    const commentsSection = pieceDiv.querySelector(".comments-section");
+
+    titleEl.addEventListener("click", () => {
+      if (textEl.style.display === "none") {
+        textEl.style.display = "block";
+        commentsSection.style.display = "block";
+        animateTypewriter(textEl);
+      } else {
+        textEl.style.display = "none";
+        commentsSection.style.display = "none";
+      }
+    });
+
+    container.appendChild(pieceDiv);
+
+    // Load existing comments
+    updateComments(idx, pieceDiv);
+  }
+
+  function updateComments(idx, pieceDiv) {
+    const commentsList = pieceDiv.querySelector(".comments-list");
+    commentsList.innerHTML = "";
+    writingPieces[idx].comments.forEach((c, cIdx) => {
+      const commentDiv = document.createElement("div");
+      commentDiv.innerHTML = `
+        <strong>${c.author}:</strong> ${c.comment} 
+        <button class="reply-btn" data-idx="${idx}" data-comment="${cIdx}" style="margin-left:5px; font-size:0.7rem;">Reply</button>
+        <div class="replies" style="margin-left:1rem; margin-top:0.2rem;"></div>
+      `;
+      commentsList.appendChild(commentDiv);
+
+      // Add replies
+      const repliesDiv = commentDiv.querySelector(".replies");
+      if (c.replies) {
+        c.replies.forEach(r => {
+          const rDiv = document.createElement("div");
+          rDiv.textContent = `${r.author}: ${r.comment}`;
+          repliesDiv.appendChild(rDiv);
+        });
+      }
+    });
+  }
+
+  function animateTypewriter(element) {
+    const text = element.textContent;
+    element.textContent = "";
+    let i = 0;
+    const interval = setInterval(() => {
+      element.textContent += text.charAt(i);
+      i++;
+      if (i >= text.length) clearInterval(interval);
+    }, 30); // typing speed
+  }
+
+  // Initialize pieces
+  writingPieces.forEach((p, idx) => createPiece(p, idx));
+
+  // Comment submission
+  container.addEventListener("submit", e => {
+    e.preventDefault();
+    const form = e.target;
+    if (!form.classList.contains("comment-form")) return;
+
+    const idx = form.dataset.idx;
+    const author = form[0].value.trim();
+    const comment = form[1].value.trim();
+    if (!author || !comment) return;
+
+    if (!writingPieces[idx].comments) writingPieces[idx].comments = [];
+    writingPieces[idx].comments.push({ author, comment, replies: [] });
+
+    form[0].value = "";
+    form[1].value = "";
+
+    updateComments(idx, form.closest(".writing-section"));
+  });
+
+  // Reply feature
+  container.addEventListener("click", e => {
+    if (!e.target.classList.contains("reply-btn")) return;
+
+    const idx = e.target.dataset.idx;
+    const commentIdx = e.target.dataset.comment;
+
+    const replyText = prompt("Enter your reply:");
+    if (!replyText) return;
+
+    const replyAuthor = prompt("Your name:");
+    if (!replyAuthor) return;
+
+    if (!writingPieces[idx].comments[commentIdx].replies) 
+      writingPieces[idx].comments[commentIdx].replies = [];
+
+    writingPieces[idx].comments[commentIdx].replies.push({ author: replyAuthor, comment: replyText });
+
+    updateComments(idx, e.target.closest(".writing-section"));
+  });
+</script>
+
+
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="sidebar right">
+      <div class="widget">
+        <h4>✨ Quote of the Day ✨</h4>
+        <p>"Stay soft, the world needs your light."</p>
+      </div>
+      <div class="widget hits-visitors">
+        <h4>Your Clicks</h4>
+        <div id="pixel-counter" class="pixel-counter">
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+        </div>
+      </div>
+      <div class="widget clock">
+        <h4>⏰ Local Time (PST)</h4>
+        <p id="arizona-time">--:--:--</p>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <p>Made with love + pixels by Suhana</p>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById("custom-cursor");
+    document.addEventListener("mousemove", e => {
+      cursor.style.left = e.clientX + "px";
+      cursor.style.top = e.clientY + "px";
+    });
+
+    // Pixel counter
+    let counter = 0;
+    const pixelBoxes = document.querySelectorAll("#pixel-counter .pixel-box");
+    function updatePixelCounter(value) {
+      let strVal = value.toString().padStart(6, "0");
+      for (let i = 0; i < 6; i++) pixelBoxes[i].textContent = strVal[i];
+    }
+    updatePixelCounter(counter);
+    document.body.addEventListener("click", () => { counter++; updatePixelCounter(counter); });
+
+    // Arizona time
+    function updateArizonaTime() {
+      const options = { timeZone: 'America/Phoenix', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+      document.getElementById("arizona-time").textContent = new Date().toLocaleTimeString('en-US', options);
+    }
+    setInterval(updateArizonaTime, 1000);
+    updateArizonaTime();
+
+    // Dropdown menus
+    document.addEventListener("DOMContentLoaded", function() {
+      const menu = document.querySelector('.sidebar.left .menu');
+      if (menu) {
+        menu.querySelectorAll('.dropdown > a').forEach(drop => {
+          drop.addEventListener('click', function(e) {
+            e.preventDefault();
+            const parent = this.parentElement;
+            menu.querySelectorAll('.dropdown').forEach(d => { if(d !== parent) d.classList.remove('open'); });
+            parent.classList.toggle('open');
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
