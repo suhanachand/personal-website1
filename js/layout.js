@@ -51,4 +51,6 @@ function updateClock() {
 }
 setInterval(updateClock, 1000);
 updateClock();
+const piecesContainer = document.getElementById("pieces-container");
+const submitPieceBtn = document.getElementById("submit-piece");
 
