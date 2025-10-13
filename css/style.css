@@ -423,3 +423,64 @@ main {
   flex: 1;
 }
 
+/* ==== MEDIA LOG PAGE ==== */
+.media-log {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.media-log h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.media-log p {
+  text-align: center;
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 30px;
+}
+
+.log-entry {
+  display: flex;
+  align-items: flex-start;
+  background: #fdfdfd;
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 20px;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.log-entry:hover {
+  background: #000;
+  color: #fff;
+  transform: scale(1.02);
+}
+
+.log-entry img {
+  width: 160px;
+  height: 100px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.log-content h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+/* Category color accents */
+.log-entry.book { border-left: 6px solid #9c27b0; }
+.log-entry.youtube { border-left: 6px solid #ff0000; }
+.log-entry.movie { border-left: 6px solid #2196f3; }
+.log-entry.tv { border-left: 6px solid #ff9800; }
+
+.log-entry:hover.book { background: #9c27b0; }
+.log-entry:hover.youtube { background: #ff0000; }
+.log-entry:hover.movie { background: #2196f3; }
+.log-entry:hover.tv { background: #ff9800; }

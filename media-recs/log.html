@@ -1,63 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Media Log</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <script src="../js/layout.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Media Log</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <script src="../js/layout.js" defer></script>
 </head>
+
 <body>
-    <a href="#content" id="skip-to-content-link">Skip to content</a>
-    <div class="layout">
-        <main id="content">
-            <section>
-                <h1>My Media Log</h1>
-                <p>Here’s a colorful timeline of what I’ve been watching, reading, and listening to recently!</p>
+  <a href="#content" id="skip-to-content-link">Skip to content</a>
 
-                <!-- Example Entry: Book -->
-                <div class="log-entry book">
-                    <img src="../img/book1.jpg" alt="Book Cover">
-                    <div class="log-content">
-                        <h3>📚 Book: <em>Good Omens</em></h3>
-                        <p><strong>Date:</strong> 09/17/2025</p>
-                        <p><strong>Notes:</strong> Loved the humor and characters! Angels and demons vibe.</p>
-                    </div>
-                </div>
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar left">
+      <nav class="menu">
+        <ul>
+          <li><a href="../index.html">🏠 Home</a></li>
+          <li class="dropdown">
+            <a href="#">💖 About ▾</a>
+            <ul class="submenu">
+              <li><a href="../about/about-me.html">About Me</a></li>
+              <li><a href="../about/about-site.html">About the Site</a></li>
+              <li><a href="../about/guestbook.html">Guestbook</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">🌟 Unique Me ▾</a>
+            <ul class="submenu">
+              <li><a href="../unique-me/working-on.html">What I’m Working On</a></li>
+              <li><a href="../unique-me/favorites.html">Favorites</a></li>
+              <li><a href="../unique-me/fun-facts.html">Fun Facts</a></li>
+              <li><a href="../unique-me/featured.html">Features</a></li>
+              <li><a href="../unique-me/clubs.html">Clubs I’m In</a></li>
+              <li><a href="../unique-me/current-activities.html">Current Activities</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">🎨 Creations ▾</a>
+            <ul class="submenu">
+              <li><a href="../creations/project.html">Project</a></li>
+              <li><a href="../creations/playlist.html">Playlist</a></li>
+              <li><a href="../creations/junk-journal.html">Junk Journal</a></li>
+              <li><a href="../creations/writing.html">Writing</a></li>
+              <li><a href="../creations/misc.html">Misc</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">📺 Media Recs ▾</a>
+            <ul class="submenu">
+              <li><a href="../media-recs/log.html">Log</a></li>
+              <li><a href="../media-recs/youtube.html">YouTube</a></li>
+              <li><a href="../media-recs/books.html">Books</a></li>
+              <li><a href="../media-recs/movies.html">Movies</a></li>
+              <li><a href="../media-recs/tv.html">TV Shows</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </aside>
 
-                <!-- Example Entry: YouTube -->
-                <div class="log-entry youtube">
-                    <img src="../img/youtube1.png" alt="YouTube Thumbnail">
-                    <div class="log-content">
-                        <h3>🎥 YouTube: <em>Game Theory - Oddish Analysis</em></h3>
-                        <p><strong>Date:</strong> 09/16/2025</p>
-                        <p><strong>Notes:</strong> Super interesting video, learned something new about Pokémon mechanics.</p>
-                    </div>
-                </div>
+    <!-- MAIN CONTENT -->
+    <main id="content">
+      <section class="media-log">
+        <h1>🎧 My Media Log</h1>
+        <p>Here’s a colorful timeline of what I’ve been watching, reading, and listening to recently!</p>
 
-                <!-- Example Entry: Movie -->
-                <div class="log-entry movie">
-                    <img src="../img/movie1.jpg" alt="Movie Poster">
-                    <div class="log-content">
-                        <h3>🎬 Movie: <em>Everything Everywhere All At Once</em></h3>
-                        <p><strong>Date:</strong> 09/15/2025</p>
-                        <p><strong>Notes:</strong> Mind-blowing and chaotic, loved the visual style and story.</p>
-                    </div>
-                </div>
+        <!-- Book -->
+        <div class="log-entry book">
+          <img src="../img/book1.jpg" alt="Book Cover">
+          <div class="log-content">
+            <h3>📚 Book: <em>Good Omens</em></h3>
+            <p><strong>Date:</strong> 09/17/2025</p>
+            <p><strong>Notes:</strong> Loved the humor and characters! Angels and demons vibe.</p>
+          </div>
+        </div>
 
-                <!-- Example Entry: TV Show -->
-                <div class="log-entry tv">
-                    <img src="../img/tv1.jpg" alt="TV Show Poster">
-                    <div class="log-content">
-                        <h3>📺 TV: <em>Stranger Things Season 5</em></h3>
-                        <p><strong>Date:</strong> 09/14/2025</p>
-                        <p><strong>Notes:</strong> Still amazing! Eleven is iconic. Suspense everywhere.</p>
-                    </div>
-                </div>
+        <!-- YouTube -->
+        <div class="log-entry youtube">
+          <img src="../img/youtube1.png" alt="YouTube Thumbnail">
+          <div class="log-content">
+            <h3>🎥 YouTube: <em>Game Theory - Oddish Analysis</em></h3>
+            <p><strong>Date:</strong> 09/16/2025</p>
+            <p><strong>Notes:</strong> Super interesting video, learned something new about Pokémon mechanics.</p>
+          </div>
+        </div>
 
-                <!-- Add more entries as needed -->
-            </section>
-        </main>
-    </div>
+        <!-- Movie -->
+        <div class="log-entry movie">
+          <img src="../img/movie1.jpg" alt="Movie Poster">
+          <div class="log-content">
+            <h3>🎬 Movie: <em>Everything Everywhere All At Once</em></h3>
+            <p><strong>Date:</strong> 09/15/2025</p>
+            <p><strong>Notes:</strong> Mind-blowing and chaotic, loved the visual style and story.</p>
+          </div>
+        </div>
+
+        <!-- TV -->
+        <div class="log-entry tv">
+          <img src="../img/tv1.jpg" alt="TV Show Poster">
+          <div class="log-content">
+            <h3>📺 TV: <em>Stranger Things Season 5</em></h3>
+            <p><strong>Date:</strong> 09/14/2025</p>
+            <p><strong>Notes:</strong> Still amazing! Eleven is iconic. Suspense everywhere.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
 </body>
 </html>
