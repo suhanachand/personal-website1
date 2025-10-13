@@ -4,91 +4,96 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Media Log</title>
-  <link rel="stylesheet" href="../style.css" />
-  <script src="../layout.js" defer></script>
-  <style>
-    main {
-      width: 60%;
-      margin: 100px auto;
-      background: #fffdf5;
-      border: 2px dashed #000;
-      padding: 2rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      font-family: 'Press Start 2P', monospace;
-      color: #222;
-      line-height: 1.8;
-    }
-
-    .receipt-header {
-      text-align: center;
-      border-bottom: 1px dashed #000;
-      margin-bottom: 1rem;
-      padding-bottom: 1rem;
-    }
-
-    .receipt-entry {
-      border-bottom: 1px dotted #aaa;
-      padding: 1rem 0;
-    }
-
-    .receipt-entry:last-child {
-      border-bottom: none;
-    }
-
-    .date {
-      font-size: 0.8rem;
-      color: #555;
-    }
-
-    .title {
-      font-size: 1rem;
-      margin: 0.2rem 0;
-    }
-
-    .rating {
-      color: #ff9f43;
-      font-size: 0.9rem;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 2rem;
-      font-size: 0.7rem;
-      color: #444;
-    }
-
-    /* Custom cursor */
-    body {
-      cursor: url('../assets/cursor.png'), auto;
-    }
-
-    /* Floating retro scanline overlay for TV vibe */
-    .scanlines::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: repeating-linear-gradient(
-        rgba(0,0,0,0.05) 0px,
-        rgba(0,0,0,0.05) 2px,
-        transparent 3px,
-        transparent 4px
-      );
-      pointer-events: none;
-      z-index: 1000;
-    }
-  </style>
+  <link rel="stylesheet" href="../css/style.css" />
+  <script src="../js/layout.js" defer></script>
 </head>
-<body class="scanlines">
-  <header id="header"></header>
-  <aside id="left-sidebar"></aside>
-  <aside id="right-sidebar"></aside>
+<body>
+  <!-- Custom cursor -->
   <div id="custom-cursor"></div>
 
+  <!-- HEADER -->
+  <header>
+    <h1>🌙 SunaSite 🌙</h1>
+  </header>
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar left">
+    <nav class="menu">
+      <ul>
+        <li><a href="../index.html">🏠 Home</a></li>
+        <li class="dropdown">
+          <a href="#">💖 About ▾</a>
+          <ul class="submenu">
+            <li><a href="../about/about-me.html">About Me</a></li>
+            <li><a href="../about/about-site.html">About the Site</a></li>
+            <li><a href="../about/guestbook.html">Guestbook</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">🌟 Unique Me ▾</a>
+          <ul class="submenu">
+            <li><a href="../unique-me/working-on.html">What I’m Working On</a></li>
+            <li><a href="../unique-me/favorites.html">Favorites</a></li>
+            <li><a href="../unique-me/fun-facts.html">Fun Facts</a></li>
+            <li><a href="../unique-me/featured.html">Features</a></li>
+            <li><a href="../unique-me/clubs.html">Clubs I’m In</a></li>
+            <li><a href="../unique-me/current-activities.html">Current Activities</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">🎨 Creations ▾</a>
+          <ul class="submenu">
+            <li><a href="../creations/project.html">Project</a></li>
+            <li><a href="../creations/playlist.html">Playlist</a></li>
+            <li><a href="../creations/junk-journal.html">Junk Journal</a></li>
+            <li><a href="../creations/writing.html">Writing</a></li>
+            <li><a href="../creations/misc.html">Misc</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">📺 Media Recs ▾</a>
+          <ul class="submenu">
+            <li><a href="../media-recs/log.html">Log</a></li>
+            <li><a href="../media-recs/youtube.html">YouTube</a></li>
+            <li><a href="../media-recs/books.html">Books</a></li>
+            <li><a href="../media-recs/movies.html">Movies</a></li>
+            <li><a href="../media-recs/tv.html">TV Shows</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- RIGHT SIDEBAR -->
+  <aside class="sidebar right">
+    <div class="widget">
+      <h4>✨ Quote of the Day ✨</h4>
+      <p>"Stay soft, the world needs your light."</p>
+    </div>
+    <div class="widget hits-visitors">
+      <h4>Your Clicks</h4>
+      <div id="pixel-counter" class="pixel-counter">
+        <span class="pixel-box">0</span>
+        <span class="pixel-box">0</span>
+        <span class="pixel-box">0</span>
+        <span class="pixel-box">0</span>
+        <span class="pixel-box">0</span>
+        <span class="pixel-box">0</span>
+      </div>
+    </div>
+    <div class="widget clock">
+      <h4>⏰ Local Time (PST)</h4>
+      <p id="arizona-time">--:--:--</p>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
   <main>
     <div class="receipt-header">
       <h2>📺 MEDIA LOG RECEIPT</h2>
-      <p>“Filed by Suhana — keeping track of what I watched, read, and loved.”</p>
+      <p>Filed by Suhana — keeping track of what I watched, read, and loved.</p>
     </div>
+
     <div id="log-entries">
       <p>Loading your logs...</p>
     </div>
@@ -98,13 +103,13 @@
     </footer>
   </main>
 
+  <!-- JS: load log file -->
   <script>
-    // Load and display the log file
     fetch('../data/medias-log.txt')
       .then(res => res.text())
       .then(data => {
         const container = document.getElementById('log-entries');
-        const entries = data.trim().split('\n\n'); // double newlines separate entries
+        const entries = data.trim().split('\n\n');
         container.innerHTML = entries.map(entry => {
           const lines = entry.split('\n');
           const date = lines[0] || '';
