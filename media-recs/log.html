@@ -3,100 +3,122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Media Log</title>
+  <title>Media Log | SunaSite</title>
   <link rel="stylesheet" href="../css/style.css">
   <script src="../js/layout.js" defer></script>
+  <link href="https://fonts.cdnfonts.com/css/press-start-2p" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <style>
-    /* --- Retro receipt look --- */
+    /* === Retro receipt styling === */
     main {
-      width: 60%;
+      width: 55%;
       margin: 2rem auto;
       background: #fffaf8;
-      border: 2px dashed #c78888;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      padding: 2rem;
-      font-family: 'Courier New', monospace;
-      color: #4d2b2b;
+      border: 3px dashed #8b0000;
+      border-radius: 12px;
+      box-shadow: 6px 6px 0 #4b0000;
+      padding: 1.5rem;
+      font-family: 'VT323', monospace;
+      color: #4b0000;
+      max-height: calc(100vh - 150px);
+      overflow-y: auto;
       position: relative;
-      overflow: hidden;
     }
 
     main::before {
-      content: "";
+      content: "✦ ✦ ✦";
       position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 20px;
-      background: repeating-linear-gradient(
-        45deg,
-        #fddcdc,
-        #fddcdc 10px,
-        #ffffff 10px,
-        #ffffff 20px
-      );
+      top: 0.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.6rem;
+      color: #8b0000;
+      letter-spacing: 0.3em;
     }
 
     h1 {
       text-align: center;
-      color: #8b4d4d;
-      font-size: 1.8em;
+      font-size: 1rem;
+      color: #8b0000;
+      border-bottom: 2px dotted #8b0000;
+      padding-bottom: 0.5rem;
       margin-bottom: 1rem;
     }
 
     .log-entry {
-      border-bottom: 1px dotted #c78888;
+      border-bottom: 1px dotted #8b0000;
       padding: 1rem 0;
-      animation: fadeIn 0.8s ease;
     }
-
-    .log-entry:last-child {
-      border-bottom: none;
-    }
+    .log-entry:last-child { border-bottom: none; }
 
     .log-date {
-      font-weight: bold;
-      color: #8b4d4d;
+      font-size: 0.8rem;
+      color: #b30000;
+      text-align: right;
+      margin-bottom: 0.2rem;
     }
 
     .log-type {
-      font-style: italic;
-      color: #a56969;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.7rem;
+      color: #4b0000;
+    }
+
+    .log-title {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #8b004b;
+      margin-top: 0.3rem;
     }
 
     .log-rating {
-      color: #d49b9b;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.7rem;
+      color: #ff69b4;
+      margin-top: 0.3rem;
     }
 
     .log-notes {
-      margin-top: 0.5rem;
-      line-height: 1.5;
-      color: #5b4040;
+      margin-top: 0.4rem;
+      line-height: 1.4;
+      color: #4b0000;
+      font-size: 0.9rem;
+    }
+
+    .update-hint {
+      text-align: center;
+      font-size: 0.7rem;
+      color: #4b0000;
+      margin-top: 1rem;
     }
 
     .refresh-button {
       display: block;
-      margin: 1.5rem auto;
-      background: #f6caca;
-      border: 2px solid #b97a7a;
+      margin: 1rem auto;
+      background: #ffb6c1;
+      border: 2px solid #8b004b;
+      border-radius: 6px;
       padding: 0.5rem 1rem;
-      border-radius: 5px;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.7rem;
+      color: #4b0000;
       cursor: pointer;
-      transition: 0.3s;
-      font-family: 'Courier New', monospace;
     }
-
     .refresh-button:hover {
-      background: #f2baba;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(10px);}
-      to {opacity: 1; transform: translateY(0);}
+      background: #ff69b4;
+      color: #fff;
     }
   </style>
 </head>
 
 <body>
+  <div id="custom-cursor"></div>
+
+  <header>
+    <h1>🌙 SunaSite 🌙</h1>
+  </header>
+
   <div class="container">
     <!-- LEFT SIDEBAR -->
     <aside class="sidebar left">
@@ -137,26 +159,52 @@
     </aside>
 
     <!-- MAIN CONTENT -->
-    <main id="content">
-      <h1>🎞️ My Media Log</h1>
-      <p style="text-align:center;">Like a little receipt of my thoughts — everything I’ve read, watched, or loved lately.</p>
-      <div id="log-entries"></div>
-      <button class="refresh-button" onclick="loadMediaLog()">🔄 Refresh Log</button>
+    <main>
+      <h1>🧾 Media Log</h1>
+      <div id="log-entries">
+        <p>Loading your retro receipt...</p>
+      </div>
+      <button class="refresh-button" onclick="loadMediaLog()">🔄 Refresh</button>
+      <p class="update-hint">Update <code>/data/media-log.txt</code> in your repo to add new entries!</p>
     </main>
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="sidebar right">
+      <div class="widget">
+        <h4>✨ Quote of the Day ✨</h4>
+        <p>"Stay soft, the world needs your light."</p>
+      </div>
+      <div class="widget hits-visitors">
+        <h4>Your Clicks</h4>
+        <div id="pixel-counter" class="pixel-counter">
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+        </div>
+      </div>
+      <div class="widget clock">
+        <h4>⏰ Local Time (PST)</h4>
+        <p id="arizona-time">--:--:--</p>
+      </div>
+    </aside>
   </div>
+
+  <footer>
+    <p>Made with love + pixels by Suhana</p>
+  </footer>
 
   <script>
     async function loadMediaLog() {
       const container = document.getElementById('log-entries');
       container.innerHTML = "<p>Loading...</p>";
-
       try {
-        const response = await fetch('../data/media-log.txt');
-        const text = await response.text();
-
-        const entries = text.trim().split(/\n\s*\n/);
+        const res = await fetch('../data/media-log.txt');
+        const txt = await res.text();
+        const entries = txt.trim().split(/\n\s*\n/);
         container.innerHTML = "";
-
         entries.forEach(entry => {
           const [header, ...body] = entry.split('\n');
           const match = header.match(/\[(.*?)\]\s*(.*?)\s*-\s*(.*?)\s*(★.*)/);
@@ -175,11 +223,10 @@
             container.appendChild(div);
           }
         });
-      } catch (err) {
+      } catch (e) {
         container.innerHTML = "<p>Could not load log.</p>";
       }
     }
-
     loadMediaLog();
   </script>
 </body>
