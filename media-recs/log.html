@@ -1,17 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Media Log</title>
-  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/style.css">
   <script src="../js/layout.js" defer></script>
+  <style>
+    /* --- Retro receipt look --- */
+    main {
+      width: 60%;
+      margin: 2rem auto;
+      background: #fffaf8;
+      border: 2px dashed #c78888;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      padding: 2rem;
+      font-family: 'Courier New', monospace;
+      color: #4d2b2b;
+      position: relative;
+      overflow: hidden;
+    }
+
+    main::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 20px;
+      background: repeating-linear-gradient(
+        45deg,
+        #fddcdc,
+        #fddcdc 10px,
+        #ffffff 10px,
+        #ffffff 20px
+      );
+    }
+
+    h1 {
+      text-align: center;
+      color: #8b4d4d;
+      font-size: 1.8em;
+      margin-bottom: 1rem;
+    }
+
+    .log-entry {
+      border-bottom: 1px dotted #c78888;
+      padding: 1rem 0;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .log-entry:last-child {
+      border-bottom: none;
+    }
+
+    .log-date {
+      font-weight: bold;
+      color: #8b4d4d;
+    }
+
+    .log-type {
+      font-style: italic;
+      color: #a56969;
+    }
+
+    .log-rating {
+      color: #d49b9b;
+    }
+
+    .log-notes {
+      margin-top: 0.5rem;
+      line-height: 1.5;
+      color: #5b4040;
+    }
+
+    .refresh-button {
+      display: block;
+      margin: 1.5rem auto;
+      background: #f6caca;
+      border: 2px solid #b97a7a;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-family: 'Courier New', monospace;
+    }
+
+    .refresh-button:hover {
+      background: #f2baba;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
 </head>
 
 <body>
-  <a href="#content" id="skip-to-content-link">Skip to content</a>
-
-  <div class="layout">
+  <div class="container">
     <!-- LEFT SIDEBAR -->
     <aside class="sidebar left">
       <nav class="menu">
@@ -37,16 +123,6 @@
             </ul>
           </li>
           <li class="dropdown">
-            <a href="#">🎨 Creations ▾</a>
-            <ul class="submenu">
-              <li><a href="../creations/project.html">Project</a></li>
-              <li><a href="../creations/playlist.html">Playlist</a></li>
-              <li><a href="../creations/junk-journal.html">Junk Journal</a></li>
-              <li><a href="../creations/writing.html">Writing</a></li>
-              <li><a href="../creations/misc.html">Misc</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
             <a href="#">📺 Media Recs ▾</a>
             <ul class="submenu">
               <li><a href="../media-recs/log.html">Log</a></li>
@@ -62,51 +138,49 @@
 
     <!-- MAIN CONTENT -->
     <main id="content">
-      <section class="media-log">
-        <h1>🎧 My Media Log</h1>
-        <p>Here’s a colorful timeline of what I’ve been watching, reading, and listening to recently!</p>
-
-        <!-- Book -->
-        <div class="log-entry book">
-          <img src="../img/book1.jpg" alt="Book Cover">
-          <div class="log-content">
-            <h3>📚 Book: <em>Good Omens</em></h3>
-            <p><strong>Date:</strong> 09/17/2025</p>
-            <p><strong>Notes:</strong> Loved the humor and characters! Angels and demons vibe.</p>
-          </div>
-        </div>
-
-        <!-- YouTube -->
-        <div class="log-entry youtube">
-          <img src="../img/youtube1.png" alt="YouTube Thumbnail">
-          <div class="log-content">
-            <h3>🎥 YouTube: <em>Game Theory - Oddish Analysis</em></h3>
-            <p><strong>Date:</strong> 09/16/2025</p>
-            <p><strong>Notes:</strong> Super interesting video, learned something new about Pokémon mechanics.</p>
-          </div>
-        </div>
-
-        <!-- Movie -->
-        <div class="log-entry movie">
-          <img src="../img/movie1.jpg" alt="Movie Poster">
-          <div class="log-content">
-            <h3>🎬 Movie: <em>Everything Everywhere All At Once</em></h3>
-            <p><strong>Date:</strong> 09/15/2025</p>
-            <p><strong>Notes:</strong> Mind-blowing and chaotic, loved the visual style and story.</p>
-          </div>
-        </div>
-
-        <!-- TV -->
-        <div class="log-entry tv">
-          <img src="../img/tv1.jpg" alt="TV Show Poster">
-          <div class="log-content">
-            <h3>📺 TV: <em>Stranger Things Season 5</em></h3>
-            <p><strong>Date:</strong> 09/14/2025</p>
-            <p><strong>Notes:</strong> Still amazing! Eleven is iconic. Suspense everywhere.</p>
-          </div>
-        </div>
-      </section>
+      <h1>🎞️ My Media Log</h1>
+      <p style="text-align:center;">Like a little receipt of my thoughts — everything I’ve read, watched, or loved lately.</p>
+      <div id="log-entries"></div>
+      <button class="refresh-button" onclick="loadMediaLog()">🔄 Refresh Log</button>
     </main>
   </div>
+
+  <script>
+    async function loadMediaLog() {
+      const container = document.getElementById('log-entries');
+      container.innerHTML = "<p>Loading...</p>";
+
+      try {
+        const response = await fetch('../data/media-log.txt');
+        const text = await response.text();
+
+        const entries = text.trim().split(/\n\s*\n/);
+        container.innerHTML = "";
+
+        entries.forEach(entry => {
+          const [header, ...body] = entry.split('\n');
+          const match = header.match(/\[(.*?)\]\s*(.*?)\s*-\s*(.*?)\s*(★.*)/);
+          if (match) {
+            const [_, date, type, title, rating] = match;
+            const notes = body.join('\n');
+            const div = document.createElement('div');
+            div.className = 'log-entry';
+            div.innerHTML = `
+              <div class="log-date">${date}</div>
+              <div class="log-type">${type}</div>
+              <div class="log-title">${title}</div>
+              <div class="log-rating">${rating}</div>
+              <div class="log-notes">${notes}</div>
+            `;
+            container.appendChild(div);
+          }
+        });
+      } catch (err) {
+        container.innerHTML = "<p>Could not load log.</p>";
+      }
+    }
+
+    loadMediaLog();
+  </script>
 </body>
 </html>
