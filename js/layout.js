@@ -119,4 +119,21 @@ setInterval(() => {
   setTimeout(() => static.remove(), 500);
 }, 15000); // every 15s
 
+document.addEventListener('DOMContentLoaded', () => {
+  // Load header
+  fetch('../partials/header.html')
+    .then(res => res.text())
+    .then(data => document.getElementById('header').innerHTML = data);
+
+  // Load left sidebar
+  fetch('../partials/left-sidebar.html')
+    .then(res => res.text())
+    .then(data => document.getElementById('left-sidebar').innerHTML = data);
+
+  // Load right sidebar
+  fetch('../partials/right-sidebar.html')
+    .then(res => res.text())
+    .then(data => document.getElementById('right-sidebar').innerHTML = data);
+});
+
 

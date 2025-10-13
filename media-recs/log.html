@@ -1,233 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Media Log | SunaSite</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <script src="../js/layout.js" defer></script>
-  <link href="https://fonts.cdnfonts.com/css/press-start-2p" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Media Log</title>
+  <link rel="stylesheet" href="../style.css" />
+  <script src="../layout.js" defer></script>
   <style>
-    /* === Retro receipt styling === */
     main {
-      width: 55%;
-      margin: 2rem auto;
-      background: #fffaf8;
-      border: 3px dashed #8b0000;
-      border-radius: 12px;
-      box-shadow: 6px 6px 0 #4b0000;
-      padding: 1.5rem;
-      font-family: 'VT323', monospace;
-      color: #4b0000;
-      max-height: calc(100vh - 150px);
-      overflow-y: auto;
-      position: relative;
+      width: 60%;
+      margin: 100px auto;
+      background: #fffdf5;
+      border: 2px dashed #000;
+      padding: 2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      font-family: 'Press Start 2P', monospace;
+      color: #222;
+      line-height: 1.8;
     }
 
-    main::before {
-      content: "✦ ✦ ✦";
-      position: absolute;
-      top: 0.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Press Start 2P', cursive;
-      font-size: 0.6rem;
-      color: #8b0000;
-      letter-spacing: 0.3em;
-    }
-
-    h1 {
+    .receipt-header {
       text-align: center;
-      font-size: 1rem;
-      color: #8b0000;
-      border-bottom: 2px dotted #8b0000;
-      padding-bottom: 0.5rem;
+      border-bottom: 1px dashed #000;
       margin-bottom: 1rem;
+      padding-bottom: 1rem;
     }
 
-    .log-entry {
-      border-bottom: 1px dotted #8b0000;
+    .receipt-entry {
+      border-bottom: 1px dotted #aaa;
       padding: 1rem 0;
     }
-    .log-entry:last-child { border-bottom: none; }
 
-    .log-date {
+    .receipt-entry:last-child {
+      border-bottom: none;
+    }
+
+    .date {
       font-size: 0.8rem;
-      color: #b30000;
-      text-align: right;
-      margin-bottom: 0.2rem;
+      color: #555;
     }
 
-    .log-type {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 0.7rem;
-      color: #4b0000;
-    }
-
-    .log-title {
+    .title {
       font-size: 1rem;
-      font-weight: bold;
-      color: #8b004b;
-      margin-top: 0.3rem;
+      margin: 0.2rem 0;
     }
 
-    .log-rating {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 0.7rem;
-      color: #ff69b4;
-      margin-top: 0.3rem;
-    }
-
-    .log-notes {
-      margin-top: 0.4rem;
-      line-height: 1.4;
-      color: #4b0000;
+    .rating {
+      color: #ff9f43;
       font-size: 0.9rem;
     }
 
-    .update-hint {
+    footer {
       text-align: center;
+      margin-top: 2rem;
       font-size: 0.7rem;
-      color: #4b0000;
-      margin-top: 1rem;
+      color: #444;
     }
 
-    .refresh-button {
-      display: block;
-      margin: 1rem auto;
-      background: #ffb6c1;
-      border: 2px solid #8b004b;
-      border-radius: 6px;
-      padding: 0.5rem 1rem;
-      font-family: 'Press Start 2P', cursive;
-      font-size: 0.7rem;
-      color: #4b0000;
-      cursor: pointer;
+    /* Custom cursor */
+    body {
+      cursor: url('../assets/cursor.png'), auto;
     }
-    .refresh-button:hover {
-      background: #ff69b4;
-      color: #fff;
+
+    /* Floating retro scanline overlay for TV vibe */
+    .scanlines::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        rgba(0,0,0,0.05) 0px,
+        rgba(0,0,0,0.05) 2px,
+        transparent 3px,
+        transparent 4px
+      );
+      pointer-events: none;
+      z-index: 1000;
     }
   </style>
 </head>
+<body class="scanlines">
+  <header id="header"></header>
+  <aside id="left-sidebar"></aside>
+  <aside id="right-sidebar"></aside>
 
-<body>
-  <div id="custom-cursor"></div>
+  <main>
+    <div class="receipt-header">
+      <h2>📺 MEDIA LOG RECEIPT</h2>
+      <p>“Filed by Suhana — keeping track of what I watched, read, and loved.”</p>
+    </div>
+    <div id="log-entries">
+      <p>Loading your logs...</p>
+    </div>
 
-  <header>
-    <h1>🌙 SunaSite 🌙</h1>
-  </header>
-
-  <div class="container">
-    <!-- LEFT SIDEBAR -->
-    <aside class="sidebar left">
-      <nav class="menu">
-        <ul>
-          <li><a href="../index.html">🏠 Home</a></li>
-          <li class="dropdown">
-            <a href="#">💖 About ▾</a>
-            <ul class="submenu">
-              <li><a href="../about/about-me.html">About Me</a></li>
-              <li><a href="../about/about-site.html">About the Site</a></li>
-              <li><a href="../about/guestbook.html">Guestbook</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#">🌟 Unique Me ▾</a>
-            <ul class="submenu">
-              <li><a href="../unique-me/working-on.html">What I’m Working On</a></li>
-              <li><a href="../unique-me/favorites.html">Favorites</a></li>
-              <li><a href="../unique-me/fun-facts.html">Fun Facts</a></li>
-              <li><a href="../unique-me/featured.html">Features</a></li>
-              <li><a href="../unique-me/clubs.html">Clubs I’m In</a></li>
-              <li><a href="../unique-me/current-activities.html">Current Activities</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#">📺 Media Recs ▾</a>
-            <ul class="submenu">
-              <li><a href="../media-recs/log.html">Log</a></li>
-              <li><a href="../media-recs/youtube.html">YouTube</a></li>
-              <li><a href="../media-recs/books.html">Books</a></li>
-              <li><a href="../media-recs/movies.html">Movies</a></li>
-              <li><a href="../media-recs/tv.html">TV Shows</a></li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-    </aside>
-
-    <!-- MAIN CONTENT -->
-    <main>
-      <h1>🧾 Media Log</h1>
-      <div id="log-entries">
-        <p>Loading your retro receipt...</p>
-      </div>
-      <button class="refresh-button" onclick="loadMediaLog()">🔄 Refresh</button>
-      <p class="update-hint">Update <code>/data/media-log.txt</code> in your repo to add new entries!</p>
-    </main>
-
-    <!-- RIGHT SIDEBAR -->
-    <aside class="sidebar right">
-      <div class="widget">
-        <h4>✨ Quote of the Day ✨</h4>
-        <p>"Stay soft, the world needs your light."</p>
-      </div>
-      <div class="widget hits-visitors">
-        <h4>Your Clicks</h4>
-        <div id="pixel-counter" class="pixel-counter">
-          <span class="pixel-box">0</span>
-          <span class="pixel-box">0</span>
-          <span class="pixel-box">0</span>
-          <span class="pixel-box">0</span>
-          <span class="pixel-box">0</span>
-          <span class="pixel-box">0</span>
-        </div>
-      </div>
-      <div class="widget clock">
-        <h4>⏰ Local Time (PST)</h4>
-        <p id="arizona-time">--:--:--</p>
-      </div>
-    </aside>
-  </div>
-
-  <footer>
-    <p>Made with love + pixels by Suhana</p>
-  </footer>
+    <footer>
+      <p>Update entries via <code>/data/medias-log.txt</code></p>
+    </footer>
+  </main>
 
   <script>
-    async function loadMediaLog() {
-      const container = document.getElementById('log-entries');
-      container.innerHTML = "<p>Loading...</p>";
-      try {
-        const res = await fetch('../data/media-log.txt');
-        const txt = await res.text();
-        const entries = txt.trim().split(/\n\s*\n/);
-        container.innerHTML = "";
-        entries.forEach(entry => {
-          const [header, ...body] = entry.split('\n');
-          const match = header.match(/\[(.*?)\]\s*(.*?)\s*-\s*(.*?)\s*(★.*)/);
-          if (match) {
-            const [_, date, type, title, rating] = match;
-            const notes = body.join('\n');
-            const div = document.createElement('div');
-            div.className = 'log-entry';
-            div.innerHTML = `
-              <div class="log-date">${date}</div>
-              <div class="log-type">${type}</div>
-              <div class="log-title">${title}</div>
-              <div class="log-rating">${rating}</div>
-              <div class="log-notes">${notes}</div>
-            `;
-            container.appendChild(div);
-          }
-        });
-      } catch (e) {
-        container.innerHTML = "<p>Could not load log.</p>";
-      }
-    }
-    loadMediaLog();
+    // Load and display the log file
+    fetch('../data/medias-log.txt')
+      .then(res => res.text())
+      .then(data => {
+        const container = document.getElementById('log-entries');
+        const entries = data.trim().split('\n\n'); // double newlines separate entries
+        container.innerHTML = entries.map(entry => {
+          const lines = entry.split('\n');
+          const date = lines[0] || '';
+          const title = lines[1] || '';
+          const review = lines[2] || '';
+          const rating = lines[3] || '';
+          return `
+            <div class="receipt-entry">
+              <div class="date">${date}</div>
+              <div class="title">🎞️ ${title}</div>
+              <div class="review">${review}</div>
+              <div class="rating">${rating}</div>
+            </div>
+          `;
+        }).join('');
+      })
+      .catch(() => {
+        document.getElementById('log-entries').innerHTML = '<p>Could not load media log.</p>';
+      });
   </script>
 </body>
 </html>
