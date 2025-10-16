@@ -288,13 +288,40 @@
   </footer>
 
   <script>
-    document.querySelectorAll('.fav-card').forEach(card => {
-      card.addEventListener('click', () => card.classList.toggle('flipped'));
+    // Custom cursor
+    const cursor = document.getElementById("custom-cursor");
+    document.addEventListener("mousemove", e => {
+      cursor.style.left = e.clientX + "px";
+      cursor.style.top = e.clientY + "px";
     });
 
-    let counter = 0;
-    const pixelBoxes = document.querySelectorAll("#pixel-counter .pixel-box");
-    function updatePixelCounter(value) {
-      let strVal = value.toString().padStart(6, "0");
-      for (let i = 0; i < 6; i++) pixelBoxes[i].on 0);
+    displayMessages();
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const author = document.getElementById("author").value.trim();
+      const message = document.getElementById("message").value.trim();
+      if (!author || !message) return;
+      messages.push({ author, message, time: Date.now() });
+      localStorage.setItem("guestbookMessages", JSON.stringify(messages));
+      form.reset();
+      displayMessages();
+    });
+
+    // Dropdown menus
+    document.addEventListener("DOMContentLoaded", function() {
+      const menu = document.querySelector('.sidebar.left .menu');
+      if (menu) {
+        menu.querySelectorAll('.dropdown > a').forEach(drop => {
+          drop.addEventListener('click', function(e) {
+            e.preventDefault();
+            const parent = this.parentElement;
+            menu.querySelectorAll('.dropdown').forEach(d => { if(d !== parent) d.classList.remove('open'); });
+            parent.classList.toggle('open');
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
 
