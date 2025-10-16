@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Projects</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <script src="../js/layout.js" defer></script>
+</head>
+<body>
+  <div id="custom-cursor"></div>
+
+  <!-- HEADER -->
+  <header>
+    <h1>🌙 SunaSite 🌙</h1>
+  </header>
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar left">
+    <nav class="menu">
+      <ul>
+        <li><a href="../index.html">🏠 Home</a></li>
+        <li class="dropdown">
+          <a href="#">💖 About ▾</a>
+          <ul class="submenu">
+            <li><a href="../about/about-me.html">About Me</a></li>
+            <li><a href="../about/about-site.html">About the Site</a></li>
+            <li><a href="../about/guestbook.html">Guestbook</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">🌟 Unique Me ▾</a>
+          <ul class="submenu">
+            <li><a href="../unique-me/working-on.html">What I’m Working On</a></li>
+            <li><a href="../unique-me/favorites.html">Favorites</a></li>
+            <li><a href="../unique-me/fun-facts.html">Fun Facts</a></li>
+            <li><a href="../unique-me/featured.html">Features</a></li>
+            <li><a href="../unique-me/clubs.html">Clubs I’m In</a></li>
+            <li><a href="../unique-me/current-activities.html">Current Activities</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">🎨 Creations ▾</a>
+          <ul class="submenu">
+            <li><a href="../creations/project.html">Project</a></li>
+            <li><a href="../creations/playlist.html">Playlist</a></li>
+            <li><a href="../creations/junk-journal.html">Junk Journal</a></li>
+            <li><a href="../creations/writing.html">Writing</a></li>
+            <li><a href="../creations/misc.html">Misc</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">📺 Media Recs ▾</a>
+          <ul class="submenu">
+            <li><a href="../media-recs/log.html">Log</a></li>
+            <li><a href="../media-recs/youtube.html">YouTube</a></li>
+            <li><a href="../media-recs/books.html">Books</a></li>
+            <li><a href="../media-recs/movies.html">Movies</a></li>
+            <li><a href="../media-recs/tv.html">TV Shows</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- RIGHT SIDEBAR -->
+  <aside class="sidebar right">
+    <div class="widget">
+      <h4>💡 Coding Motto</h4>
+      <p>“Code like art, debug like science.”</p>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="projects-section">
+      <h2>🧠 My Coding Projects</h2>
+      <p>Here’s where my ideas turn into reality. Click a project to learn more!</p>
+
+      <div id="projects-container" class="projects-grid">
+        <p>Loading projects...</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>🌸 Updated from <code>/data/projects.json</code></p>
+  </footer>
+
+  <!-- Load projects dynamically -->
+  <script>
+    fetch('../data/projects.json')
+      .then(res => res.json())
+      .then(projects => {
+        const container = document.getElementById('projects-container');
+        container.innerHTML = projects.map(p => `
+          <div class="project-card">
+            <h3>${p.name}</h3>
+            <p class="short">${p.shortDesc}</p>
+            <p class="tech">🧰 ${p.tech}</p>
+            <button onclick="toggleDetails(this)">Show Details</button>
+            <div class="details hidden">
+              <p>${p.details}</p>
+            </div>
+          </div>
+        `).join('');
+      });
+
+    function toggleDetails(btn) {
+      const details = btn.nextElementSibling;
+      details.classList.toggle('hidden');
+      btn.textContent = details.classList.contains('hidden') ? 'Show Details' : 'Hide Details';
+    }
+  </script>
+
+  <style>
+    main {
+      font-family: 'Press Start 2P', monospace;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .project-card {
+      border: 2px dashed #ff77e9;
+      padding: 1rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover {
+      transform: scale(1.02);
+      background: rgba(255,255,255,0.2);
+    }
+
+    .project-card h3 {
+      color: #ffd1f9;
+    }
+
+    .details.hidden {
+      display: none;
+    }
+
+    button {
+      background: #ffb6f3;
+      color: #2b2b2b;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 8px;
+      margin-top: 5px;
+    }
+
+    button:hover {
+      background: #ffccee;
+    }
+  </style>
+</body>
+</html>

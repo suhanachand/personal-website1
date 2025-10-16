@@ -1,0 +1,14 @@
+[
+  {
+    "name": "ArtiVision On-the-Go",
+    "shortDesc": "Assistive vision device integrating text-to-speech, facial & emotional recognition.",
+    "tech": "Python, OpenCV, Raspberry Pi, TTS API",
+    "details": "A wearable assistive device for the visually impaired. Reads text aloud, identifies people and emotions, and responds to voice commands."
+  },
+  {
+    "name": "Robotic Arm with Object Recognition",
+    "shortDesc": "A robotic arm that picks and recognizes objects using computer vision.",
+    "tech": "Python, TensorFlow, Raspberry Pi, Servo Control",
+    "details": "Created a prototype robotic arm integrated with a camera that detects and picks up objects based on color and shape recognition."
+  }
+]
