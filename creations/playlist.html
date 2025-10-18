@@ -117,26 +117,13 @@
             <ul class="submenu">
               <li><a href="../creations/project.html">Project</a></li>
               <li><a href="../creations/playlist.html">Playlist</a></li>
-              <li><a href="../creations/junk-journal.html">Junk Journal</a></li>
               <li><a href="../creations/writing.html">Writing</a></li>
-              <li><a href="../creations/misc.html">Misc</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#">📺 Media Recs ▾</a>
-            <ul class="submenu">
-              <li><a href="../media-recs/media-log.html">Log</a></li>
-              <li><a href="../media-recs/youtube.html">YouTube</a></li>
-              <li><a href="../media-recs/vinyls-cds.html">Vinyls+CDs</a></li>
-              <li><a href="../media-recs/books.html">Books</a></li>
-              <li><a href="../media-recs/movies.html">Movies</a></li>
-              <li><a href="../media-recs/tv.html">TV Shows</a></li>
+              <li><a href="../creations/vinyls.html">Vinyls</a></li>
             </ul>
           </li>
         </ul>
       </nav>
     </aside>
-
     <main>
       <section>
         <h2>My Spotify Playlists</h2>
@@ -158,7 +145,8 @@
             <iframe src="https://open.spotify.com/embed/playlist/1zrtZXdTrPG2GZBBmTknQC?utm_source=generator" 
                     frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           </div>
-
+        </div>
+        <div class="playlist-container">
           <div class="playlist">
             <div class="playlist-title">huge dump</div>
             <iframe src="https://open.spotify.com/embed/playlist/5hAOzaLw9mScG1y9vwePG9?utm_source=generator"
@@ -175,7 +163,9 @@
             <iframe src="https://open.spotify.com/embed/playlist/037TdMU5IPCq7wrFUogCar?utm_source=generator" 
                     frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           </div>
+        </div>
         
+        <div class="playlist-container">
           <div class="playlist">
             <div class="playlist-title">rap glaze</div>
             <iframe src="https://open.spotify.com/embed/playlist/2OTYoOkAbaxlLIYe1HsnDj?utm_source=generator"
@@ -193,7 +183,9 @@
             <iframe src="https://open.spotify.com/embed/playlist/1DHuvfYPakMDvGhOXZ1w3P?utm_source=generator" 
                     frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           </div>
-      
+        </div>
+
+        <div class="playlist-container">
           <div class="playlist">
             <div class="playlist-title">calm/slow</div>
             <iframe src="https://open.spotify.com/embed/playlist/2zU0fwOucj0r65ZtndutEY?utm_source=generator"
@@ -211,7 +203,9 @@
             <iframe src="https://open.spotify.com/embed/playlist/0ytGqsWeESqOKqnh2eRlwm?utm_source=generator" 
                     frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           </div>
-        
+        </div>
+
+        <div class="playlist-container">
           <div class="playlist">
             <div class="playlist-title">sleeper</div>
             <iframe src="https://open.spotify.com/embed/playlist/16hX7I10JQXYRtjeeIddBR?utm_source=generator"
@@ -261,31 +255,58 @@
   </footer>
 
 <script>
+  // ---------- Custom Cursor ----------
+  const cursor = document.getElementById("custom-cursor");
+  document.addEventListener("mousemove", e => {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+  });
+
+  // ---------- Pixel Counter ----------
   let counter = 0;
   const pixelBoxes = document.querySelectorAll("#pixel-counter .pixel-box");
-
   function updatePixelCounter(value) {
     let strVal = value.toString().padStart(6, "0");
-    for (let i = 0; i < 6; i++) {
-      pixelBoxes[i].textContent = strVal[i];
-    }
+    pixelBoxes.forEach((box, i) => box.textContent = strVal[i]);
   }
   updatePixelCounter(counter);
-
- 
   document.body.addEventListener("click", () => {
     counter++;
     updatePixelCounter(counter);
   });
 
-  
+  // ---------- Arizona Time ----------
   function updateArizonaTime() {
-    const options = { timeZone: 'America/Phoenix', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
-    const now = new Date().toLocaleTimeString('en-US', options);
-    document.getElementById("arizona-time").textContent = now;
+    const options = { 
+      timeZone: 'America/Phoenix', 
+      hour12: false, 
+      hour: '2-digit', 
+      minute: '2-digit', 
+      second: '2-digit' 
+    };
+    document.getElementById("arizona-time").textContent = new Date().toLocaleTimeString('en-US', options);
   }
   setInterval(updateArizonaTime, 1000);
   updateArizonaTime();
+
+  // ---------- Sidebar Dropdown ----------
+  document.addEventListener("DOMContentLoaded", () => {
+    const menu = document.querySelector('.sidebar.left .menu');
+    if (menu) {
+      menu.querySelectorAll('.dropdown > a').forEach(drop => {
+        drop.addEventListener('click', e => {
+          e.preventDefault();
+          const parent = drop.parentElement;
+          // close other open dropdowns
+          menu.querySelectorAll('.dropdown').forEach(d => {
+            if (d !== parent) d.classList.remove('open');
+          });
+          parent.classList.toggle('open');
+        });
+      });
+    }
+  });
+
 </script>
 </body>
 </html>
