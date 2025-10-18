@@ -40,11 +40,11 @@
       color: #4b0000;
       margin: 0;
       padding: 0;
+      background: #fffafc;
     }
 
     h1 { color: #ffffff; margin: 0.5rem 0; }
     h2, h3, h4, h5, h6 { color: #4b0000; margin: 0.5rem 0; }
-
     p, li, input, textarea, a {
       font-family: 'Press Start 2P', cursive;
       font-size: 0.9rem;
@@ -70,45 +70,31 @@
       background: #ff69b4;
     }
 
-    /* Main content containers */
-    main { padding: 1rem 2rem; }
+    /* Layout with sidebars */
+    .container {
+      display: flex;
+      flex-wrap: nowrap;
+      min-height: 100vh;
+    }
 
-    .guestbook-container {
-      background: #ffe4ea;
-      border: 3px solid #8b0000;
-      box-shadow: 4px 4px 0 #4b0000;
-      border-radius: 12px;
+    .sidebar {
+      width: 220px;
       padding: 1rem;
-      max-width: 700px;
-      margin: 1rem auto;
+      background: #ffe4ea;
+      box-sizing: border-box;
     }
-    .guestbook-form { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
-    .guestbook-form input, .guestbook-form textarea {
-      font-family: 'VT323', monospace;
-      font-size: 16px;
-      padding: 0.5rem;
-      border: 2px solid #8b0000;
-      border-radius: 8px;
-      outline: none;
-      resize: vertical;
-    }
-    .guestbook-form button { background: #ffb6c1; border: 2px solid #8b0000; border-radius: 6px; }
-    .guestbook-form button:hover { background: #8b004b; color: #fff; }
 
-    .guestbook-message {
+    .sidebar.left { border-right: 2px solid #8b0000; }
+    .sidebar.right { border-left: 2px solid #8b0000; }
+
+    main {
+      flex: 1;
+      padding: 2rem;
       background: #fff0f5;
-      border: 2px solid #8b0000;
-      border-radius: 10px;
-      box-shadow: 2px 2px 0 #4b0000;
-      padding: 0.5rem;
-      margin-bottom: 0.5rem;
     }
-    .guestbook-message .author { font-weight: bold; color: #8b0000; }
-    .guestbook-message .time { font-size: 0.7rem; color: #4b0000; }
-    .guestbook-message .text { font-family: 'VT323', monospace; font-size: 16px; }
 
-    /* Sidebar right uniform */
-    .sidebar.right .widget {
+    /* Sidebar widgets */
+    .sidebar .widget {
       border: 2px dashed #8b004b;
       border-radius: 6px;
       padding: 0.5rem;
@@ -116,13 +102,13 @@
       background: #fbced4;
       font-family: 'Press Start 2P', cursive;
     }
-    .sidebar.right .widget h4 {
+    .sidebar .widget h4 {
       font-size: 0.85rem;
       margin-bottom: 0.4rem;
       font-weight: bold;
       text-align: center;
     }
-    .sidebar.right .widget p { font-size: 0.7rem; margin: 0.2rem 0; }
+    .sidebar .widget p { font-size: 0.7rem; margin: 0.2rem 0; }
 
     /* Pixel counter */
     .pixel-counter { display: flex; justify-content: center; gap: 4px; margin-bottom: 4px; }
@@ -142,7 +128,25 @@
       image-rendering: pixelated;
     }
 
+    /* Projects */
+    .project {
+      border: 2px solid #8b0000;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 20px;
+      background: #ffe4ea;
+      box-shadow: 2px 2px 0 #4b0000;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .project:hover {
+      transform: scale(1.03);
+      box-shadow: 4px 4px 0 #4b0000;
+    }
+    .project h2 { font-size: 1rem; margin-bottom: 8px; color: #8b0000; }
+    .project p { font-family: 'VT323', monospace; font-size: 0.85rem; margin: 0; }
+
     footer p { text-align: center; color: #ffffff; font-family: 'Press Start 2P', cursive; margin: 1rem 0; }
+
   </style>
 </head>
 
@@ -183,20 +187,8 @@
             <ul class="submenu">
               <li><a href="../creations/project.html">Project</a></li>
               <li><a href="../creations/playlist.html">Playlist</a></li>
-              <li><a href="../creations/junk-journal.html">Junk Journal</a></li>
               <li><a href="../creations/writing.html">Writing</a></li>
-              <li><a href="../creations/misc.html">Misc</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#">📺 Media Recs ▾</a>
-            <ul class="submenu">
-              <li><a href="../media-recs/media-log.html">Log</a></li>
-              <li><a href="../media-recs/youtube.html">YouTube</a></li>
-              <li><a href="../media-recs/vinyls-cds.html">Vinyls+CDs</a></li>
-              <li><a href="../media-recs/books.html">Books</a></li>
-              <li><a href="../media-recs/movies.html">Movies</a></li>
-              <li><a href="../media-recs/tv.html">TV Shows</a></li>
+              <li><a href="../creations/vinyls.html">Vinyls</a></li>
             </ul>
           </li>
         </ul>
@@ -205,7 +197,38 @@
 
     <!-- MAIN CONTENT -->
     <main>
-        <h2></h2>
+      <h2>🌟 What I'm Working On 🌟</h2>
+      <p>Here’s a peek at the projects I’m currently creating and improving. Each one is a mix of creativity, coding, and pure SunaSite energy!</p>
+
+      <div class="project">
+        <h2>💻 Personal Websites & Productivity Apps</h2>
+        <p>I’m designing websites and small apps to help with daily productivity — from task managers to personalized planners. Making life organized while keeping the pixel-perfect aesthetic.</p>
+      </div>
+
+      <div class="project">
+        <h2>🧪 Periodic Table Helpers</h2>
+        <p>Building interactive periodic table tools that make learning chemistry easier, visually fun, and interactive for students like me.</p>
+      </div>
+
+      <div class="project">
+        <h2>🌙 SunaSite (this site!)</h2>
+        <p>Constantly improving my personal website — adding animations, pixel art, and fun interactive features while keeping the Y2K pixel charm alive.</p>
+      </div>
+
+      <div class="project">
+        <h2>🤖 ArtiVision Improvements</h2>
+        <p>Working on new features for ArtiVision, like spatial recognition, better facial/emotional identification, and more independent functionality for visually challenged users.</p>
+      </div>
+
+      <div class="project">
+        <h2>🏠 Helping the Homeless App</h2>
+        <p>Designing an app to connect people with shelters, resources, and services for the homeless community — bringing technology to social good.</p>
+      </div>
+
+      <div class="project">
+        <h2>🛰 Navigation System</h2>
+        <p>Creating a navigation system concept that helps users move efficiently, whether for city streets, buildings, or other complex environments.</p>
+      </div>
     </main>
 
     <!-- RIGHT SIDEBAR -->
@@ -242,18 +265,6 @@
     document.addEventListener("mousemove", e => {
       cursor.style.left = e.clientX + "px";
       cursor.style.top = e.clientY + "px";
-    });
-
-    displayMessages();
-    form.addEventListener("submit", e => {
-      e.preventDefault();
-      const author = document.getElementById("author").value.trim();
-      const message = document.getElementById("message").value.trim();
-      if (!author || !message) return;
-      messages.push({ author, message, time: Date.now() });
-      localStorage.setItem("guestbookMessages", JSON.stringify(messages));
-      form.reset();
-      displayMessages();
     });
 
     // Pixel counter
