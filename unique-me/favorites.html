@@ -1,328 +1,357 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Favorites & Photos - SunaSite</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <script src="../js/layout.js" defer></script>
-  <link href="https://fonts.cdnfonts.com/css/press-start-2p" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Press Start 2P', cursive;
-      background: linear-gradient(135deg, #fff2f7, #ffeaf2);
-      color: #4b0000;
-      overflow-x: hidden;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Favorites & Photos - SunaSite</title>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/layout.js" defer></script>
+<link href="https://fonts.cdnfonts.com/css/press-start-2p" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 
-    main {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem;
-      animation: fadeIn 0.8s ease-in-out;
-    }
+<style>
+  body {
+    font-family: 'Press Start 2P', cursive;
+    background: linear-gradient(135deg, #fff2f7, #ffeaf2);
+    color: #4b0000;
+    margin: 0;
+    overflow-x: hidden;
+  }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+  header, footer {
+    background: #4b0000;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+  }
 
-    h2 {
-      color: #8b004b;
-      font-size: 1rem;
-      text-align: center;
-      margin-bottom: 2rem;
-      background: #fff0f5;
-      padding: 0.8rem 1.5rem;
-      border: 3px solid #8b0000;
-      border-radius: 12px;
-      box-shadow: 3px 3px 0 #4b0000;
-    }
+  .container {
+    display: grid;
+    grid-template-columns: 220px 1fr 220px;
+    gap: 15px;
+    padding: 1rem;
+  }
 
-    .favorites-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-      max-width: 1000px;
-      width: 100%;
-    }
+  /* Sidebar */
+  aside.sidebar {
+    background: #ffd9e3;
+    border: 3px solid #8b0000;
+    border-radius: 10px;
+    box-shadow: 4px 4px 0 #4b0000;
+    padding: 1rem;
+    height: fit-content;
+  }
 
-    .fav-card {
-      position: relative;
-      background: #fff0f5;
-      border: 3px solid #8b0000;
-      border-radius: 12px;
-      box-shadow: 4px 4px 0 #4b0000;
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
-      cursor: pointer;
-    }
+  aside.sidebar.left, aside.sidebar.right {
+    position: sticky;
+    top: 1rem;
+    align-self: start;
+  }
 
-    .fav-card:hover {
-      transform: translateY(-6px) rotate(-1deg);
-      box-shadow: 6px 6px 0 #4b0000;
-    }
+  /* Dropdown menu */
+  .sidebar.left .submenu { display: none; padding-left: 1rem; margin-top: 0.4rem; font-size:0.85rem; }
+  .sidebar.left .dropdown.open > .submenu { display: block; }
+  .sidebar.left .submenu li a { display: block; padding: 0.3rem 0; font-size: 0.85rem; color: #4b0000; text-decoration: none; }
+  .sidebar.left .submenu li a:hover { color: #ff69b4; }
+  .sidebar.left .menu > ul > li > a { font-size: 0.95rem; }
 
-    .fav-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      image-rendering: pixelated;
-      border-bottom: 2px solid #8b0000;
-    }
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
 
-    .fav-content {
-      padding: 0.7rem;
-      text-align: center;
-    }
+  /* Sticky note cards */
+  .fav-card {
+    width: 220px;
+    height: 260px;
+    perspective: 1000px;
+    cursor: pointer;
+    position: relative;
+  }
 
-    .fav-title {
-      color: #8b004b;
-      font-size: 0.7rem;
-      margin-bottom: 0.3rem;
-    }
+  .fav-inner {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+  }
 
-    .fav-desc {
-      font-family: 'VT323', monospace;
-      font-size: 0.9rem;
-      color: #4b0000;
-    }
+  .fav-card.flipped .fav-inner { transform: rotateY(180deg); }
 
-    .fav-card::after {
-      content: "✦";
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
+  .fav-front, .fav-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    border: 3px solid #8b0000;
+    border-radius: 12px;
+    box-shadow: 4px 4px 0 #4b0000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem;
+    background: #fff0f5;
+  }
 
-    .fav-card:hover::after {
-      opacity: 1;
-      animation: sparkle 1s infinite alternate;
-    }
+  .fav-back {
+    transform: rotateY(180deg);
+    font-family: 'VT323', monospace;
+    font-size: 0.85rem;
+    text-align: center;
+    background: #ffe4ea;
+  }
 
-    @keyframes sparkle {
-      0% { transform: scale(1) rotate(0deg); opacity: 1; }
-      50% { transform: scale(1.4) rotate(15deg); opacity: 0.8; }
-      100% { transform: scale(1) rotate(0deg); opacity: 1; }
-    }
+  .fav-front img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-bottom: 2px solid #8b0000;
+  }
 
-    .fav-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transform-style: preserve-3d;
-      transition: transform 0.6s;
-    }
+  .fav-title {
+    font-size: 0.8rem;
+    color: #8b004b;
+    margin: 0.5rem 0;
+    text-align: center;
+  }
 
-    .fav-card.flipped .fav-inner {
-      transform: rotateY(180deg);
-    }
+  .fav-desc {
+    font-family: 'VT323', monospace;
+    font-size: 0.7rem;
+    color: #4b0000;
+    text-align: center;
+  }
 
-    .fav-front, .fav-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-    }
+  /* Optional: highlight effect */
+  .fav-card.highlight { box-shadow: 0 0 20px #ff69b4; transform: scale(1.05); z-index: 10; }
 
-    .fav-back {
-      background: #ffe4ea;
-      transform: rotateY(180deg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      border-radius: 12px;
-      font-family: 'VT323', monospace;
-      font-size: 0.9rem;
-      color: #4b0000;
-      text-align: center;
-    }
-
-    footer {
-      text-align: center;
-      font-family: 'Press Start 2P', cursive;
-      color: #ffffff;
-      font-size: 0.7rem;
-      padding: 1rem;
-    }
-  </style>
+  footer p { font-size: 0.8rem; margin: 0; }
+</style>
 </head>
 
 <body>
-  <div id="custom-cursor"></div>
+<header>
+  <h1>🌙 SunaSite 🌙</h1>
+</header>
 
-  <header>
-    <h1>🌙 SunaSite 🌙</h1>
-  </header>
+<div class="container">
+  <!-- Left Sidebar -->
+  <aside class="sidebar left">
+    <nav class="menu">
+      <ul>
+        <li><a href="../index.html">🏠 Home</a></li>
+        <li class="dropdown">
+          <a href="#">💖 About ▾</a>
+          <ul class="submenu">
+            <li><a href="../about/about-me.html">About Me</a></li>
+            <li><a href="../about/about-site.html">About the Site</a></li>
+            <li><a href="../about/guestbook.html">Guestbook</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">🌟 Unique Me ▾</a>
+          <ul class="submenu">
+            <li><a href="../unique-me/working-on.html">What I’m Working On</a></li>
+            <li><a href="../unique-me/favorites.html">Favorites</a></li>
+            <li><a href="../unique-me/fun-facts.html">Fun Facts</a></li>
+            <li><a href="../unique-me/featured.html">Features</a></li>
+            <li><a href="../unique-me/clubs.html">Clubs I’m In</a></li>
+            <li><a href="../unique-me/current-activities.html">Current Activities</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">🎨 Creations ▾</a>
+          <ul class="submenu">
+            <li><a href="../creations/project.html">Project</a></li>
+            <li><a href="../creations/playlist.html">Playlist</a></li>
+            <li><a href="../creations/writing.html">Writing</a></li>
+            <li><a href="../creations/vinyls.html">Vinyls</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
 
-  <div class="container">
-    <aside class="sidebar left">
-      <nav class="menu">
-        <ul>
-          <li><a href="../index.html">🏠 Home</a></li>
-          <li class="dropdown">
-            <a href="#">💖 About ▾</a>
-            <ul class="submenu">
-              <li><a href="../about/about-me.html">About Me</a></li>
-              <li><a href="../about/about-site.html">About the Site</a></li>
-              <li><a href="../about/guestbook.html">Guestbook</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#">🌟 Unique Me ▾</a>
-            <ul class="submenu">
-              <li><a href="../unique-me/working-on.html">What I’m Working On</a></li>
-              <li><a href="../unique-me/favorites.html">Favorites</a></li>
-              <li><a href="../unique-me/fun-facts.html">Fun Facts</a></li>
-              <li><a href="../unique-me/featured.html">Features</a></li>
-              <li><a href="../unique-me/clubs.html">Clubs I’m In</a></li>
-              <li><a href="../unique-me/current-activities.html">Current Activities</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#">🎨 Creations ▾</a>
-            <ul class="submenu">
-              <li><a href="../creations/project.html">Project</a></li>
-              <li><a href="../creations/playlist.html">Playlist</a></li>
-              <li><a href="../creations/junk-journal.html">Junk Journal</a></li>
-              <li><a href="../creations/writing.html">Writing</a></li>
-              <li><a href="../creations/misc.html">Misc</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#">📺 Media Recs ▾</a>
-            <ul class="submenu">
-              <li><a href="../media-recs/media-log.html">Log</a></li>
-              <li><a href="../media-recs/youtube.html">YouTube</a></li>
-              <li><a href="../media-recs/vinyls-cds.html">Vinyls+CDs</a></li>
-              <li><a href="../media-recs/books.html">Books</a></li>
-              <li><a href="../media-recs/movies.html">Movies</a></li>
-              <li><a href="../media-recs/tv.html">TV Shows</a></li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-    </aside>
-
-    <main>
-      <h2>My Favorites</h2>
-
-      <div class="favorites-grid">
-        <div class="fav-card">
-          <div class="fav-inner">
-            <div class="fav-front">
-              <img src="../img/fav1.jpg" alt="Favorite 1">
-              <div class="fav-content">
-                <div class="fav-title">Sunset Walks</div>
-                <div class="fav-desc">Evening skies + music = perfect peace.</div>
-              </div>
-            </div>
-            <div class="fav-back">
-              I took this during one of my solo walks. The pink sky made everything feel calm again.
-            </div>
-          </div>
+  <!-- Main -->
+  <main>
+    <div class="fav-card">
+      <div class="fav-inner">
+        <div class="fav-front">
+          <img src="../img/fav1.jpg" alt="Sunset Walks">
+          <div class="fav-title">Sunset Walks</div>
+          <div class="fav-desc">Evening skies + music = perfect peace.</div>
         </div>
-
-        <div class="fav-card">
-          <div class="fav-inner">
-            <div class="fav-front">
-              <img src="../img/fav2.jpg" alt="Favorite 2">
-              <div class="fav-content">
-                <div class="fav-title">Cozy Mornings</div>
-                <div class="fav-desc">Warm tea, quiet playlists, soft light.</div>
-              </div>
-            </div>
-            <div class="fav-back">
-              I love mornings where I can just exist — no rush, no noise, just warmth.
-            </div>
-          </div>
-        </div>
-
-        <div class="-favcard">
-          <div class="fav-inner">
-            <div class="fav-front">
-              <img src="../img/fav3.jpg" alt="Favorite 3">
-              <div class="fav-content">
-                <div class="fav-title">My Music Mood</div>
-                <div class="fav-desc">Soundtracks that feel like me.</div>
-              </div>
-            </div>
-            <div class="fav-back">
-              A mix of comfort songs and new finds that make me feel like myself again.
-            </div>
-          </div>
+        <div class="fav-back">
+          I took this during one of my sidequests with my new friends at NHA. The pink sky made everything feel calm and happy again.
         </div>
       </div>
-    </main>
-    <aside class="sidebar right">
-      <div class="widget">
-        <h4>✨ Quote of the Day ✨</h4>
-        <p>"Stay soft, the world needs your light."</p>
-      </div>
+    </div>
 
-      <div class="widget hits-visitors">
-        <h4>Your Clicks</h4>
-        <div id="pixel-counter" class="pixel-counter">
-          <span class="pixel-box">0</span>
-          <span class="pixel-box">0</span>
-          <span class="pixel-box">0</span>
-          <span class="pixel-box">0</span>
-          <span class="pixel-box">0</span>
-          <span class="pixel-box">0</span>
+    <div class="fav-card">
+      <div class="fav-inner">
+        <div class="fav-front">
+          <img src="../img/fav2.jpg" alt="Traveling">
+          <div class="fav-title">Traveling</div>
+          <div class="fav-desc">New cultures, food and love the fun!!</div>
+        </div>
+        <div class="fav-back">
+          I love visiting places, and a goal is to travel the world.
         </div>
       </div>
+    </div>
 
-      <div class="widget clock">
-        <h4>⏰ Local Time (PST)</h4>
-        <p id="arizona-time">--:--:--</p>
+    <div class="fav-card">
+      <div class="fav-inner">
+        <div class="fav-front">
+          <img src="../img/fav3.jpg" alt="Listening to Music">
+          <div class="fav-title">Listening to Music</div>
+          <div class="fav-desc">Soundtracks that feel like me.</div>
+        </div>
+        <div class="fav-back">
+          I am huge on RNB and Pop. A mix of comfort songs and new finds that make me feel like myself again.
+        </div>
       </div>
-    </aside>
-  </div>
+    </div>
 
-  <footer>
-    <p>Made with love + pixels by Suhana</p>
-  </footer>
+    <div class="fav-card">
+      <div class="fav-inner">
+        <div class="fav-front">
+          <img src="../img/fav4.jpg" alt="Journaling">
+          <div class="fav-title">Journaling</div>
+          <div class="fav-desc">Crafting, scrapbooking, saving memories.</div>
+        </div>
+        <div class="fav-back">
+          This is my favorite way to unwind and reflect. I love adding little mementos and doodles to make each page special.
+        </div>
+      </div>
+    </div>
 
-  <script>
-    // Custom cursor
-    const cursor = document.getElementById("custom-cursor");
-    document.addEventListener("mousemove", e => {
-      cursor.style.left = e.clientX + "px";
-      cursor.style.top = e.clientY + "px";
+    <div class="fav-card">
+      <div class="fav-inner">
+        <div class="fav-front">
+          <img src="../img/fav5.JPG" alt="Dogs">
+          <div class="fav-title">Dogs</div>
+          <div class="fav-desc">Goldendoodles are allllll meeeee.</div>
+        </div>
+        <div class="fav-back">
+          I am obsessed with dogs, especially goldendoodles! Their fluffy fur and sweet nature always brighten my day.
+        </div>
+      </div>
+    </div>
+
+    <div class="fav-card">
+      <div class="fav-inner">
+        <div class="fav-front">
+          <img src="../img/fav6.png" alt="Red">
+          <div class="fav-title">Red</div>
+          <div class="fav-desc">My favorite color.</div>
+        </div>
+        <div class="fav-back">
+          I don’t like wearing red clothes, but I love seeing red in nature, like roses and sunsets. Also, I love red nails!
+        </div>
+      </div>
+    </div>
+
+    <div class="fav-card">
+      <div class="fav-inner">
+        <div class="fav-front">
+          <img src="../img/fav7.jpg" alt="Looking for Alaska">
+          <div class="fav-title">Looking for Alaska</div>
+          <div class="fav-desc">By John Green. Favorite book.</div>
+        </div>
+        <div class="fav-back">
+          I love the plot on the boarding school life, and just a perfect story all around (P.S. I cried so much).
+        </div>
+      </div>
+    </div>
+
+    <div class="fav-card">
+      <div class="fav-inner">
+        <div class="fav-front">
+          <img src="../img/fav8.jpg" alt="Gossip Girl">
+          <div class="fav-title">Gossip Girl</div>
+          <div class="fav-desc">Best show out there tbh.</div>
+        </div>
+        <div class="fav-back">
+          I binged this show and it was so worth it, very good ending!
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Right Sidebar -->
+  <aside class="sidebar right">
+    <div class="widget">
+      <h4>✨ Quote of the Day ✨</h4>
+      <p>"Stay soft, the world needs your light."</p>
+    </div>
+    <div class="widget hits-visitors">
+      <h4>Your Clicks</h4>
+      <div id="pixel-counter" class="pixel-counter">
+        <span class="pixel-box">0</span><span class="pixel-box">0</span>
+        <span class="pixel-box">0</span><span class="pixel-box">0</span>
+        <span class="pixel-box">0</span><span class="pixel-box">0</span>
+      </div>
+    </div>
+    <div class="widget clock">
+      <h4>⏰ Local Time (PST)</h4>
+      <p id="arizona-time">--:--:--</p>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <p>Made with love + pixels by Suhana</p>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById("custom-cursor");
+  document.addEventListener("mousemove", e => {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+  });
+
+  // Flip sticky notes
+  document.querySelectorAll('.fav-card').forEach(card => {
+    card.addEventListener('click', () => card.classList.toggle('flipped'));
+    card.addEventListener('mouseover', () => card.classList.add('highlight'));
+    card.addEventListener('mouseout', () => card.classList.remove('highlight'));
+  });
+
+  // Dropdown menus
+  const menu = document.querySelector('.sidebar.left .menu');
+  if (menu) {
+    menu.querySelectorAll('.dropdown > a').forEach(drop => {
+      drop.addEventListener('click', e => {
+        e.preventDefault();
+        const parent = drop.parentElement;
+        menu.querySelectorAll('.dropdown').forEach(d => { if(d !== parent) d.classList.remove('open'); });
+        parent.classList.toggle('open');
+      });
     });
+  }
 
-    displayMessages();
-    form.addEventListener("submit", e => {
-      e.preventDefault();
-      const author = document.getElementById("author").value.trim();
-      const message = document.getElementById("message").value.trim();
-      if (!author || !message) return;
-      messages.push({ author, message, time: Date.now() });
-      localStorage.setItem("guestbookMessages", JSON.stringify(messages));
-      form.reset();
-      displayMessages();
-    });
+  // Pixel counter
+  let counter = 0;
+  const pixelBoxes = document.querySelectorAll("#pixel-counter .pixel-box");
+  function updatePixelCounter(value) {
+    const strVal = value.toString().padStart(6,'0');
+    pixelBoxes.forEach((box,i) => box.textContent = strVal[i]);
+  }
+  document.body.addEventListener("click", () => { counter++; updatePixelCounter(counter); });
 
-    // Dropdown menus
-    document.addEventListener("DOMContentLoaded", function() {
-      const menu = document.querySelector('.sidebar.left .menu');
-      if (menu) {
-        menu.querySelectorAll('.dropdown > a').forEach(drop => {
-          drop.addEventListener('click', function(e) {
-            e.preventDefault();
-            const parent = this.parentElement;
-            menu.querySelectorAll('.dropdown').forEach(d => { if(d !== parent) d.classList.remove('open'); });
-            parent.classList.toggle('open');
-          });
-        });
-      }
-    });
-  </script>
+  // Clock
+  function updateArizonaTime() {
+    const options = { timeZone: 'America/Phoenix', hour12:false, hour:'2-digit', minute:'2-digit', second:'2-digit'};
+    document.getElementById("arizona-time").textContent = new Date().toLocaleTimeString('en-US', options);
+  }
+  setInterval(updateArizonaTime, 1000);
+  updateArizonaTime();
+</script>
 </body>
 </html>
-
