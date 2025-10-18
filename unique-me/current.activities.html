@@ -143,6 +143,143 @@
     }
 
     footer p { text-align: center; color: #ffffff; font-family: 'Press Start 2P', cursive; margin: 1rem 0; }
+
+   /* Page-Specific Enhancements */
+.activities {
+  text-align: center;
+  color: #4b0000;
+  background: linear-gradient(180deg, #ffdce1 0%, #fff0f5 50%, #ffe6ea 100%);
+  min-height: 100vh;
+  padding: 3rem 2rem;
+  animation: fadeIn 1s ease-in;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.page-title {
+  font-size: 2rem;
+  background: linear-gradient(90deg, #ff69b4, #ffb6c1);
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1.2rem;
+  text-shadow: 2px 2px #8b0000;
+}
+
+.subtitle {
+  color: #8b0000;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: start;
+}
+
+/* Activity Cards */
+.activity-card {
+  background: #fff0f5;
+  border: 3px solid #8b0000;
+  box-shadow: 4px 4px 0 #4b0000;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.activity-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 5px 5px 0 #8b004b;
+  background: #ffb6c1;
+}
+
+/* Header inside each card */
+.activity-header {
+  font-size: 1rem;
+  color: #8b0000;
+  margin-bottom: 0.8rem;
+  text-shadow: 1px 1px 0 #ffb6c1;
+}
+
+/* Body text */
+.activity-body p {
+  color: #4b0000;
+  line-height: 1.5;
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+}
+
+/* Status tags */
+.status-tag {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  font-size: 0.6rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: 'Press Start 2P', cursive;
+  box-shadow: 2px 2px 0 #4b0000;
+}
+
+.live {
+  background: #ff69b4;
+  border: 2px solid #8b0000;
+}
+
+.dev {
+  background: #ffb6c1;
+  border: 2px solid #8b0000;
+  color: #4b0000;
+}
+
+.mic {
+  background: #ff85a2;
+  border: 2px solid #8b0000;
+}
+
+.community {
+  background: #ffc0cb;
+  border: 2px solid #8b0000;
+  color: #4b0000;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Hide all submenus by default */
+.sidebar.left .submenu {
+  display: none;
+  list-style: none;
+  padding-left: 0.8rem;
+  margin: 0.4rem 0;
+}
+
+/* Show submenu when parent has 'open' */
+.sidebar.left .dropdown.open > .submenu {
+  display: block;
+}
+
+/* Optional: style submenu links */
+.sidebar.left .submenu li a {
+  display: block;
+  padding: 0.3rem 0;
+  color: #4b0000;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.sidebar.left .submenu li a:hover {
+  color: #ff69b4;
+}
+
   </style>
 </head>
 
@@ -183,30 +320,54 @@
             <ul class="submenu">
               <li><a href="../creations/project.html">Project</a></li>
               <li><a href="../creations/playlist.html">Playlist</a></li>
-              <li><a href="../creations/junk-journal.html">Junk Journal</a></li>
               <li><a href="../creations/writing.html">Writing</a></li>
-              <li><a href="../creations/misc.html">Misc</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#">📺 Media Recs ▾</a>
-            <ul class="submenu">
-              <li><a href="../media-recs/media-log.html">Log</a></li>
-              <li><a href="../media-recs/youtube.html">YouTube</a></li>
-              <li><a href="../media-recs/vinyls-cds.html">Vinyls+CDs</a></li>
-              <li><a href="../media-recs/books.html">Books</a></li>
-              <li><a href="../media-recs/movies.html">Movies</a></li>
-              <li><a href="../media-recs/tv.html">TV Shows</a></li>
+              <li><a href="../creations/vinyls.html">Vinyls</a></li>
             </ul>
           </li>
         </ul>
       </nav>
     </aside>
 
-    <!-- MAIN CONTENT -->
-    <main>
-        <h2></h2>
-    </main>
+     
+<main class="main-section activities">
+    <h1 class="page-title">🎬 Currently In Progress</h1>
+    <p class="subtitle">Here’s what I’m pouring my time and creativity into right now — mixing innovation, compassion, and growth.</p>
+
+    <div class="activity-grid">
+      <div class="activity-card">
+        <div class="activity-header">🧴 PURVedic Soap Kitchen</div>
+        <div class="activity-body">
+          <p>My small business blends creativity and wellness through handmade, Ayurvedic-inspired soaps and body butters. I handle everything from product design to branding, and I’m working on a <em>stacked body butter collection box</em> that’s both aesthetic and eco-friendly.</p>
+        </div>
+        <div class="status-tag live">LIVE</div>
+      </div>
+
+      <div class="activity-card">
+        <div class="activity-header">🧠 Science Research & Fairs</div>
+        <div class="activity-body">
+          <p>I’m refining <strong>ArtiVision</strong> — my assistive technology project that enhances independence for visually challenged individuals. I’m now working on adding spatial and object recognition features to help users navigate with even greater confidence.</p>
+        </div>
+        <div class="status-tag dev">DEVELOPING</div>
+      </div>
+
+      <div class="activity-card">
+        <div class="activity-header">💬 Debate, Model UN & Mock Trial</div>
+        <div class="activity-body">
+          <p>Through these events, I’ve been strengthening my critical thinking and argumentation. I love crafting perspectives, defending ideas, and understanding complex issues — all while improving the clarity and confidence in how I speak.</p>
+        </div>
+        <div class="status-tag mic">IN SESSION</div>
+      </div>
+
+      <div class="activity-card">
+        <div class="activity-header">🌍 My Wish for My Community</div>
+        <div class="activity-body">
+          <p>As <strong>Director of Events & Volunteers</strong>, I help lead initiatives that reduce geriatric isolation and spread kindness. From thank-you card drives for veterans to hands-on volunteering, this work keeps me grounded and connected to my community.</p>
+        </div>
+        <div class="status-tag community">ACTIVE</div>
+      </div>
+    </div>
+  </main>
+
 
     <!-- RIGHT SIDEBAR -->
     <aside class="sidebar right">
@@ -243,6 +404,21 @@
       cursor.style.left = e.clientX + "px";
       cursor.style.top = e.clientY + "px";
     });
+    
+
+    document.addEventListener("DOMContentLoaded", function() {
+  const menu = document.querySelector('.sidebar.left .menu');
+  if (menu) {
+    menu.querySelectorAll('.dropdown > a').forEach(drop => {
+      drop.addEventListener('click', function(e) {
+        e.preventDefault();
+        const parent = this.parentElement;
+        menu.querySelectorAll('.dropdown').forEach(d => { if(d !== parent) d.classList.remove('open'); });
+        parent.classList.toggle('open');
+      });
+    });
+  }
+});
 
     displayMessages();
     form.addEventListener("submit", e => {
