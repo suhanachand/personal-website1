@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SunaSite</title>
+  <title>About the Site - SunaSite</title>
   <link rel="stylesheet" href="../css/style.css">
   <script src="../js/layout.js" defer></script>
   <link href="https://fonts.cdnfonts.com/css/press-start-2p" rel="stylesheet">
@@ -34,23 +34,42 @@
 
     /* Global font & body */
     body {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 0.9rem;
-      line-height: 1.4;
-      color: #4b0000;
       margin: 0;
-      padding: 0;
-    }
-
-    h1 { color: #ffffff; margin: 0.5rem 0; }
-    h2, h3, h4, h5, h6 { color: #4b0000; margin: 0.5rem 0; }
-
-    p, li, input, textarea, a {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 0.9rem;
+      font-family: 'Press Start 2P', 'VT323', monospace;
+      background: linear-gradient(120deg, #ffe4ea, #fff0f8);
+      overflow-x: hidden;
       color: #4b0000;
     }
-    a:hover { color: #ff69b4; }
+
+    h1 {
+      font-size: 2rem;
+      background: linear-gradient(90deg, #fff0f8, #ffcce0, #ffe4ea);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 1px 1px #fff2f7;
+      margin-bottom: 20px;
+      animation: titlePop 1s ease-out;
+    }
+    @keyframes titlePop {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    p {
+      color: #8b0000;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin: 15px auto;
+      width: 85%;
+      animation: fadeInText 1.5s ease forwards;
+    }
+    @keyframes fadeInText {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    a { color: #8b0000; text-decoration: none; }
+    a:hover { color: gold; }
 
     /* Buttons */
     button, .buttons button {
@@ -58,7 +77,7 @@
       font-size: 0.85rem;
       background: #ffb6c1;
       color: #4b0000;
-      border: 2px solid #ff69b4;
+      border: 2px solid #8b0000;
       border-radius: 10px;
       padding: 8px 12px;
       cursor: pointer;
@@ -67,61 +86,80 @@
     button:hover, .buttons button:hover {
       transform: scale(1.1);
       box-shadow: 2px 2px 0 #4b0000;
-      background: #ff69b4;
+      background: #ffcce0;
     }
 
-    /* Main content containers */
-    main { padding: 1rem 2rem; }
-
-    .guestbook-container {
-      background: #ffe4ea;
+    /* Main content container */
+    main {
+      margin: 40px auto;
+      max-width: 900px;
+      background: #fff0f8;
       border: 3px solid #8b0000;
-      box-shadow: 4px 4px 0 #4b0000;
-      border-radius: 12px;
-      padding: 1rem;
-      max-width: 700px;
-      margin: 1rem auto;
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 20px #8b0000;
     }
-    .guestbook-form { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
-    .guestbook-form input, .guestbook-form textarea {
-      font-family: 'VT323', monospace;
-      font-size: 16px;
-      padding: 0.5rem;
-      border: 2px solid #8b0000;
-      border-radius: 8px;
-      outline: none;
-      resize: vertical;
-    }
-    .guestbook-form button { background: #ffb6c1; border: 2px solid #8b0000; border-radius: 6px; }
-    .guestbook-form button:hover { background: #8b004b; color: #fff; }
 
-    .guestbook-message {
-      background: #fff0f5;
-      border: 2px solid #8b0000;
-      border-radius: 10px;
-      box-shadow: 2px 2px 0 #4b0000;
-      padding: 0.5rem;
-      margin-bottom: 0.5rem;
+    /* Floating elements */
+    .sparkle, .heart, .pixel-doodle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.8;
     }
-    .guestbook-message .author { font-weight: bold; color: #8b0000; }
-    .guestbook-message .time { font-size: 0.7rem; color: #4b0000; }
-    .guestbook-message .text { font-family: 'VT323', monospace; font-size: 16px; }
+    .sparkle {
+      width: 12px;
+      height: 12px;
+      background-color: gold;
+      animation: float 6s linear infinite;
+    }
+    .heart {
+      width: 14px;
+      height: 14px;
+      background: #ffb6c1;
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      animation: floatHeart 5s linear infinite;
+    }
+    .pixel-doodle {
+      width: 6px;
+      height: 6px;
+      background: #ffcce0;
+      border: 1px solid #8b004b;
+      border-radius: 2px;
+      animation: floatPixel 5s linear infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes float { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(-120px) rotate(360deg); opacity: 0; } }
+    @keyframes floatHeart { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(-150px) rotate(720deg); opacity: 0; } }
+    @keyframes floatPixel { 0% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(15deg); } 100% { transform: translateY(0) rotate(0deg); } }
+
+    /* Pixel trail cursor effect */
+    .pixel-trail {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: gold;
+      pointer-events: none;
+      border-radius: 2px;
+      opacity: 0.7;
+      z-index: 9999;
+      animation: trailFade 0.6s forwards;
+    }
+    @keyframes trailFade { 0% { opacity: 0.7; transform: scale(1); } 100% { opacity: 0; transform: scale(0.3); } }
 
     /* Sidebar right uniform */
     .sidebar.right .widget {
-      border: 2px dashed #8b004b;
+      border: 2px dashed #8b0000;
       border-radius: 6px;
       padding: 0.5rem;
       margin-bottom: 0.7rem;
-      background: #fbced4;
+      background: #ffe4ea;
       font-family: 'Press Start 2P', cursive;
     }
-    .sidebar.right .widget h4 {
-      font-size: 0.85rem;
-      margin-bottom: 0.4rem;
-      font-weight: bold;
-      text-align: center;
-    }
+    .sidebar.right .widget h4 { font-size: 0.85rem; font-weight: bold; text-align: center; margin-bottom: 0.4rem; }
     .sidebar.right .widget p { font-size: 0.7rem; margin: 0.2rem 0; }
 
     /* Pixel counter */
@@ -130,19 +168,18 @@
       width: 24px;
       height: 32px;
       background: #ffb6c1;
-      color: #8b004b;
-      font-family: 'Press Start 2P', cursive;
+      color: #8b0000;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1rem;
-      border: 2px solid #8b004b;
+      border: 2px solid #8b0000;
       border-radius: 4px;
       box-shadow: 1px 1px 0 #4b0000;
       image-rendering: pixelated;
     }
 
-    footer p { text-align: center; color: #ffffff; font-family: 'Press Start 2P', cursive; margin: 1rem 0; }
+    footer p { text-align: center; color: #ffcccc; font-family: 'Press Start 2P', cursive; margin: 1rem 0; }
   </style>
 </head>
 
@@ -183,20 +220,8 @@
             <ul class="submenu">
               <li><a href="../creations/project.html">Project</a></li>
               <li><a href="../creations/playlist.html">Playlist</a></li>
-              <li><a href="../creations/junk-journal.html">Junk Journal</a></li>
               <li><a href="../creations/writing.html">Writing</a></li>
-              <li><a href="../creations/misc.html">Misc</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#">📺 Media Recs ▾</a>
-            <ul class="submenu">
-              <li><a href="../media-recs/media-log.html">Log</a></li>
-              <li><a href="../media-recs/youtube.html">YouTube</a></li>
-              <li><a href="../media-recs/vinyls-cds.html">Vinyls+CDs</a></li>
-              <li><a href="../media-recs/books.html">Books</a></li>
-              <li><a href="../media-recs/movies.html">Movies</a></li>
-              <li><a href="../media-recs/tv.html">TV Shows</a></li>
+              <li><a href="../creations/vinyls.html">Vinyls</a></li>
             </ul>
           </li>
         </ul>
@@ -205,7 +230,11 @@
 
     <!-- MAIN CONTENT -->
     <main>
-        <h2></h2>
+      <h2>💗 About the Site</h2>
+      <p>Welcome to <strong>SunaSite</strong> — my pixel-perfect corner of the internet! I never grew up in the early 2000s blog/pixel era, but this site lets me experience the soft reds, golds, and handmade web charm I’ve always wanted.</p>
+      <p>This is a mix of nostalgia and creativity, where every corner is a little chaotic, slightly pixelated, and fully mine. Sparkles, hearts, and tiny animations are sprinkled throughout just for that retro web vibe.</p>
+      <p>Consider this a digital diary, a space to share my projects, thoughts, and aesthetic obsessions — all in a world made of pastel pixels and love for retro internet magic.</p>
+      <p>Scroll, explore, and let a few floating hearts and sparkles follow you on your journey ♡</p>
     </main>
 
     <!-- RIGHT SIDEBAR -->
@@ -237,23 +266,41 @@
   </footer>
 
   <script>
+    const main = document.querySelector('main');
+
+    // Floating sparkles, hearts, pixel doodles
+    const floatingTypes = [
+      {class: 'sparkle', count: 20, animation: 'float'},
+      {class: 'heart', count: 10, animation: 'floatHeart'},
+      {class: 'pixel-doodle', count: 15, animation: 'floatPixel'}
+    ];
+
+    floatingTypes.forEach(type => {
+      for (let i = 0; i < type.count; i++) {
+        const el = document.createElement('div');
+        el.className = type.class;
+        el.style.left = Math.random() * 100 + '%';
+        el.style.top = Math.random() * 100 + '%';
+        el.style.animationDelay = (Math.random()*5) + 's';
+        main.appendChild(el);
+      }
+    });
+
+    // Pixel trail cursor
+    document.addEventListener('mousemove', e => {
+      const trail = document.createElement('div');
+      trail.className = 'pixel-trail';
+      trail.style.left = e.clientX + 'px';
+      trail.style.top = e.clientY + 'px';
+      document.body.appendChild(trail);
+      setTimeout(() => trail.remove(), 600);
+    });
+
     // Custom cursor
     const cursor = document.getElementById("custom-cursor");
     document.addEventListener("mousemove", e => {
       cursor.style.left = e.clientX + "px";
       cursor.style.top = e.clientY + "px";
-    });
-
-    displayMessages();
-    form.addEventListener("submit", e => {
-      e.preventDefault();
-      const author = document.getElementById("author").value.trim();
-      const message = document.getElementById("message").value.trim();
-      if (!author || !message) return;
-      messages.push({ author, message, time: Date.now() });
-      localStorage.setItem("guestbookMessages", JSON.stringify(messages));
-      form.reset();
-      displayMessages();
     });
 
     // Pixel counter
