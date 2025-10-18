@@ -422,3 +422,67 @@ main {
 .articles .article-content {
   flex: 1;
 }
+
+/* --- Clubs Page Styling --- */
+.clubs {
+  text-align: center;
+  font-family: 'VT323', monospace;
+  background: #ffe4ea;
+  color: #2d1f18;
+  padding: 30px;
+  min-height: 100vh;
+}
+
+
+.club-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.club-card {
+  perspective: 1000px;
+}
+
+.club-inner {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  cursor: var(--cursor-pointer, pointer);
+}
+
+.club-card:hover .club-inner {
+  transform: rotateY(180deg);
+}
+
+.club-front, .club-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  background: #fbced4;
+  border: 2px dashed #3d2b1f;
+  box-shadow: 3px 3px 0 #2d1f18;
+  font-size: 18px;
+  padding: 10px;
+}
+
+.club-front {
+  font-weight: bold;
+}
+
+.club-back {
+  transform: rotateY(180deg);
+  font-size: 15px;
+  line-height: 1.3;
+}
+
