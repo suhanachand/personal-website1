@@ -8,6 +8,7 @@
   <script src="../js/layout.js" defer></script>
   <link href="https://fonts.cdnfonts.com/css/press-start-2p" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
   <style>
     /* Custom cursor */
     #custom-cursor {
@@ -31,144 +32,111 @@
       100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); opacity: 1; }
     }
 
-    /* Cute button for fact generator */
-    .fact-button {
-      background: #ffb6c1;
-      border: 2px solid #ff69b4;
-      border-radius: 10px;
-      padding: 8px 16px;
-      color: #4b0000;
-      font-weight: bold;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
+    /* Global fonts & colors */
+    body {
       font-family: 'Press Start 2P', cursive;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: #4b0000;
+      margin: 0;
+      padding: 0;
     }
-    .fact-button:hover {
+    h1 { color: #ffffff; margin: 0.5rem 0; }
+    h2, h3, h4, h5, h6 { color: #4b0000; margin: 0.5rem 0; }
+    p, li, a { font-family: 'Press Start 2P', cursive; color: #4b0000; }
+    a:hover { color: #ff69b4; }
+
+    /* Buttons */
+    .fact-button, button {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.85rem;
+      background: #ffb6c1;
+      color: #4b0000;
+      border: 2px solid #8b004b;
+      border-radius: 10px;
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    .fact-button:hover, button:hover {
       transform: scale(1.1);
       box-shadow: 2px 2px 0 #4b0000;
+      background: #8b004b;
+      color: #fff;
     }
 
-    /* Section layout */
-    .section {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
+    /* Sections */
+    .section { display: flex; gap: 1rem; margin-bottom: 2rem; }
     .section img {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
+      width: 200px; height: 200px; object-fit: cover;
       border: 4px solid #8b0000;
       box-shadow: 4px 4px 0 #4b0000;
     }
 
-    /* Hobbies/Likes/Dislikes boxes */
-    .boxes-container {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
+    /* Boxes (Hobbies/Likes/Dislikes) */
+    .boxes-container { display: flex; gap: 1rem; flex-wrap: wrap; }
     .box {
-      flex: 1;
-      min-width: 180px;
+      flex: 1; min-width: 180px;
       background: #ffe4ea;
       padding: 1rem;
       border: 3px solid #8b0000;
       box-shadow: 2px 2px 0 #4b0000;
+      border-radius: 8px;
     }
-    .box ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    .box li::before {
-      content: "🌸"; /* cute emoji as bullet */
-      margin-right: 0.5rem;
-    }
+    .box ul { list-style: none; padding-left: 0; }
+    .box li::before { content: "🌸"; margin-right: 0.5rem; }
 
-    /* Social links boxes */
-    .social-box a {
-      display: block;
-      margin: 0.3rem 0;
-      color: #4b0000;
-      text-decoration: none;
-      font-weight: bold;
+    /* Social links */
+    .visit-me {
+      position: relative;
+      background: #fff2f6;
+      border: 3px solid #8b004b;
+      box-shadow: 3px 3px 0 #4b0000;
+      padding: 1rem;
+      margin-top: 2rem;
+      border-radius: 8px;
     }
-    .social-box a:hover {
-      color: #ff69b4;
+    .visit-me h4 { text-align: center; margin-bottom: 1rem; font-size: 0.85rem; }
+    .pixel-links { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.3rem; }
+    .pixel-links a {
+      display: flex; align-items: center; gap: 0.5rem;
+      text-decoration: none; color: #4b0000; font-size: 0.85rem;
+      transition: transform 0.2s;
     }
+    .pixel-links a:hover { transform: scale(1.1) translateX(2px); color: #8b004b; }
+    .pixel-icon {
+      width: 18px; height: 18px; display: inline-block;
+      image-rendering: pixelated; border: 1px solid #8b004b;
+      transition: transform 0.2s;
+    }
+    .pixel-links a:hover .pixel-icon { transform: scale(1.3) rotate(-10deg); }
 
+    /* Sidebar right uniform */
+    .sidebar.right .widget {
+      border: 2px dashed #8b004b;
+      border-radius: 6px;
+      padding: 0.5rem;
+      margin-bottom: 0.7rem;
+      background: #fbced4;
+      font-family: 'Press Start 2P', cursive;
+    }
+    .sidebar.right .widget h4 { font-size: 0.85rem; margin-bottom: 0.4rem; text-align: center; }
+    .sidebar.right .widget p { font-size: 0.7rem; margin: 0.2rem 0; }
+
+    /* Pixel counter boxes */
+    .pixel-counter { display: flex; justify-content: center; gap: 4px; margin-bottom: 4px; }
+    .pixel-box {
+      width: 24px; height: 32px; background: #ffb6c1;
+      color: #8b004b;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1rem; image-rendering: pixelated;
+      border: 2px solid #8b004b; border-radius: 4px;
+      box-shadow: 1px 1px 0 #4b0000;
+    }
   </style>
-  <style>
-  /* Global font for the entire page */
-  body {
-    font-family: 'Press Start 2P', cursive; /* retro pixel font */
-    font-size: 0.9rem; /* uniform base size */
-    line-height: 1.4; /* improves readability */
-    color: #4b0000; /* consistent text color */
-  }
-
-  /* Headers */
-  h1 {
-    font-family: 'Press Start 2P', cursive;
-    color: #ffffff;
-    margin: 0.5rem 0;
-  }
-
-  h2, h3, h4, h5, h6 {
-    font-family: 'Press Start 2P', cursive;
-    color: #4b0000;
-    margin: 0.5rem 0;
-  }
-
-  /* Paragraphs */
-  p {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.9rem;
-    margin: 0.3rem 0;
-  }
-
-  /* Links */
-  a {
-    font-family: 'Press Start 2P', cursive;
-    color: #4b0000;
-    text-decoration: none;
-  }
-  a:hover {
-    color: #ff69b4;
-  }
-
-  /* Lists */
-  ul, li {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.9rem;
-    color: #4b0000;
-  }
-
-  /* Fact generator box text */
-  .fact-display-box {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.9rem;
-  }
-
-  /* Sidebar widgets */
-  .sidebar .widget {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.85rem;
-  }
-  .sidebar .widget p {
-    font-size: 0.85rem;
-  }
-
-  /* Visit me section */
-  .visit-me {
-    font-family: 'Press Start 2P', cursive;
-  }
-  .visit-me a {
-    font-size: 0.85rem;
-  }
-</style>
-
 </head>
+
 <body>
   <div id="custom-cursor"></div>
 
@@ -177,12 +145,11 @@
   </header>
 
   <div class="container">
-    <!-- LEFT SIDEBAR (Menu) -->
+    <!-- LEFT SIDEBAR -->
     <aside class="sidebar left">
       <nav class="menu">
         <ul>
           <li><a href="../index.html">🏠 Home</a></li>
-
           <li class="dropdown">
             <a href="#">💖 About ▾</a>
             <ul class="submenu">
@@ -191,7 +158,6 @@
               <li><a href="../about/guestbook.html">Guestbook</a></li>
             </ul>
           </li>
-
           <li class="dropdown">
             <a href="#">🌟 Unique Me ▾</a>
             <ul class="submenu">
@@ -203,27 +169,13 @@
               <li><a href="../unique-me/current-activities.html">Current Activities</a></li>
             </ul>
           </li>
-
           <li class="dropdown">
             <a href="#">🎨 Creations ▾</a>
             <ul class="submenu">
               <li><a href="../creations/project.html">Project</a></li>
               <li><a href="../creations/playlist.html">Playlist</a></li>
-              <li><a href="../creations/junk-journal.html">Junk Journal</a></li>
               <li><a href="../creations/writing.html">Writing</a></li>
-              <li><a href="../creations/misc.html">Misc</a></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a href="#">📺 Media Recs ▾</a>
-            <ul class="submenu">
-              <li><a href="../media-recs/media-log.html">Log</a></li>
-              <li><a href="../media-recs/youtube.html">YouTube</a></li>
-              <li><a href="../media-recs/vinyls-cds.html">Vinyls+CDs</a></li>
-              <li><a href="../media-recs/books.html">Books</a></li>
-              <li><a href="../media-recs/movies.html">Movies</a></li>
-              <li><a href="../media-recs/tv.html">TV Shows</a></li>
+              <li><a href="../creations/vinyls.html">Vinyls</a></li>
             </ul>
           </li>
         </ul>
@@ -232,24 +184,23 @@
 
     <!-- MAIN CONTENT -->
     <main>
-      <!-- Section 1: Photo + Info + Fact generator -->
+      <!-- Section: Photo + Info + Fact Generator -->
       <section class="section">
-        <img src="../img/profilepic.jpg" alt="Profile photo">
+        <img src="../img/profilepic.jpg" alt="Profile Photo">
         <div>
           <h2>🌙 Hey, I’m Suhana!</h2>
           <p>Teen creator who loves coding, design, and turning ideas into fun little worlds.  
           This site is my digital scrapbook — half cozy pixel corner, half creativity hub.</p>
           
-          <h3 style="text-align: center;">Random Fact About Me:</h3>
-            <div class="fact-container">
-              <div class="fact-display-box" id="fact-display">Click "Gimme!" to see a fact!</div>
-              <button class="fact-button" id="fact-button">Gimme!</button>
-              </div>
-
+          <h3 style="text-align:center;">Random Fact About Me:</h3>
+          <div class="fact-container">
+            <div class="fact-display-box" id="fact-display">Click "Gimme!" to see a fact!</div>
+            <button class="fact-button" id="fact-button">Gimme!</button>
+          </div>
         </div>
       </section>
 
-      <!-- Section 2: Hobbies, Likes, Dislikes -->
+      <!-- Section: Hobbies / Likes / Dislikes -->
       <section>
         <div class="boxes-container">
           <div class="box">
@@ -290,237 +241,46 @@
         </div>
       </section>
 
-      <!-- Section 3: Social links -->
-<section class="visit-me">
-  <div class="visit-boxes">
-    <div class="visit-box">
-      <h4>Find Me Here!!</h4>
-      <ul class="pixel-links">
-        <li><a href="https://open.spotify.com/user/312i3lub3pru2yw2xui4d2i47nca" target="_blank">
-          <span class="pixel-icon spotify"></span> Spotify
-        </a></li>
-        <li><a href="https://www.youtube.com/@suhanachand2842" target="_blank">
-          <span class="pixel-icon youtube"></span> YouTube
-        </a></li>
-        <li><a href="https://www.pinterest.com/suhanaxc/_profile/" target="_blank">
-          <span class="pixel-icon pinterest"></span> Pinterest
-        </a></li>
-        <li><a href="https://github.com/suhanachand" target="_blank">
-          <span class="pixel-icon github"></span> GitHub
-        </a></li>
-        <li><a href="https://www.linkedin.com/in/suhana-chand-a88571278/" target="_blank">
-          <span class="pixel-icon linkedin"></span> LinkedIn
-        </a></li>
-        <li><a href="https://www.instagram.com/cxsuhana/" target="_blank">
-          <span class="pixel-icon instagram"></span> Instagram
-        </a></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<style>
-.visit-me {
-  position: relative;
-  background: #fff2f6;
-  border: 3px solid #8b004b;
-  box-shadow: 3px 3px 0 #4b0000;
-  padding: 1rem;
-  margin-top: 2rem;
-  border-radius: 8px;
-  font-family: 'Press Start 2P', cursive;
-  overflow: hidden;
-}
-
-.visit-me h3 {
-  text-align: center;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-}
-
-.visit-box {
-  position: relative;
-  z-index: 2;
-}
-
-.pixel-links {
-  list-style: none;
-  padding: 0;
-}
-
-.pixel-links li {
-  margin: 0.5rem 0;
-}
-
-.pixel-links a {
-  text-decoration: none;
-  color: #4b0000;
-  font-size: 0.85rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: transform 0.2s;
-}
-
-.pixel-links a:hover {
-  transform: scale(1.1) translateX(2px);
-  color: #8b004b;
-}
-
-/* Pixel icons */
-.pixel-icon {
-  width: 18px;
-  height: 18px;
-  display: inline-block;
-  image-rendering: pixelated;
-  border: 1px solid #8b004b;
-  transition: transform 0.2s;
-}
-.pixel-links a:hover .pixel-icon {
-  transform: scale(1.3) rotate(-10deg);
-}
-
-/* Background pixel doodles */
-.pixel-doodles span {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: #ffb6c1;
-  border: 1px solid #8b004b;
-  animation: float 5s infinite;
-  opacity: 0.6;
-  border-radius: 2px;
-}
-
-/* Random positions */
-.pixel-doodles span:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
-.pixel-doodles span:nth-child(2) { top: 30%; left: 80%; animation-delay: 1s; }
-.pixel-doodles span:nth-child(3) { top: 60%; left: 40%; animation-delay: 2s; }
-.pixel-doodles span:nth-child(4) { top: 80%; left: 20%; animation-delay: 3s; }
-.pixel-doodles span:nth-child(5) { top: 50%; left: 70%; animation-delay: 4s; }
-
-@keyframes float {
-  0% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-8px) rotate(15deg); }
-  100% { transform: translateY(0) rotate(0deg); }
-}
-</style>
-
-
-
+      <!-- Section: Social Links -->
+      <section class="visit-me">
+        <h4>Find Me Here!!</h4>
+        <ul class="pixel-links">
+          <li><a href="https://open.spotify.com/user/312i3lub3pru2yw2xui4d2i47nca" target="_blank"><span class="pixel-icon spotify"></span> Spotify</a></li>
+          <li><a href="https://www.youtube.com/@suhanachand2842" target="_blank"><span class="pixel-icon youtube"></span> YouTube</a></li>
+          <li><a href="https://www.pinterest.com/suhanaxc/_profile/" target="_blank"><span class="pixel-icon pinterest"></span> Pinterest</a></li>
+          <li><a href="https://github.com/suhanachand" target="_blank"><span class="pixel-icon github"></span> GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/suhana-chand-a88571278/" target="_blank"><span class="pixel-icon linkedin"></span> LinkedIn</a></li>
+          <li><a href="https://www.instagram.com/cxsuhana/" target="_blank"><span class="pixel-icon instagram"></span> Instagram</a></li>
+        </ul>
+      </section>
     </main>
 
+    <!-- RIGHT SIDEBAR -->
+    <aside class="sidebar right">
+      <div class="widget">
+        <h4>✨ Quote of the Day ✨</h4>
+        <p>"Stay soft, the world needs your light."</p>
+      </div>
 
-<!-- RIGHT SIDEBAR -->
-<aside class="sidebar right">
+      <div class="widget hits-visitors">
+        <h4>Your Clicks</h4>
+        <div id="pixel-counter" class="pixel-counter">
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+        </div>
+      </div>
 
-  <!-- Quote of the Day -->
-  <div class="widget">
-    <h4>✨ Quote of the Day ✨</h4>
-    <p>"Stay soft, the world needs your light."</p>
+      <div class="widget clock">
+        <h4>⏰ Local Time (PST)</h4>
+        <p id="arizona-time">--:--:--</p>
+      </div>
+    </aside>
   </div>
 
-  <!-- Hits & Visitors -->
-  <div class="widget hits-visitors">
-    <h4>Your Clicks</h4>
-    <div id="pixel-counter" class="pixel-counter">
-      <span class="pixel-box">0</span>
-      <span class="pixel-box">0</span>
-      <span class="pixel-box">0</span>
-      <span class="pixel-box">0</span>
-      <span class="pixel-box">0</span>
-      <span class="pixel-box">0</span>
-    </div>
- </div>
-
-  <!-- Local Time -->
-  <div class="widget clock">
-    <h4>⏰ Local Time (PST)</h4>
-    <p id="arizona-time">--:--:--</p>
-  </div>
-
-</aside>
-
-<style>
-  /* Uniform widget style */
-  .sidebar.right .widget {
-    border: 2px dashed #8b004b; /* cute dashed dark pink border */
-    border-radius: 6px;
-    padding: 0.5rem;
-    margin-bottom: 0.7rem;
-    font-family: 'Press Start 2P', cursive;
-    background: #fbced4; /* light cream background for retro/cute feel */
-  }
-
-  /* Uniform widget headers */
-  .sidebar.right .widget h4 {
-    font-size: 0.85rem;
-    margin-bottom: 0.4rem;
-    font-weight: bold;
-    text-align: center;
-  }
-
-  /* Pixel counter styling */
-  .pixel-counter {
-    display: flex;
-    justify-content: center;
-    gap: 4px;
-    margin-bottom: 4px;
-  }
-
-  .pixel-box {
-    width: 24px;
-    height: 32px;
-    background: #ffb6c1; /* creme yellow */
-    color: #8b004b;       /* dark pink text */
-    font-family: 'Press Start 2P', cursive;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    image-rendering: pixelated;
-    border: 2px solid #8b004b;
-    border-radius: 4px;
-    box-shadow: 1px 1px 0 #4b0000;
-  }
-
-  /* Minimalistic paragraph text */
-  .widget p {
-    font-size: 0.7rem;
-    margin: 0.2rem 0;
-  }
-</style>
-
-<script>
-  // Pixel counter
-  let counter = 0; // site not launched yet
-  const pixelBoxes = document.querySelectorAll("#pixel-counter .pixel-box");
-
-  function updatePixelCounter(value) {
-    let strVal = value.toString().padStart(6, "0");
-    for (let i = 0; i < 6; i++) {
-      pixelBoxes[i].textContent = strVal[i];
-    }
-  }
-  updatePixelCounter(counter);
-
-  // Increment on click anywhere
-  document.body.addEventListener("click", () => {
-    counter++;
-    updatePixelCounter(counter);
-  });
-
-  // Arizona time (PST)
-  function updateArizonaTime() {
-    const options = { timeZone: 'America/Phoenix', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
-    const now = new Date().toLocaleTimeString('en-US', options);
-    document.getElementById("arizona-time").textContent = now;
-  }
-  setInterval(updateArizonaTime, 1000);
-  updateArizonaTime();
-</script>
-
-</div>
   <footer>
     <p>Made with love + pixels by Suhana</p>
   </footer>
@@ -533,7 +293,7 @@
       cursor.style.top = e.clientY + "px";
     });
 
-    // Random fact generator
+    // Fact generator
     const facts = [
       "I run a soap + body butter business 🧼",
       "I love debates, Model UN, and Mock Trial ⚖️",
@@ -547,31 +307,41 @@
       const fact = facts[Math.floor(Math.random() * facts.length)];
       display.textContent = fact;
     });
-  </script>
 
-
-
-  <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // Only target dropdowns in this page's menu
-    const menu = document.querySelector('.sidebar.left .menu');
-    if (menu) {
-      menu.querySelectorAll('.dropdown > a').forEach(drop => {
-        drop.addEventListener('click', function(e) {
-          e.preventDefault(); // Prevent page jump
-          const parent = this.parentElement;
-
-          // Close other open dropdowns inside this menu
-          menu.querySelectorAll('.dropdown').forEach(d => {
-            if(d !== parent) d.classList.remove('open');
+    // Dropdown menu
+    document.addEventListener("DOMContentLoaded", function() {
+      const menu = document.querySelector('.sidebar.left .menu');
+      if (menu) {
+        menu.querySelectorAll('.dropdown > a').forEach(drop => {
+          drop.addEventListener('click', function(e) {
+            e.preventDefault();
+            const parent = this.parentElement;
+            menu.querySelectorAll('.dropdown').forEach(d => {
+              if(d !== parent) d.classList.remove('open');
+            });
+            parent.classList.toggle('open');
           });
-
-          // Toggle current dropdown
-          parent.classList.toggle('open');
         });
-      });
+      }
+    });
+
+    // Pixel counter
+    let counter = 0;
+    const pixelBoxes = document.querySelectorAll("#pixel-counter .pixel-box");
+    function updatePixelCounter(value) {
+      let strVal = value.toString().padStart(6, "0");
+      pixelBoxes.forEach((box,i) => box.textContent = strVal[i]);
     }
-  });
-</script>
+    updatePixelCounter(counter);
+    document.body.addEventListener("click", () => { counter++; updatePixelCounter(counter); });
+
+    // Arizona time
+    function updateArizonaTime() {
+      const options = { timeZone: 'America/Phoenix', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+      document.getElementById("arizona-time").textContent = new Date().toLocaleTimeString('en-US', options);
+    }
+    setInterval(updateArizonaTime, 1000);
+    updateArizonaTime();
+  </script>
 </body>
 </html>
