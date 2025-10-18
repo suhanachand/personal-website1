@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SunaSite</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/layout.js" defer></script>
+  <link href="https://fonts.cdnfonts.com/css/press-start-2p" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+  <style>
+    /* --- Layout Fix --- */
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background: #fff0f5;
+      color: #4b0000;
+      font-family: 'Press Start 2P', cursive;
+      margin: 0;
+      padding: 0;
+    }
+
+    header, footer {
+      background: #4b0000;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+      box-shadow: 0 3px 0 #4b0000;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 220px 1fr 220px;
+      gap: 15px;
+      flex-grow: 1;
+      padding: 1rem;
+    }
+
+    aside.sidebar {
+      background: #ffd9e3;
+      border: 3px solid #8b0000;
+      border-radius: 10px;
+      box-shadow: 4px 4px 0 #4b0000;
+      padding: 1rem;
+      height: fit-content;
+    }
+
+    aside.sidebar.left {
+      position: sticky;
+      top: 1rem;
+      align-self: start;
+    }
+
+    aside.sidebar.right {
+      position: sticky;
+      top: 1rem;
+      align-self: start;
+    }
+
+    main {
+      background: #ffe4ea;
+      border: 3px solid #8b0000;
+      border-radius: 10px;
+      box-shadow: 4px 4px 0 #4b0000;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    /* --- Vinyl Section --- */
+    .vinyl-section h1, .vinyl-section h2 {
+      color: #4b0000;
+      text-shadow: 1px 1px 0 #ffb6c1;
+    }
+
+    .vinyl-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 25px;
+    }
+
+    .vinyl-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .vinyl-card:hover {
+      transform: scale(1.05);
+    }
+
+    .vinyl img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 3px solid #8b0000;
+      background-color: #ffcfe1;
+      box-shadow: 0 0 8px rgba(0,0,0,0.3);
+      transition: transform 0.6s ease;
+    }
+
+    .vinyl.spinning img {
+      animation: spin 3s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .wishlist .vinyl img {
+      opacity: 0.6;
+      filter: grayscale(100%);
+      border-style: dashed;
+    }
+
+    .label {
+      margin-top: 10px;
+      font-size: 0.7rem;
+      color: #4b0000;
+    }
+
+    .music-notes {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      font-size: 1.4rem;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .note {
+      position: fixed;
+      bottom: 0;
+      font-size: 1.5rem;
+      animation: floatNote linear forwards;
+    }
+
+    @keyframes floatNote {
+      from { transform: translateY(0) rotate(0deg); opacity: 1; }
+      to { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+
+    footer p {
+      margin: 0;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.8rem;
+    }
+    
+    /* Hide submenus by default */
+.sidebar.left .submenu {
+  display: none;
+  list-style: none;
+  padding-left: 1rem;
+  margin-top: 0.4rem;
+}
+
+/* Show submenu when parent has 'open' */
+.sidebar.left .dropdown.open > .submenu {
+  display: block;
+}
+
+/* Submenu links styling */
+.sidebar.left .submenu li a {
+  display: block;
+  padding: 0.3rem 0;
+  font-size: 0.85rem;
+  color: #4b0000;
+  text-decoration: none;
+}
+
+.sidebar.left .submenu li a:hover {
+  color: #ff69b4;
+}
+
+    /* Custom cursor */
+    #custom-cursor {
+      position: fixed;
+      width: 25px;
+      height: 25px;
+      background: gold;
+      clip-path: polygon(
+        50% 0%, 61% 35%, 98% 35%, 68% 57%,
+        79% 91%, 50% 70%, 21% 91%, 32% 57%,
+        2% 35%, 39% 35%
+      );
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%) rotate(0deg);
+      animation: twinkle 1s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); opacity: 1; }
+      50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.2); opacity: 0.8; }
+      100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="custom-cursor"></div>
+
+  <header>
+    <h1>🌙 SunaSite 🌙</h1>
+  </header>
+
+  <div class="container">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar left">
+      <nav class="menu">
+        <ul>
+          <li><a href="../index.html">🏠 Home</a></li>
+          <li class="dropdown">
+            <a href="#">💖 About ▾</a>
+            <ul class="submenu">
+              <li><a href="../about/about-me.html">About Me</a></li>
+              <li><a href="../about/about-site.html">About the Site</a></li>
+              <li><a href="../about/guestbook.html">Guestbook</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">🌟 Unique Me ▾</a>
+            <ul class="submenu">
+              <li><a href="../unique-me/working-on.html">What I’m Working On</a></li>
+              <li><a href="../unique-me/favorites.html">Favorites</a></li>
+              <li><a href="../unique-me/fun-facts.html">Fun Facts</a></li>
+              <li><a href="../unique-me/featured.html">Features</a></li>
+              <li><a href="../unique-me/clubs.html">Clubs I’m In</a></li>
+              <li><a href="../unique-me/current-activities.html">Current Activities</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">🎨 Creations ▾</a>
+            <ul class="submenu">
+              <li><a href="../creations/project.html">Project</a></li>
+              <li><a href="../creations/playlist.html">Playlist</a></li>
+              <li><a href="../creations/writing.html">Writing</a></li>
+              <li><a href="../creations/vinyls.html">Vinyls</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- MAIN SECTION -->
+    <main id="content">
+      <section class="vinyl-section">
+        <h1>💿 My Vinyl Collection 💿</h1>
+        <p>Here’s a peek into my record shelf — click a vinyl to make it spin!<br>Below that, you’ll see my wishlist of albums I’m dreaming of owning.</p>
+
+        <h2>✨ Vinyls I Own ✨</h2>
+        <div class="vinyl-gallery">
+          <div class="vinyl-card"><div class="vinyl"><img src="../img/vinyl1.jpg" alt="IGOR Vinyl"><div class="label">IGOR</div></div></div>
+          <div class="vinyl-card"><div class="vinyl"><img src="../img/vinyl2.jpg" alt="Flower Boy Vinyl"><div class="label">Flower Boy</div></div></div>
+          <div class="vinyl-card"><div class="vinyl"><img src="../img/vinyl3.jpg" alt="Gemini Rights Vinyl"><div class="label">Gemini Rights</div></div></div>
+          <div class="vinyl-card"><div class="vinyl"><img src="../img/vinyl4.jpg" alt="Ctrl Vinyl"><div class="label">Ctrl</div></div></div>
+          <div class="vinyl-card"><div class="vinyl"><img src="../img/vinyl5.jpg" alt="SOS Vinyl"><div class="label">SOS</div></div></div>
+          <div class="vinyl-card"><div class="vinyl"><img src="../img/vinyl6.jpg" alt="Cinema Vinyl"><div class="label">Cinema</div></div></div>
+          <div class="vinyl-card"><div class="vinyl"><img src="../img/vinyl7.jpg" alt="Hit Me Hard and Soft Vinyl"><div class="label">Hit Me Hard and Soft</div></div></div>
+          <div class="vinyl-card"><div class="vinyl"><img src="../img/vinyl8.jpg" alt="Bewitched Vinyl"><div class="label">Bewitched</div></div></div>
+        </div>
+
+        <h2>💭 Vinyls I Want 💭</h2>
+        <div class="vinyl-gallery wishlist">
+          <div class="vinyl-card"><div class="vinyl"><img src="../img/vinyl9.jpg" alt="Freudian Vinyl"><div class="label">Freudian</div></div></div>
+          <div class="vinyl-card"><div class="vinyl"><img src="../img/vinyl10.jpg" alt="Never Enough Vinyl"><div class="label">Never Enough</div></div></div>
+          <div class="vinyl-card"><div class="vinyl"><img src="../img/vinyl11.jpg" alt="Submarine Vinyl"><div class="label">Submarine</div></div></div>
+          <div class="vinyl-card"><div class="vinyl"><img src="../img/vinyl12.jpg" alt="Channel Orange Vinyl"><div class="label">Channel Orange</div></div></div>
+          <div class="vinyl-card"><div class="vinyl"><img src="../img/vinyl13.jpg" alt="Blonde Vinyl"><div class="label">Blonde</div></div></div>
+          <div class="vinyl-card"><div class="vinyl"><img src="../img/vinyl14.jpg" alt="SOS Deluxe Vinyl"><div class="label">SOS (Deluxe)</div></div></div>
+        </div>
+      </section>
+      <div class="music-notes">🎵 🎶 ♩ ♪ ♫</div>
+    </main>
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="sidebar right">
+      <div class="widget">
+        <h4>✨ Quote of the Day ✨</h4>
+        <p>"Stay soft, the world needs your light."</p>
+      </div>
+      <div class="widget hits-visitors">
+        <h4>Your Clicks</h4>
+        <div id="pixel-counter" class="pixel-counter">
+          <span class="pixel-box">0</span><span class="pixel-box">0</span>
+          <span class="pixel-box">0</span><span class="pixel-box">0</span>
+          <span class="pixel-box">0</span><span class="pixel-box">0</span>
+        </div>
+      </div>
+      <div class="widget clock">
+        <h4>⏰ Local Time (PST)</h4>
+        <p id="arizona-time">--:--:--</p>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <p>Made with love + pixels by Suhana</p>
+  </footer>
+
+    <script>
+  // ---------- Custom Cursor ----------
+  const cursor = document.getElementById("custom-cursor");
+  document.addEventListener("mousemove", e => {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+  });
+
+  // ---------- Vinyl Spin ----------
+  document.querySelectorAll('.vinyl').forEach(vinyl => {
+    vinyl.addEventListener('click', () => vinyl.classList.toggle('spinning'));
+  });
+
+  // ---------- Floating Music Notes ----------
+  setInterval(() => {
+    const note = document.createElement('div');
+    note.className = 'note';
+    note.innerText = ['🎵','🎶','♩','♪','♫'][Math.floor(Math.random() * 5)];
+    note.style.left = Math.random() * 100 + 'vw';
+      note.style.animationDuration = 4 + Math.random() * 3 + 's';
+      document.body.appendChild(note);
+      setTimeout(() => note.remove(), 7000);
+    }, 1000);
+
+    // Pixel counter
+    let counter = 0;
+    const pixelBoxes = document.querySelectorAll("#pixel-counter .pixel-box");
+    function updatePixelCounter(value) {
+      let strVal = value.toString().padStart(6, "0");
+      for (let i = 0; i < 6; i++) pixelBoxes[i].textContent = strVal[i];
+    }
+    document.body.addEventListener("click", () => { counter++; updatePixelCounter(counter); });
+
+    // Clock
+    function updateArizonaTime() {
+      const options = { timeZone: 'America/Phoenix', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+      document.getElementById("arizona-time").textContent = new Date().toLocaleTimeString('en-US', options);
+    }
+    setInterval(updateArizonaTime, 1000);
+    updateArizonaTime();
+
+    document.addEventListener("DOMContentLoaded", function() {
+  const menu = document.querySelector('.sidebar.left .menu');
+  if (!menu) return;
+
+  menu.querySelectorAll('.dropdown > a').forEach(dropLink => {
+    dropLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      const parent = this.parentElement;
+
+      // Close all other dropdowns
+      menu.querySelectorAll('.dropdown').forEach(d => {
+        if (d !== parent) d.classList.remove('open');
+      });
+
+      // Toggle this one
+      parent.classList.toggle('open');
+    });
+  });
+});
+
+  </script>
+</body>
+</html>
