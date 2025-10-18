@@ -1,164 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Projects</title>
-  <link rel="stylesheet" href="../css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SunaSite</title>
+  <link rel="stylesheet" href="../css/style.css">
   <script src="../js/layout.js" defer></script>
+  <link href="https://fonts.cdnfonts.com/css/press-start-2p" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+  <style>
+    /* Custom cursor */
+    #custom-cursor {
+      position: fixed;
+      width: 25px;
+      height: 25px;
+      background: gold;
+      clip-path: polygon(
+        50% 0%, 61% 35%, 98% 35%, 68% 57%,
+        79% 91%, 50% 70%, 21% 91%, 32% 57%,
+        2% 35%, 39% 35%
+      );
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%) rotate(0deg);
+      animation: twinkle 1s infinite alternate;
+    }
+    @keyframes twinkle {
+      0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); opacity: 1; }
+      50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.2); opacity: 0.8; }
+      100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); opacity: 1; }
+    }
+
+    /* Global font & body */
+    body {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: #4b0000;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 { color: #ffffff; margin: 0.5rem 0; }
+    h2, h3, h4, h5, h6 { color: #4b0000; margin: 0.5rem 0; }
+
+    p, li, input, textarea, a {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.9rem;
+      color: #4b0000;
+    }
+    a:hover { color: #ff69b4; }
+
+    /* Buttons */
+    button, .buttons button {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.85rem;
+      background: #ffb6c1;
+      color: #4b0000;
+      border: 2px solid #ff69b4;
+      border-radius: 10px;
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    button:hover, .buttons button:hover {
+      transform: scale(1.1);
+      box-shadow: 2px 2px 0 #4b0000;
+      background: #ff69b4;
+    }
+
+    /* Main content containers */
+    main { padding: 1rem 2rem; }
+
+    /* Sidebar left submenu functionality */
+    .sidebar.left .submenu { display: none; }
+    .sidebar.left .dropdown.open > .submenu { display: block; }
+
+    /* Sidebar right uniform */
+    .sidebar.right .widget {
+      border: 2px dashed #8b004b;
+      border-radius: 6px;
+      padding: 0.5rem;
+      margin-bottom: 0.7rem;
+      background: #fbced4;
+      font-family: 'Press Start 2P', cursive;
+    }
+    .sidebar.right .widget h4 {
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+      font-weight: bold;
+      text-align: center;
+    }
+    .sidebar.right .widget p { font-size: 0.7rem; margin: 0.2rem 0; }
+
+    /* Pixel counter */
+    .pixel-counter { display: flex; justify-content: center; gap: 4px; margin-bottom: 4px; }
+    .pixel-box {
+      width: 24px;
+      height: 32px;
+      background: #ffb6c1;
+      color: #8b004b;
+      font-family: 'Press Start 2P', cursive;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      border: 2px solid #8b004b;
+      border-radius: 4px;
+      box-shadow: 1px 1px 0 #4b0000;
+      image-rendering: pixelated;
+    }
+
+    /* Custom cursor */ #custom-cursor { position: fixed; width: 25px; height: 25px; background: gold; clip-path: polygon( 50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35% ); pointer-events: none; z-index: 9999; transform: translate(-50%, -50%) rotate(0deg); animation: twinkle 1s infinite alternate; } @keyframes twinkle { 0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); opacity: 1; } 50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.2); opacity: 0.8; } 100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); opacity: 1; } } /* Global font & body */ body { font-family: 'Press Start 2P', cursive; font-size: 0.9rem; line-height: 1.4; color: #4b0000; margin: 0; padding: 0; } h1 { color: #ffffff; margin: 0.5rem 0; } h2, h3, h4, h5, h6 { color: #4b0000; margin: 0.5rem 0; } p, li, input, textarea, a { font-family: 'Press Start 2P', cursive; font-size: 0.9rem; color: #4b0000; } a:hover { color: #ff69b4; } /* Buttons */ button, .buttons button { font-family: 'Press Start 2P', cursive; font-size: 0.85rem; background: #ffb6c1; color: #4b0000; border: 2px solid #ff69b4; border-radius: 10px; padding: 8px 12px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s, background 0.2s; } button:hover, .buttons button:hover { transform: scale(1.1); box-shadow: 2px 2px 0 #4b0000; background: #ff69b4; } /* Main content containers */ main { padding: 1rem 2rem; } .guestbook-container { background: #ffe4ea; border: 3px solid #8b0000; box-shadow: 4px 4px 0 #4b0000; border-radius: 12px; padding: 1rem; max-width: 700px; margin: 1rem auto; } .guestbook-form { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; } .guestbook-form input, .guestbook-form textarea { font-family: 'VT323', monospace; font-size: 16px; padding: 0.5rem; border: 2px solid #8b0000; border-radius: 8px; outline: none; resize: vertical; } .guestbook-form button { background: #ffb6c1; border: 2px solid #8b0000; border-radius: 6px; } .guestbook-form button:hover { background: #8b004b; color: #fff; } .guestbook-message { background: #fff0f5; border: 2px solid #8b0000; border-radius: 10px; box-shadow: 2px 2px 0 #4b0000; padding: 0.5rem; margin-bottom: 0.5rem; } .guestbook-message .author { font-weight: bold; color: #8b0000; } .guestbook-message .time { font-size: 0.7rem; color: #4b0000; } .guestbook-message .text { font-family: 'VT323', monospace; font-size: 16px; } /* Sidebar right uniform */ .sidebar.right .widget { border: 2px dashed #8b004b; border-radius: 6px; padding: 0.5rem; margin-bottom: 0.7rem; background: #fbced4; font-family: 'Press Start 2P', cursive; } .sidebar.right .widget h4 { font-size: 0.85rem; margin-bottom: 0.4rem; font-weight: bold; text-align: center; } .sidebar.right .widget p { font-size: 0.7rem; margin: 0.2rem 0; } /* Pixel counter */ .pixel-counter { display: flex; justify-content: center; gap: 4px; margin-bottom: 4px; } .pixel-box { width: 24px; height: 32px; background: #ffb6c1; color: #8b004b; font-family: 'Press Start 2P', cursive; display: flex; align-items: center; justify-content: center; font-size: 1rem; border: 2px solid #8b004b; border-radius: 4px; box-shadow: 1px 1px 0 #4b0000; image-rendering: pixelated; } footer p { text-align: center; color: #ffffff; font-family: 'Press Start 2P', cursive; margin: 1rem 0; } @keyframes fadeInText { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } } .project { border: 2px solid #8b0000; border-radius: 12px; padding: 15px; margin-bottom: 20px; background: #ffe4ea; box-shadow: 2px 2px 0 #4b0000; transition: transform 0.2s, box-shadow 0.2s; } .project:hover { transform: scale(1.03); box-shadow: 4px 4px 0 #4b0000; } .project h2 { font-size: 1rem; margin-bottom: 8px; color: #8b0000; } .project p { font-family: 'VT323', monospace; font-size: 0.85rem; margin: 0; } /* Floating sparkles */ .sparkle { position: absolute; width: 12px; height: 12px; border-radius: 50%; background-color: gold; opacity: 0.8; animation: float 6s linear infinite; } @keyframes float { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(-120px) rotate(360deg); opacity: 0; } } .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem; } .project-card { border: 2px dashed #ff69b4; padding: 1rem; background: #fff4fb; border-radius: 10px; transition: transform 0.3s, background 0.3s; color: #330000; } .project-card:hover { transform: scale(1.02); background: #ffe4f0; } .project-card h3 { color: #660000; margin-top: 0; } .project-card .details.hidden { display: none; } button { background: #ff69b4; color: #330000; border: none; padding: 0.5rem 1rem; cursor: pointer; border-radius: 8px; margin-top: 5px; font-family: inherit; } button:hover { background: #ffccee; }
+
+    footer p { text-align: center; color: #ffffff; font-family: 'Press Start 2P', cursive; margin: 1rem 0; }
+  </style>
 </head>
+
 <body>
   <div id="custom-cursor"></div>
 
-  <!-- HEADER -->
   <header>
     <h1>🌙 SunaSite 🌙</h1>
   </header>
 
-  <!-- LEFT SIDEBAR -->
-  <aside class="sidebar left">
-    <nav class="menu">
-      <ul>
-        <li><a href="../index.html">🏠 Home</a></li>
-        <li class="dropdown">
-          <a href="#">💖 About ▾</a>
-          <ul class="submenu">
-            <li><a href="../about/about-me.html">About Me</a></li>
-            <li><a href="../about/about-site.html">About the Site</a></li>
-            <li><a href="../about/guestbook.html">Guestbook</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#">🌟 Unique Me ▾</a>
-          <ul class="submenu">
-            <li><a href="../unique-me/working-on.html">What I’m Working On</a></li>
-            <li><a href="../unique-me/favorites.html">Favorites</a></li>
-            <li><a href="../unique-me/fun-facts.html">Fun Facts</a></li>
-            <li><a href="../unique-me/featured.html">Features</a></li>
-            <li><a href="../unique-me/clubs.html">Clubs I’m In</a></li>
-            <li><a href="../unique-me/current-activities.html">Current Activities</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#">🎨 Creations ▾</a>
-          <ul class="submenu">
-            <li><a href="../creations/project.html">Project</a></li>
-            <li><a href="../creations/playlist.html">Playlist</a></li>
-            <li><a href="../creations/junk-journal.html">Junk Journal</a></li>
-            <li><a href="../creations/writing.html">Writing</a></li>
-            <li><a href="../creations/misc.html">Misc</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#">📺 Media Recs ▾</a>
-          <ul class="submenu">
-            <li><a href="../media-recs/media-log.html">Log</a></li>
-            <li><a href="../media-recs/youtube.html">YouTube</a></li>
-            <li><a href="../media-recs/vinyls-cds.html">Vinyls+CDs</a></li>
-            <li><a href="../media-recs/books.html">Books</a></li>
-            <li><a href="../media-recs/movies.html">Movies</a></li>
-            <li><a href="../media-recs/tv.html">TV Shows</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-  </aside>
+  <div class="container">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar left">
+      <nav class="menu">
+        <ul>
+          <li><a href="../index.html">🏠 Home</a></li>
+          <li class="dropdown">
+            <a href="#">💖 About ▾</a>
+            <ul class="submenu">
+              <li><a href="../about/about-me.html">About Me</a></li>
+              <li><a href="../about/about-site.html">About the Site</a></li>
+              <li><a href="../about/guestbook.html">Guestbook</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">🌟 Unique Me ▾</a>
+            <ul class="submenu">
+              <li><a href="../unique-me/working-on.html">What I’m Working On</a></li>
+              <li><a href="../unique-me/favorites.html">Favorites</a></li>
+              <li><a href="../unique-me/fun-facts.html">Fun Facts</a></li>
+              <li><a href="../unique-me/featured.html">Features</a></li>
+              <li><a href="../unique-me/clubs.html">Clubs I’m In</a></li>
+              <li><a href="../unique-me/current-activities.html">Current Activities</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">🎨 Creations ▾</a>
+            <ul class="submenu">
+              <li><a href="../creations/project.html">Project</a></li>
+              <li><a href="../creations/playlist.html">Playlist</a></li>
+              <li><a href="../creations/writing.html">Writing</a></li>
+              <li><a href="../creations/vinyls.html">Vinyls</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </aside>
 
-  <!-- RIGHT SIDEBAR -->
-  <aside class="sidebar right">
-    <div class="widget">
-      <h4>💡 Coding Motto</h4>
-      <p>“Code like art, debug like science.”</p>
-    </div>
-  </aside>
+    <main>
+      <section class="projects-section">
+        <h2>🧠 My Coding & Engineering Projects</h2>
+        <p>Here’s where my ideas turn into reality. Click a project to learn more!</p>
 
-  <!-- MAIN CONTENT -->
-  <main>
-    <section class="projects-section">
-      <h2>🧠 My Coding Projects</h2>
-      <p>Here’s where my ideas turn into reality. Click a project to learn more!</p>
+        <div class="projects-grid">
 
-      <div id="projects-container" class="projects-grid">
-        <p>Loading projects...</p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>🌸 Updated from <code>/data/projects.json</code></p>
-  </footer>
-
-  <!-- Load projects dynamically -->
-  <script>
-    fetch('../data/projects.json')
-      .then(res => res.json())
-      .then(projects => {
-        const container = document.getElementById('projects-container');
-        container.innerHTML = projects.map(p => `
+          <!-- ArtiVision On-the-Go -->
           <div class="project-card">
-            <h3>${p.name}</h3>
-            <p class="short">${p.shortDesc}</p>
-            <p class="tech">🧰 ${p.tech}</p>
+            <h3>ArtiVision On-the-Go</h3>
+            <p class="short">Assistive vision device integrating text-to-speech, facial & emotional recognition.</p>
+            <p class="tech">🧰 Python, OpenCV, Raspberry Pi, TTS API</p>
             <button onclick="toggleDetails(this)">Show Details</button>
             <div class="details hidden">
-              <p>${p.details}</p>
+              <p>A wearable assistive device for the visually impaired. Reads text aloud, identifies people and emotions, and responds to voice commands.</p>
             </div>
           </div>
-        `).join('');
-      });
 
-    function toggleDetails(btn) {
-      const details = btn.nextElementSibling;
-      details.classList.toggle('hidden');
-      btn.textContent = details.classList.contains('hidden') ? 'Show Details' : 'Hide Details';
+          <!-- Robotic Arm with Object Recognition -->
+          <div class="project-card">
+            <h3>Robotic Arm with Object Recognition</h3>
+            <p class="short">A robotic arm that picks and recognizes objects using computer vision.</p>
+            <p class="tech">🧰 Python, TensorFlow, Raspberry Pi, Servo Control</p>
+            <button onclick="toggleDetails(this)">Show Details</button>
+            <div class="details hidden">
+              <p>Created a prototype robotic arm integrated with a camera that detects and picks up objects based on color and shape recognition.</p>
+            </div>
+          </div>
+
+          <!-- Pool Doctor -->
+          <div class="project-card">
+            <h3>Pool Doctor</h3>
+            <p class="short">Device that measures pool chemical levels and adjusts automatically.</p>
+            <p class="tech">🧰 Arduino, pH Sensors, Water Chemistry</p>
+            <button onclick="toggleDetails(this)">Show Details</button>
+            <div class="details hidden">
+              <p>Designed a pool monitoring system that measures chemical levels in real time and dispenses chemicals to maintain safe balance.</p>
+            </div>
+          </div>
+
+          <!-- Bicycle Mobile Charger -->
+          <div class="project-card">
+            <h3>Bicycle Mobile Charger</h3>
+            <p class="short">Generates electricity to charge devices while cycling.</p>
+            <p class="tech">🧰 Dynamo, USB Circuit, Bike Mechanics</p>
+            <button onclick="toggleDetails(this)">Show Details</button>
+            <div class="details hidden">
+              <p>Built a bicycle-powered charging system that converts kinetic energy into electrical energy to charge phones and small devices on the go.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="sidebar right">
+      <div class="widget">
+        <h4>✨ Quote of the Day ✨</h4>
+        <p>"Stay soft, the world needs your light."</p>
+      </div>
+      <div class="widget hits-visitors">
+        <h4>Your Clicks</h4>
+        <div id="pixel-counter" class="pixel-counter">
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+          <span class="pixel-box">0</span>
+        </div>
+      </div>
+      <div class="widget clock">
+        <h4>⏰ Local Time (PST)</h4>
+        <p id="arizona-time">--:--:--</p>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <p>Made with love + pixels by Suhana</p>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById("custom-cursor");
+    document.addEventListener("mousemove", e => {
+      cursor.style.left = e.clientX + "px";
+      cursor.style.top = e.clientY + "px";
+    });
+
+    // Pixel counter
+    let counter = 0;
+    const pixelBoxes = document.querySelectorAll("#pixel-counter .pixel-box");
+    function updatePixelCounter(value) {
+      let strVal = value.toString().padStart(6, "0");
+      for (let i = 0; i < 6; i++) pixelBoxes[i].textContent = strVal[i];
     }
+    updatePixelCounter(counter);
+    document.body.addEventListener("click", () => { counter++; updatePixelCounter(counter); });
+
+    // Arizona time
+    function updateArizonaTime() {
+      const timeElement = document.getElementById("arizona-time");
+      if(!timeElement) return;
+      const options = { timeZone: 'America/Phoenix', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+      timeElement.textContent = new Date().toLocaleTimeString('en-US', options);
+    }
+    setInterval(updateArizonaTime, 1000);
+    updateArizonaTime();
+
+    // Left sidebar dropdown functionality
+    document.addEventListener("DOMContentLoaded", function() {
+      const menu = document.querySelector('.sidebar.left .menu');
+      if (menu) {
+        menu.querySelectorAll('.dropdown > a').forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const parent = this.parentElement;
+            parent.classList.toggle('open'); // toggle clicked dropdown
+            // close other dropdowns
+            menu.querySelectorAll('.dropdown').forEach(d => {
+              if(d !== parent) d.classList.remove('open');
+            });
+          });
+        });
+      }
+    });
   </script>
-
-  <style>
-    main {
-      font-family: 'Press Start 2P', monospace;
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1rem;
-    }
-
-    .project-card {
-      border: 2px dashed #ff77e9;
-      padding: 1rem;
-      background: rgba(255,255,255,0.1);
-      border-radius: 10px;
-      transition: transform 0.3s;
-    }
-
-    .project-card:hover {
-      transform: scale(1.02);
-      background: rgba(255,255,255,0.2);
-    }
-
-    .project-card h3 {
-      color: #ffd1f9;
-    }
-
-    .details.hidden {
-      display: none;
-    }
-
-    button {
-      background: #ffb6f3;
-      color: #2b2b2b;
-      border: none;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      border-radius: 8px;
-      margin-top: 5px;
-    }
-
-    button:hover {
-      background: #ffccee;
-    }
-  </style>
 </body>
 </html>
