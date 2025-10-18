@@ -73,39 +73,6 @@
     /* Main content containers */
     main { padding: 1rem 2rem; }
 
-    .guestbook-container {
-      background: #ffe4ea;
-      border: 3px solid #8b0000;
-      box-shadow: 4px 4px 0 #4b0000;
-      border-radius: 12px;
-      padding: 1rem;
-      max-width: 700px;
-      margin: 1rem auto;
-    }
-    .guestbook-form { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
-    .guestbook-form input, .guestbook-form textarea {
-      font-family: 'VT323', monospace;
-      font-size: 16px;
-      padding: 0.5rem;
-      border: 2px solid #8b0000;
-      border-radius: 8px;
-      outline: none;
-      resize: vertical;
-    }
-    .guestbook-form button { background: #ffb6c1; border: 2px solid #8b0000; border-radius: 6px; }
-    .guestbook-form button:hover { background: #8b004b; color: #fff; }
-
-    .guestbook-message {
-      background: #fff0f5;
-      border: 2px solid #8b0000;
-      border-radius: 10px;
-      box-shadow: 2px 2px 0 #4b0000;
-      padding: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .guestbook-message .author { font-weight: bold; color: #8b0000; }
-    .guestbook-message .time { font-size: 0.7rem; color: #4b0000; }
-    .guestbook-message .text { font-family: 'VT323', monospace; font-size: 16px; }
 
     /* Sidebar right uniform */
     .sidebar.right .widget {
@@ -141,8 +108,37 @@
       box-shadow: 1px 1px 0 #4b0000;
       image-rendering: pixelated;
     }
+    
+      .menu .submenu {
+    display: none;
+    list-style: none;
+    padding-left: 0.5rem;
+    margin: 0;
+  }
 
-    footer p { text-align: center; color: #ffffff; font-family: 'Press Start 2P', cursive; margin: 1rem 0; }
+  .menu .dropdown.open > .submenu {
+    display: block;
+  }
+
+  /* Optional: make links look nicer in submenu */
+  .menu .submenu li a {
+    display: block;
+    padding: 4px 8px;
+    text-decoration: none;
+    color: #4b0000;
+  }
+  .menu .submenu li a:hover {
+    color: #ff69b4;
+  }
+  .sidebar.left .submenu {
+  display: none;
+}
+
+.sidebar.left .dropdown.open > .submenu {
+  display: block;
+}
+
+    footer p { text-align: center; color: #ffdede; font-family: 'Press Start 2P', cursive; margin: 1rem 0; }
   </style>
 </head>
 
@@ -183,20 +179,8 @@
             <ul class="submenu">
               <li><a href="../creations/project.html">Project</a></li>
               <li><a href="../creations/playlist.html">Playlist</a></li>
-              <li><a href="../creations/junk-journal.html">Junk Journal</a></li>
               <li><a href="../creations/writing.html">Writing</a></li>
-              <li><a href="../creations/misc.html">Misc</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#">📺 Media Recs ▾</a>
-            <ul class="submenu">
-              <li><a href="../media-recs/media-log.html">Log</a></li>
-              <li><a href="../media-recs/youtube.html">YouTube</a></li>
-              <li><a href="../media-recs/vinyls-cds.html">Vinyls+CDs</a></li>
-              <li><a href="../media-recs/books.html">Books</a></li>
-              <li><a href="../media-recs/movies.html">Movies</a></li>
-              <li><a href="../media-recs/tv.html">TV Shows</a></li>
+              <li><a href="../creations/vinyls.html">Vinyls</a></li>
             </ul>
           </li>
         </ul>
@@ -204,9 +188,74 @@
     </aside>
 
     <!-- MAIN CONTENT -->
-    <main>
-        <h2></h2>
+    <main class="main-section clubs">
+    <h2 class="page-title">🎓 My Clubs & Activities</h2>
+    <p class="subtitle">Hover over each card to see more about my role!</p>
+
+    <div class="club-grid">
+      <!-- Model UN -->
+      <div class="club-card">
+        <div class="club-inner">
+          <div class="club-front">🌍<br>Model UN</div>
+          <div class="club-back">
+            <p>I debate international issues, draft resolutions, and collaborate with other delegates to find global solutions.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Speech & Debate -->
+      <div class="club-card">
+        <div class="club-inner">
+          <div class="club-front">🎤<br>Speech & Debate</div>
+          <div class="club-back">
+            <p>I compete in Big Questions — exploring philosophy, current events, and rhetoric.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mock Trial -->
+      <div class="club-card">
+        <div class="club-inner">
+          <div class="club-front">⚖️<br>Mock Trial</div>
+          <div class="club-back">
+            <p>I serve as both an attorney, learning to think on my feet while building courtroom and argument skills.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CodeLabs -->
+      <div class="club-card">
+        <div class="club-inner">
+          <div class="club-front">💻<br>CodeLabs</div>
+          <div class="club-back">
+            <p>I collaborate with peers on hackathon projects, exploring creative problem-solving through programming and design.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- NHS -->
+      <div class="club-card">
+        <div class="club-inner">
+          <div class="club-front">⭐<br>NHS</div>
+          <div class="club-back">
+            <p>As part of the National Honor Society, I volunteer in service projects that promote leadership and community growth.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spanish Honor Society -->
+      <div class="club-card">
+        <div class="club-inner">
+          <div class="club-front">🌮<br>Spanish Honor Society</div>
+          <div class="club-back">
+            <p>I celebrate Hispanic culture through events and language learning, helping promote cultural awareness in school.</p>
+          </div>
+        </div>
+      </div>
+    </div>
     </main>
+
+
 
     <!-- RIGHT SIDEBAR -->
     <aside class="sidebar right">
@@ -237,57 +286,49 @@
   </footer>
 
   <script>
-    // Custom cursor
-    const cursor = document.getElementById("custom-cursor");
-    document.addEventListener("mousemove", e => {
-      cursor.style.left = e.clientX + "px";
-      cursor.style.top = e.clientY + "px";
-    });
 
-    displayMessages();
-    form.addEventListener("submit", e => {
-      e.preventDefault();
-      const author = document.getElementById("author").value.trim();
-      const message = document.getElementById("message").value.trim();
-      if (!author || !message) return;
-      messages.push({ author, message, time: Date.now() });
-      localStorage.setItem("guestbookMessages", JSON.stringify(messages));
-      form.reset();
-      displayMessages();
-    });
+  // Custom cursor
+  const cursor = document.getElementById("custom-cursor");
+  document.addEventListener("mousemove", e => {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+  });
 
-    // Pixel counter
-    let counter = 0;
-    const pixelBoxes = document.querySelectorAll("#pixel-counter .pixel-box");
-    function updatePixelCounter(value) {
-      let strVal = value.toString().padStart(6, "0");
-      for (let i = 0; i < 6; i++) pixelBoxes[i].textContent = strVal[i];
-    }
-    updatePixelCounter(counter);
-    document.body.addEventListener("click", () => { counter++; updatePixelCounter(counter); });
+  // Left sidebar dropdown functionality
+  document.addEventListener("DOMContentLoaded", function() {
+    const dropdownLinks = document.querySelectorAll('.sidebar.left .dropdown > a');
+    dropdownLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault(); // prevent page jump
+        const parent = this.parentElement;
+        parent.classList.toggle('open'); // toggle this dropdown
 
-    // Arizona time
-    function updateArizonaTime() {
-      const options = { timeZone: 'America/Phoenix', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
-      document.getElementById("arizona-time").textContent = new Date().toLocaleTimeString('en-US', options);
-    }
-    setInterval(updateArizonaTime, 1000);
-    updateArizonaTime();
-
-    // Dropdown menus
-    document.addEventListener("DOMContentLoaded", function() {
-      const menu = document.querySelector('.sidebar.left .menu');
-      if (menu) {
-        menu.querySelectorAll('.dropdown > a').forEach(drop => {
-          drop.addEventListener('click', function(e) {
-            e.preventDefault();
-            const parent = this.parentElement;
-            menu.querySelectorAll('.dropdown').forEach(d => { if(d !== parent) d.classList.remove('open'); });
-            parent.classList.toggle('open');
-          });
+        // close all other dropdowns
+        document.querySelectorAll('.sidebar.left .dropdown').forEach(d => {
+          if(d !== parent) d.classList.remove('open');
         });
-      }
+      });
     });
-  </script>
+  });
+
+  // Pixel counter
+  let counter = 0;
+  const pixelBoxes = document.querySelectorAll("#pixel-counter .pixel-box");
+  function updatePixelCounter(value) {
+    let strVal = value.toString().padStart(6, "0");
+    for (let i = 0; i < 6; i++) pixelBoxes[i].textContent = strVal[i];
+  }
+  updatePixelCounter(counter);
+  document.body.addEventListener("click", () => { counter++; updatePixelCounter(counter); });
+
+  // Arizona time
+  function updateArizonaTime() {
+    const options = { timeZone: 'America/Phoenix', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    document.getElementById("arizona-time").textContent = new Date().toLocaleTimeString('en-US', options);
+  }
+  setInterval(updateArizonaTime, 1000);
+  updateArizonaTime();
+</script>
+
 </body>
 </html>
